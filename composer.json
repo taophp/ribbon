@@ -1,0 +1,10 @@
+{
+    "require": {
+        "php": ">=7.0.0",
+        "twbs/bootstrap": "^4.1",
+        "twig/twig": "^2.5",
+        "slim/slim": "^3.1",
+        "slim/php-view": "^2.0",
+        "monolog/monolog": "^1.17"
+   }
+}
