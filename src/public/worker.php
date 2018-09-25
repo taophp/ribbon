@@ -10,6 +10,14 @@ if (file_exists('../../config/config.php')) {
 }
 
 $app = new \Slim\App(['settings' => $config]);
+$container = $app->getContainer();
+$container['logger'] = function($c) {
+    $logger = new \Monolog\Logger('my_logger');
+    $file_handler = new \Monolog\Handler\StreamHandler('../../logs/app.log');
+    $logger->pushHandler($file_handler);
+    return $logger;
+};
+
 $app->get('/hello/{name}', function (Request $request, Response $response, array $args) {
     $name = $args['name'];
     $response->getBody()->write("Hello, $name");
