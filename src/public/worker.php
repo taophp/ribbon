@@ -2,7 +2,7 @@
 
 use \Psr\Http\Message\ServerRequestInterface as Request;
 use \Psr\Http\Message\ResponseInterface as Response;
-require '../vendor/autoload.php';
+require '../../vendor/autoload.php';
 
 include_once('../../config/config.sample.php');
 if (file_exists('../../config/config.php')) {
