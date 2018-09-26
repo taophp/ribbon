@@ -18,10 +18,24 @@ $container['logger'] = function($c) {
     return $logger;
 };
 
-$app->get('/hello/{name}', function (Request $request, Response $response, array $args) {
+$app->add($config['authHandler']);
+
+$app->get('/', function (Request $request, Response $response, array $args) {
     $name = $args['name'];
-    $response->getBody()->write("Hello, $name");
+    $response->getBody()->write('Hi');
 
     return $response;
 });
+$app->get('/hello/{name}', function (Request $request, Response $response, array $args) {
+    $name = $args['name'];
+    $response->getBody()->write('Hello, '.$name);
+
+    return $response;
+});
+$app->get('/api', function (Request $request, Response $response, array $args) {
+    $response->getBody()->write('Happy!');
+
+    return $response;
+});
+
 $app->run();
