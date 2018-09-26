@@ -27,7 +27,7 @@ $app->get('/', function (Request $request, Response $response, array $args) {
 
     return $response;
 });
-$app->get('/posts', function (Request $request, Response $response, array $args) {
+/*$app->get('/posts', function (Request $request, Response $response, array $args) {
     $response->getBody()->write('Hi');
 
     return $response;
@@ -45,6 +45,6 @@ $app->get('/posts/{id}', function (Request $request, Response $response, array $
 
 
     return $response;
-});
+}); */
 
 $app->run();
