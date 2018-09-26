@@ -20,8 +20,15 @@ $config = [
             'secure' => false,
             'users' => [
                 'root' => 't00r',
-                'somebody' => 'passw0rd',
             ],
         ]
     ),
+    // TWIG
+    'twig' => [
+        'loader' => new Twig_Loader_Filesystem(__DIR__.'/../src/templates'),
+        'env' => [
+            'debug' => true,
+            'cache' => __DIR__.'/../templates_c',
+        ]
+    ]
 ];

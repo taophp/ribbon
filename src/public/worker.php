@@ -20,20 +20,29 @@ $container['logger'] = function($c) {
 
 $app->add($config['authHandler']);
 
+$container['Twig'] = new Twig_Environment($config['twig']['loader'],$config['twig'][env]);
+
 $app->get('/', function (Request $request, Response $response, array $args) {
-    $name = $args['name'];
     $response->getBody()->write('Hi');
 
     return $response;
 });
-$app->get('/hello/{name}', function (Request $request, Response $response, array $args) {
-    $name = $args['name'];
-    $response->getBody()->write('Hello, '.$name);
+$app->get('/posts', function (Request $request, Response $response, array $args) {
+    $response->getBody()->write('Hi');
 
     return $response;
 });
-$app->get('/api', function (Request $request, Response $response, array $args) {
-    $response->getBody()->write('Happy!');
+
+$app->get('/posts/new', function (Request $request, Response $response, array $args) {
+    $response->getBody()->write('Hi');
+
+    return $response;
+});
+
+$app->get('/posts/{id}', function (Request $request, Response $response, array $args) {
+    $id = $args['id'];
+    $response->getBody()->write('Edit post , '.$id);
+
 
     return $response;
 });
