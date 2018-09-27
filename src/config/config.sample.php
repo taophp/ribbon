@@ -1,7 +1,8 @@
 <?php
 
 $config = [
-    'logFile' => __DIR__.'/logs/app.log',
+    'logFile' => __DIR__.'/../logs/app.log',
+    'postsSourceDirectory' => __DIR__.'/../posts',
     'displayErrorDetails' => true, // set to false in production
     'addContentLengthHeader' => false, // Allow the web server to send the content-length header
     // Renderer settings
@@ -26,7 +27,7 @@ $config = [
     ),
     // TWIG
     'twig' => [
-        'templatePath' => __DIR__.'/../src/templates',
+        'templatePath' => __DIR__.'/../templates',
         'env' => [
             'debug' => true,
             'cache' => __DIR__.'/../templates_c',

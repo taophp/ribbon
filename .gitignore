@@ -1,7 +1,7 @@
-/vendor/
-/logs/*
-!/logs/README.md
-/config/config.php
+/src/vendor/
+/src/logs/*
+!/src/logs/README.md
+/src/config/config.php
 /src/public/index.html
-/templates_c/*
-!/template_c/README.md
+/src/templates_c/*
+!/src/template_c/README.md

@@ -2,11 +2,11 @@
 
 use \Psr\Http\Message\ServerRequestInterface as Request;
 use \Psr\Http\Message\ResponseInterface as Response;
-require '../../vendor/autoload.php';
+require '../vendor/autoload.php';
 
-include_once('../../config/config.sample.php');
-if (file_exists('../../config/config.php')) {
-    include_once('../../config/config.php');
+include_once('../config/config.sample.php');
+if (file_exists('../config/config.php')) {
+    include_once('../config/config.php');
 }
 
 $app = new \Slim\App(['settings' => $config]);
@@ -31,12 +31,18 @@ $container['view'] = function($container) {
 
 //$container['Twig'] = new Twig_Environment($config['twig']['loader'],$config['twig']['env']);
 
-$app->get('/', function (Request $request, Response $response, array $args) {
+$app->get('/', function (Request $request, Response $response) {
     return $this->view->render($response,'newpost.html');
-    $response->getBody()->write('Hi');
+})->setName('getnewpost');
 
+$app->post('/', function (Request $request, Response $response) {
+    $data = $request->getParsedBody();
+    $post = new RibbonPost($this->settings['postsSourceDirectory']);
+    $post->save($data['content']);
+    
+    $response->getBody()->write($post->html());
     return $response;
-})->setName('newpost');
+});
 
 /*$app->get('/posts', function (Request $request, Response $response, array $args) {
     $response->getBody()->write('Hi');
