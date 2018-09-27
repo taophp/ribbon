@@ -15,7 +15,7 @@ class RibbonPost {
     const DATE_FORMAT_4_FILE_NAME = 'Y-m-d-';
     const DATE_FORM_4_YAML = 'Y-m-d H:i:s';
     
-    protected $postSourceDirectory;
+    protected $postsSourceDirectory;
     protected $fileName;
     protected $yaml;
     protected $content;
