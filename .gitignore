@@ -3,5 +3,5 @@
 !/logs/README.md
 /config/config.php
 /src/public/index.html
-/src/public/index.php
-src/public/index.html
+/templates_c/*
+!/template_c/README.md
