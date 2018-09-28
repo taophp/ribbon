@@ -1,7 +1,10 @@
 /src/vendor/
-/src/logs/*
-!/src/logs/README.md
-/src/config/config.php
+/logs/*
+!/logs/README.md
+/src/posts/*
+!/src/posts/2018-09-28-README.md
+/src/config/*
+!/src/config/config.sample.php
 /src/public/index.html
-/src/templates_c/*
-!/src/template_c/README.md
+/templates_c/*
+!/template_c/README.md
