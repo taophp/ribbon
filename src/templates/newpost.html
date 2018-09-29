@@ -1,13 +1,21 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>TODO supply a title</title>
+        <title>Ribbon New Post</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
+        <div id="flashMsg">
+        {% for status,msgs in messages %}
+            {% for message in msgs %}
+            <div class="{{ status }}">{{ message }}</div>
+            {% endfor %}
+        {% endfor %}
+        </div>
         <form method="post">
-            <textarea name="content" placeholder="Write..."></textarea>
+            <textarea name="content" placeholder="Write..." cols="60" rows="25"></textarea>
+            <br>
             <input type="submit">
         </form>
     </body>

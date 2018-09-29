@@ -24,7 +24,7 @@ class RibbonPost {
     //protected $content;
     //protected $timestamp;
     
-    public function __construct(string $dir) {
+    public function __construct(string $dir,string $filename = '') {
         if (!is_dir($dir) || !is_writable($dir)) {
             throw new Exception($dir.' MUST be writable directory !');
         }
@@ -41,12 +41,16 @@ class RibbonPost {
         }
     }
 
-    protected function _getFileName() : void {
-        $this->fileName = date(static::DATE_FORMAT_4_FILE_NAME,$this->timestamp).urlencode($this->title).'.md';
+    protected function _getFileName(int $postfix = 0) : void {
+        $this->fileName = date(static::DATE_FORMAT_4_FILE_NAME,$this->timestamp).urlencode(trim($this->title)).$postfix.'.md';
+        if (file_exists($this->_getFileFullName())) {
+            $this->_getFileName($postfix+1);
+        }
     }
     
-    protected function _getFileFullName() : void {
-        $this->fileFullName = $this->postsSourceDirectory.'/'.$this->fileName = urlencode($this->title).'md';
+    protected function _getFileFullName() : string {
+        $this->fileFullName = $this->postsSourceDirectory.'/'.$this->fileName;
+        return $this->fileFullName;
     }
     
     protected function _getTimestamp()  {
@@ -58,10 +62,9 @@ class RibbonPost {
                         . 'date: '.date(static::DATE_FORMAT_4_YAML,$this->timestamp);        
     }
     
-    public function save(string $content) : void {
-        /** @todo What if the file exists ? */
+    public function save(string $content) : bool {
         $this->parseContentFromForm($content);
-        file_put_contents($this->postsSourceDirectory.'/'.$this->fileName,
+        return file_put_contents($this->postsSourceDirectory.'/'.$this->fileName,
                           $this->yaml.static::YAML_SEPARATOR.$this->content
         );
     }

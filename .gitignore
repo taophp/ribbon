@@ -6,5 +6,5 @@
 /src/config/*
 !/src/config/config.sample.php
 /src/public/index.html
-/templates_c/*
-!/template_c/README.md
+/src/templates_c/*
+!/src/template_c/README.md
