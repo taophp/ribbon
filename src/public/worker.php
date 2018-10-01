@@ -45,7 +45,7 @@ $app->get('/', function (Request $request, Response $response) {
 
 $app->post('/', function (Request $request, Response $response) {
     $data = $request->getParsedBody();
-    $post = new RibbonPost($this->settings['postsSourceDirectory']);
+    $post = new RibbonPost($this);
     if ($post->save($data['content'])) {
         $this->flash->addMessage('Success', 'The post was successfully saved.');
     }else{

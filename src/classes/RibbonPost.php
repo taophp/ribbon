@@ -19,12 +19,16 @@ class RibbonPost {
     protected $postsSourceDirectory;
     protected $title;
     protected $content;
+    protected $app;
+    
     //protected $fileName;
     //protected $yaml;
     //protected $content;
     //protected $timestamp;
     
-    public function __construct(string $dir,string $filename = '') {
+    public function __construct(string $app,string $filename = '') {
+        $this->app = $app;
+        $dir = $app->settings['postsSourceDirectory'];
         if (!is_dir($dir) || !is_writable($dir)) {
             throw new Exception($dir.' MUST be writable directory !');
         }
@@ -67,6 +71,7 @@ class RibbonPost {
         return file_put_contents($this->postsSourceDirectory.'/'.$this->fileName,
                           $this->yaml.static::YAML_SEPARATOR.$this->content
         );
+        RibbonGenerator::generate($this->app);
     }
     
     protected function parseContentFromForm(string $content) : void {

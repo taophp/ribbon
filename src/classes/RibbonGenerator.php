@@ -12,11 +12,10 @@
  * @author Stéphane Mourey <steph@stephanemourey.fr>
  */
 class RibbonGenerator {
-    public function __contruct(string $postsDirectory, string $targetFile) {
-        
+    static protected $app;
+   
+    public static function generate($app) {
+        static$app = $app;
     }
     
-    public function generate() {
-        
-    }
 }
