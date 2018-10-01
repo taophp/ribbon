@@ -15,7 +15,7 @@ class RibbonGenerator {
     static protected $app;
    
     public static function generate($app) {
-        static$app = $app;
+        static::$app = $app;
     }
     
 }
