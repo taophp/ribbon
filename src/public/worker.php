@@ -52,12 +52,12 @@ $app->post('/', function (Request $request, Response $response) {
         $this->flash->addMessage('Error', 'Impossible to save the post !');
     }
 
-    //$response->withRedirect($this->router->pathFor('getnewpost'),303);
+    $response = $response->withRedirect($this->router->pathFor('getnewpost'),303);
 
-    $messages = $this->flash->getMessages();
+    /*$messages = $this->flash->getMessages();
     return $this->view->render($response,'newpost.html',[
         'messages' => $messages,
-    ]);
+    ]);*/
 
     return $response;
 });

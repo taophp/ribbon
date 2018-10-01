@@ -26,9 +26,9 @@ class RibbonPost {
     //protected $content;
     //protected $timestamp;
     
-    public function __construct(string $app,string $filename = '') {
-        $this->app = $app;
-        $dir = $app->settings['postsSourceDirectory'];
+    public function __construct(Slim\Container $container,string $filename = '') {
+        $this->container = $container;
+        $dir = $container->settings['postsSourceDirectory'];
         if (!is_dir($dir) || !is_writable($dir)) {
             throw new Exception($dir.' MUST be writable directory !');
         }
