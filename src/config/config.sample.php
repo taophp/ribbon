@@ -3,8 +3,11 @@
 $config = [
     'logFile' => __DIR__.'/../logs/app.log',
     'postsSourceDirectory' => __DIR__.'/../posts',
+    'postDestinationDirectory' => __DIR__.'/../public',
     'displayErrorDetails' => true, // set to false in production
     'addContentLengthHeader' => false, // Allow the web server to send the content-length header
+    'date_format' => 'Y-m-d',
+    'time_format' => 'H:i',
     // Renderer settings
     'renderer' => [
         'template_path' => __DIR__ . '/../templates/',

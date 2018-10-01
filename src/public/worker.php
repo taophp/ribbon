@@ -45,7 +45,7 @@ $app->get('/', function (Request $request, Response $response) {
 
 $app->post('/', function (Request $request, Response $response) {
     $data = $request->getParsedBody();
-    $post = new RibbonPost($this);
+    $post = new RibbonPostWritter($this);
     if ($post->save($data['content'])) {
         $this->flash->addMessage('Success', 'The post was successfully saved.');
     }else{
@@ -53,11 +53,6 @@ $app->post('/', function (Request $request, Response $response) {
     }
 
     $response = $response->withRedirect($this->router->pathFor('getnewpost'),303);
-
-    /*$messages = $this->flash->getMessages();
-    return $this->view->render($response,'newpost.html',[
-        'messages' => $messages,
-    ]);*/
 
     return $response;
 });

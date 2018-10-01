@@ -1,17 +1,11 @@
 <?php
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
- * Description of ribbonPost
+ * Description of RibbonPostWritter
  *
  * @author Stephane Mourey <steph@stephanemourey.fr>
  */
-class RibbonPost {
+class RibbonPostWritter {
     const DATE_FORMAT_4_FILE_NAME = 'Y-m-d-';
     const DATE_FORMAT_4_YAML = 'Y-m-d H:i:s';
     const YAML_SEPARATOR = PHP_EOL.'---'.PHP_EOL;
@@ -68,10 +62,12 @@ class RibbonPost {
     
     public function save(string $content) : bool {
         $this->parseContentFromForm($content);
-        return file_put_contents($this->postsSourceDirectory.'/'.$this->fileName,
+        file_put_contents($this->postsSourceDirectory.'/'.$this->fileName,
                           $this->yaml.static::YAML_SEPARATOR.$this->content
         );
-        RibbonGenerator::generate($this->app);
+        RibbonGenerator::init($this->container);
+        RibbonGenerator::generate();
+        return true;
     }
     
     protected function parseContentFromForm(string $content) : void {
