@@ -11,7 +11,6 @@ use Symfony\Component\Yaml\Yaml;
 class RibbonPostReader {
 
     public $date;
-    public $time;
     public $title;
     public $content;
     public $yaml;
@@ -32,6 +31,7 @@ class RibbonPostReader {
         list ($yamlstring,$markdown) = explode(RibbonPostWritter::YAML_SEPARATOR,$fileContent,2);
         $this->yaml = Yaml::parse($yamlstring);
         $this->title = $this->yaml['title'];
+        $this->date = $this->yaml['date'];
         $mdParser = new \cebe\markdown\Markdown();
         $this->content = $mdParser->parse($markdown);
     }
