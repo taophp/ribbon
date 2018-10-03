@@ -28,10 +28,14 @@ class RibbonPostReader {
 
     
     protected function parse(string $fileContent) {
+        $dateTimeZone = new DateTimeZone(date_default_timezone_get());
+        $dateTime = new DateTime('now',$dateTimeZone);
+        $offset = $dateTimeZone->getOffset($dateTime);
+
         list ($yamlstring,$markdown) = explode(RibbonPostWritter::YAML_SEPARATOR,$fileContent,2);
         $this->yaml = Yaml::parse($yamlstring);
         $this->title = $this->yaml['title'];
-        $this->date = $this->yaml['date'];
+        $this->date = $this->yaml['date']-$offset;
         $mdParser = new \cebe\markdown\Markdown();
         $this->content = $mdParser->parse($markdown);
     }
