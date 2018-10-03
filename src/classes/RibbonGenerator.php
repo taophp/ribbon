@@ -37,23 +37,21 @@ class RibbonGenerator {
         $files = glob(static::$container->settings['postsSourceDirectory'].'/*md');
         
         $posts = [];
-        $monthNames = ['','Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Août','Septembre','Octobre','Novembre','Décembre'];
         foreach ($files as $file) {
             $post = new RibbonPostReader(static::$container,$file);
             $year = date('Y',$post->date);
             $month = date('m',$post->date);
-            $day= date('d',$post->date);
+            $day= date('j',$post->date);
             $time= date('H:i',$post->date);
             
             $posts[$year][$month][$day][$time] = $post;
         }
-        ksortRecursive($posts);
+        krsortRecursive($posts);
         $view = new \Slim\Views\Twig(static::$container['settings']['twig']['templatePath'],static::$container['settings']['twig']['env']);
-        //$view->addExtension(new Slim\Views\TwigExtension($container->get('router'), rtrim($container->get('request')->getUri()->getBasePath())));
         $view->addExtension(new \Twig_Extension_Debug());
         
         
-        file_put_contents(static::$container->settings['postDestinationDirectory'].'/index.html', $view->fetch('index.html',['posts'=>$posts,'monthNames'=>$monthNames]));
+        file_put_contents(static::$container->settings['postDestinationDirectory'].'/index.html', $view->fetch('index.html',['posts'=>$posts]));
 
     }
     
@@ -65,11 +63,11 @@ class RibbonGenerator {
  * @param type $sort_flags
  * @return boolean
  */
-function ksortRecursive(&$array, $sort_flags = SORT_REGULAR) {
+function krsortRecursive(&$array, $sort_flags = SORT_REGULAR) {
     if (!is_array($array)) return false;
-    ksort($array, $sort_flags);
+    krsort($array, $sort_flags);
     foreach ($array as &$arr) {
-        ksortRecursive($arr, $sort_flags);
+        krsortRecursive($arr, $sort_flags);
     }
     return true;
 }

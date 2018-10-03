@@ -3,40 +3,81 @@
     <head>
         <meta charset="utf-8"/>
         <title>Ribbon</title>
-        <link href='//fonts.googleapis.com/css?family=Lato:300' rel='stylesheet' type='text/css'>
         <style>
             body {
-                margin: 50px 0 0 0;
+                width: 35em;
                 padding: 0;
-                width: 100%;
-                font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-                text-align: center;
-                color: #aaa;
-                font-size: 18px;
+                margin:0 auto;
+                font-family: serif;
+                text-align: justify;
             }
 
             h1 {
-                color: #719e40;
                 letter-spacing: -3px;
-                font-family: 'Lato', sans-serif;
                 font-size: 100px;
                 font-weight: 200;
                 margin-bottom: 0;
+                text-align: center;
+            }
+            
+            h1,h2 {
+                color: #719e40;
+                font-family: sans-serif;                
+            }
+            .time {
+                color: gray;
+                float: right;
+                margin-left: 1em;
+                font-style: italic;
+            }
+            .day {
+                font-size: 120%;
+                border-bottom: solid 1px silver;
+                font-style: italic;
+                margin-top: 1em;
+                color: darkgrey;
+                padding-left: .5em;
+            }
+            .month {
+                margin: 1em 0;
+                font-size: 130%;
+                text-transform: uppercase;
+                border-bottom: double;
+                padding-left: 1em;
             }
         </style>
     </head>
     <body>
+{%
+    set monthNames = {
+        '01':'Janvier',
+        '02':'Février',
+        '03':'Mars',
+        '04':'Avril',
+        '05':'Mai',
+        '06':'Juin',
+        '07':'Juillet',
+        '08':'Août',
+        '09':'Septembre',
+        '10':'Octobre',
+        '11':'Novembre',
+        '12':'Décembre'
+    }
+%}
         <h1>Ribbon</h1>
         <div>a microbloging tool</div>
         {% for year,months in posts %}
-            <h2>{{ year }}</h2>
+            <div class="year">{{ year }}</div>
             {% for month,days in months %}
-                <h3>{{ month }} {{ monthNames[month] }}</h3>
+                <div class="month">{{ attribute(monthNames,month) }}</div>
                 {% for day,times in days %}
-                    <h4>{{ day }}</h4>
+                    <div class="day">{{ day }} {{ attribute(monthNames,month) }} {{ year }}</div>
                     {% for time,post in times %}
-                        <h5>{{ time }}: {{ post.title | raw }}</h5>
-                        <div>{{ post.content | raw }}</div>
+                        <article>
+                            <div class="time">{{ time }}</div>
+                            <h2>{{ post.title | raw }}</h2>
+                            <div class="content">{{ post.content | raw }}</div>
+                        </article>
                     {% endfor %}
                 {% endfor %}
             {% endfor %}
