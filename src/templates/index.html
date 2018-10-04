@@ -1,48 +1,39 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8"/>
-        <title>Ribbon</title>
-        <link rel="stylesheet" href="res/style.css">
-        <script src="vendor/components/jquery/jquery.min.js" defer></script>
-        <script defer src="res/script.js"></script>
-    </head>
-    <body>
-{%
-    set monthNames = {
-        '01':'Janvier',
-        '02':'Février',
-        '03':'Mars',
-        '04':'Avril',
-        '05':'Mai',
-        '06':'Juin',
-        '07':'Juillet',
-        '08':'Août',
-        '09':'Septembre',
-        '10':'Octobre',
-        '11':'Novembre',
-        '12':'Décembre'
-    }
-%}
-        <h1>{{ frontConfig['site']['title'] }}</h1>
-        <div>{{ frontConfig['site']['motto'] }}</div>
-        {% for year,months in posts %}
-            <div class="year">{{ year }}</div>
-            {% for month,days in months %}
-                <div class="month">{{ attribute(monthNames,month) }}</div>
-                {% for day,times in days %}
-                    <div class="day">{{ day }} {{ attribute(monthNames,month) }} {{ year }}</div>
-                    {% for time,seconds in times %}
-                        {% for second,post in seconds %}
-                            <article>
-                                <div class="time">{{ time }}</div>
-                                <h2>{{ post.title | raw }}</h2>
-                                <div class="content">{{ post.content | raw }}</div>
-                            </article>
-                        {% endfor %}
+{% extends "skeleton.html" %}
+{% block body %}
+    {%
+        set monthNames = {
+            '01':'Janvier',
+            '02':'Février',
+            '03':'Mars',
+            '04':'Avril',
+            '05':'Mai',
+            '06':'Juin',
+            '07':'Juillet',
+            '08':'Août',
+            '09':'Septembre',
+            '10':'Octobre',
+            '11':'Novembre',
+            '12':'Décembre'
+        }
+    %}
+    <h1>{{ frontConfig['site']['title'] }}</h1>
+    <div>{{ frontConfig['site']['motto'] }}</div>
+    {% for year,months in posts %}
+        <div class="year">{{ year }}</div>
+        {% for month,days in months %}
+            <div class="month">{{ attribute(monthNames,month) }}</div>
+            {% for day,times in days %}
+                <div class="day">{{ day }} {{ attribute(monthNames,month) }} {{ year }}</div>
+                {% for time,seconds in times %}
+                    {% for second,post in seconds %}
+                        <article>
+                            <div class="time">{{ time }}</div>
+                            <h2>{{ post.title | raw }}</h2>
+                            <div class="content">{{ post.content | raw }}</div>
+                        </article>
                     {% endfor %}
                 {% endfor %}
             {% endfor %}
         {% endfor %}
-    </body>
-</html>
+    {% endfor %}
+{% endblock %}

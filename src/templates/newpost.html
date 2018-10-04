@@ -1,11 +1,5 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Ribbon New Post</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-    <body>
+{% extends "skeleton.html" %}
+{% block body %}
         <div id="flashMsg">
         {% for status,msgs in messages %}
             {% for message in msgs %}
@@ -18,5 +12,4 @@
             <br>
             <input type="submit">
         </form>
-    </body>
-</html>
+{% endblock %}
