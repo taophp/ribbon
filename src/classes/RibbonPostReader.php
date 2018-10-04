@@ -36,7 +36,7 @@ class RibbonPostReader {
         $this->yaml = Yaml::parse($yamlstring);
         $this->title = $this->yaml['title'];
         $this->date = $this->yaml['date']-$offset;
-        $mdParser = new \cebe\markdown\Markdown();
+        $mdParser = new \cebe\markdown\GithubMarkdown();
         $this->content = $mdParser->parse($markdown);
     }
 }
