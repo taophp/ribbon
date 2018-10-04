@@ -57,3 +57,34 @@ article * {
 img {
     max-width:100%
 }
+textarea {
+    width: 100%;
+    max-width: 35em;
+    height: 95vh;
+    font-size: 15.84px;
+    font-family: serif;
+}
+.flashmsg {
+    width: 100%;
+    margin: .5em 0;
+    padding: 1em;
+    border: solid 1px blue;
+    background: lightblue;
+    color: blue;
+    box-sizing: border-box;
+}
+.flasmsg.Error {
+    border-color: red;
+    color: red;
+    background-color: pink;
+}
+.flasmsg.Warning {
+    border-color: orangered;
+    color: orangered;
+    background-color: lightsalmon;
+}
+.flashmsg.Success {
+    border-color: green;
+    color: green;
+    background-color: lightgreen;
+}

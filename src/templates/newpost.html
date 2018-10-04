@@ -3,7 +3,7 @@
         <div id="flashMsg">
         {% for status,msgs in messages %}
             {% for message in msgs %}
-            <div class="{{ status }}">{{ message }}</div>
+            <div class="flashmsg {{ status }}">{{ message }}</div>
             {% endfor %}
         {% endfor %}
         </div>
