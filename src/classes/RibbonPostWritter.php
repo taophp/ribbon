@@ -5,6 +5,9 @@
  *
  * @author Stephane Mourey <steph@stephanemourey.fr>
  */
+
+use Symfony\Component\Yaml\Escaper;
+
 class RibbonPostWritter {
     const DATE_FORMAT_4_FILE_NAME = 'Y-m-d-';
     const DATE_FORMAT_4_YAML = 'Y-m-d H:i:s';
@@ -39,7 +42,7 @@ class RibbonPostWritter {
         }
     }
 
-    protected function _getFileName(int $postfix = 0) : void {
+    protected function _getFileName(int $postfix = null) : void {
         $this->fileName = date(static::DATE_FORMAT_4_FILE_NAME,$this->timestamp).urlencode(trim($this->title)).$postfix.'.md';
         if (file_exists($this->_getFileFullName())) {
             $this->_getFileName($postfix+1);
@@ -56,7 +59,10 @@ class RibbonPostWritter {
     }
 
     protected function _getYaml() {
-        $this->yaml = 'title: "'.$this->title.'"'. PHP_EOL
+        $title = Escaper::requiresSingleQuoting($this->title)
+                ? Escaper::escapeWithSingleQuotes($this->title)
+                : (Escaper::requiresDoubleQuoting($this->title) ? Escaper::escapeWithDoubleQuotes($this->title) : $this->title);
+        $this->yaml = 'title: '.$title. PHP_EOL
                         . 'date: '.date(static::DATE_FORMAT_4_YAML,$this->timestamp);        
     }
     
@@ -71,7 +77,8 @@ class RibbonPostWritter {
     }
     
     protected function parseContentFromForm(string $content) : void {
-        list ($this->title,$this->content) = explode(PHP_EOL,$content,2);
+        list ($title,$this->content) = explode(PHP_EOL,$content,2);
+        $this->title = trim($title);
     }
     
     public function html() {
