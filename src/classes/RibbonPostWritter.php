@@ -56,7 +56,7 @@ class RibbonPostWritter {
     }
 
     protected function _getYaml() {
-        $this->yaml = 'title: '.$this->title. PHP_EOL
+        $this->yaml = 'title: "'.$this->title.'"'. PHP_EOL
                         . 'date: '.date(static::DATE_FORMAT_4_YAML,$this->timestamp);        
     }
     
