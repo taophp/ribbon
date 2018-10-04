@@ -43,8 +43,9 @@ class RibbonGenerator {
             $month = date('m',$post->date);
             $day= date('j',$post->date);
             $time= date('H:i',$post->date);
+            $seconds = date('s',$post->date);
             
-            $posts[$year][$month][$day][$time] = $post;
+            $posts[$year][$month][$day][$time][$seconds] = $post;
         }
         krsortRecursive($posts);
         $view = new \Slim\Views\Twig(static::$container['settings']['twig']['templatePath'],static::$container['settings']['twig']['env']);
