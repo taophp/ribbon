@@ -3,61 +3,9 @@
     <head>
         <meta charset="utf-8"/>
         <title>Ribbon</title>
-        <style>
-            body {
-                max-width: 35em;
-                padding: 0;
-                margin:0 auto;
-                font-family: serif;
-                text-align: justify;
-            }
-
-            h1 {
-                letter-spacing: -3px;
-                font-size: 100px;
-                font-weight: 200;
-                margin-bottom: 0;
-                text-align: center;
-            }
-            
-            h1,h2 {
-                color: #719e40;
-                font-family: sans-serif;                
-            }
-            .time {
-                color: gray;
-                float: right;
-                margin-left: 1em;
-                font-style: italic;
-            }
-            .day {
-                font-size: 120%;
-                border-bottom: solid 1px silver;
-                font-style: italic;
-                margin-top: 1em;
-                color: darkgrey;
-                padding-left: .5em;
-            }
-            .month {
-                margin: 1em 0;
-                font-size: 130%;
-                text-transform: uppercase;
-                border-bottom: double;
-                padding-left: 1em;
-            }
-            .year {
-                font-size: 190%;
-                text-align: center;
-                background: lightgreen;
-                padding: .2em 0 0.05em;
-                color: gray;
-                font-weight: bold;
-                border: solid 1px darkgreen;
-                width: 100%;
-                border-left: 0;
-                border-right: 0;
-            }
-        </style>
+        <link rel="stylesheet" href="res/style.css">
+        <script src="vendor/components/jquery/jquery.min.js" defer></script>
+        <script defer src="res/script.js"></script>
     </head>
     <body>
 {%
@@ -76,8 +24,8 @@
         '12':'Décembre'
     }
 %}
-        <h1>Ribbon</h1>
-        <div>a microbloging tool</div>
+        <h1>{{ frontConfig['site']['title'] }}</h1>
+        <div>{{ frontConfig['site']['motto'] }}</div>
         {% for year,months in posts %}
             <div class="year">{{ year }}</div>
             {% for month,days in months %}

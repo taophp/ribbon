@@ -51,7 +51,8 @@ class RibbonGenerator {
         $view->addExtension(new \Twig_Extension_Debug());
         
         
-        file_put_contents(static::$container->settings['postDestinationDirectory'].'/index.html', $view->fetch('index.html',['posts'=>$posts]));
+        file_put_contents(static::$container->settings['postDestinationDirectory'].'/index.html',
+                $view->fetch('index.html',['posts'=>$posts,'frontConfig' => static::$container->settings['front']]));
 
     }
     

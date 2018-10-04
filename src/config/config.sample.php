@@ -1,6 +1,12 @@
 <?php
 
 $config = [
+    'front' => [
+        'site' => [
+            'title' => 'Ribbon',
+            'motto' => 'a microbloging tool',
+        ],
+    ],
     'logFile' => __DIR__.'/../logs/app.log',
     'postsSourceDirectory' => __DIR__.'/../posts',
     'postDestinationDirectory' => __DIR__.'/../public',

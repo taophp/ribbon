@@ -1,4 +1,5 @@
 /src/vendor/
+/src/public/vendor/
 /logs/*
 !/logs/README.md
 /src/posts/*
