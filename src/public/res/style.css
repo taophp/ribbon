@@ -50,3 +50,10 @@ h1,h2 {
     border-left: 0;
     border-right: 0;
 }
+article * {
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+img {
+    max-width:100%
+}

@@ -34,9 +34,9 @@ class RibbonPostReader {
 
         list ($yamlstring,$markdown) = explode(RibbonPostWritter::YAML_SEPARATOR,$fileContent,2);
         $this->yaml = Yaml::parse($yamlstring);
-        $this->title = $this->yaml['title'];
-        $this->date = $this->yaml['date']-$offset;
         $mdParser = new \cebe\markdown\GithubMarkdown();
+        $this->title = $mdParser->parse($this->yaml['title']);
+        $this->date = $this->yaml['date']-$offset;
         $this->content = $mdParser->parse($markdown);
     }
 }
