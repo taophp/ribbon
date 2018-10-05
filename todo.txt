@@ -1,0 +1,12 @@
+(A) Add a search box
+(A) Add the ability to update a post in a new post
+(D) 2018-10-05 Add syntax coloration (and easy copy/paste?)
+Add RSS
+Add controls in front when logged in back
+Add picture upload
+Add sitemap
+Add support of canonical URL (for posts imported/exported from/to more official site)
+Add the nice monospace font for code
+Add the nice serif font
+Add the support of a "--MORE--"  markdown tag
+Manage keywords as yaml data
