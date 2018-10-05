@@ -1,3 +1,4 @@
+/* Front part */
 body {
     max-width: 35em;
     padding: 0;
@@ -54,16 +55,15 @@ article * {
     overflow: hidden;
     text-overflow: ellipsis;
 }
+article pre {
+    overflow: auto;
+    text-overflow: initial;
+}
 img {
     max-width:100%
 }
-textarea {
-    width: 100%;
-    max-width: 35em;
-    height: 95vh;
-    font-size: 15.84px;
-    font-family: serif;
-}
+
+/* Admin part */
 .flashmsg {
     width: 100%;
     margin: .5em 0;
@@ -87,4 +87,19 @@ textarea {
     border-color: green;
     color: green;
     background-color: lightgreen;
+}
+
+#newPostFormContainer {
+    display:flex;
+    flex-direction:column;
+    height:100vh;
+}
+textarea {
+    width: 100%;
+    max-width: 35em;
+    font-size: 15.84px;
+    font-family: serif;
+}
+#newPostFormContainer textarea {
+    flex-grow: 100;
 }

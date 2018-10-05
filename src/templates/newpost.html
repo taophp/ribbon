@@ -1,15 +1,17 @@
 {% extends "skeleton.html" %}
 {% block body %}
-        <div id="flashMsg">
-        {% for status,msgs in messages %}
-            {% for message in msgs %}
-            <div class="flashmsg {{ status }}">{{ message }}</div>
+    <form method="post">
+        <div id="newPostFormContainer">
+            <div id="flashMsg">
+            {% for status,msgs in messages %}
+                {% for message in msgs %}
+                <div class="flashmsg {{ status }}">{{ message }}</div>
+                {% endfor %}
             {% endfor %}
-        {% endfor %}
+            </div>
+                <textarea name="content" placeholder="Write..." cols="60" rows="25"></textarea>
+                <br>
+                <input type="submit">
         </div>
-        <form method="post">
-            <textarea name="content" placeholder="Write..." cols="60" rows="25"></textarea>
-            <br>
-            <input type="submit">
-        </form>
+    </form>
 {% endblock %}
