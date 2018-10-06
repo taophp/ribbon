@@ -9,3 +9,4 @@
 /src/public/index.html
 /src/templates_c/*
 !/src/template_c/README.md
+/.myworkingsession/*
