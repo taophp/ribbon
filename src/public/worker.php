@@ -36,14 +36,14 @@ $container['view'] = function($container) {
     return $view;
 };
 
-$app->get('/', function (Request $request, Response $response) {
+$app->get('/w', function (Request $request, Response $response) {
     $messages = $this->flash->getMessages();
     return $this->view->render($response,'newpost.html',[
         'messages' => $messages,
     ]);
 })->setName('getnewpost');
 
-$app->post('/', function (Request $request, Response $response) {
+$app->post('/w', function (Request $request, Response $response) {
     $data = $request->getParsedBody();
     $post = new RibbonPostWritter($this);
     if ($post->save($data['content'])) {
