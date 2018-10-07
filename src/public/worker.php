@@ -38,7 +38,7 @@ $container['view'] = function($container) {
 
 $app->get('/w', function (Request $request, Response $response) {
     $messages = $this->flash->getMessages();
-    return $this->view->render($response,'newpost.html',[
+    return $this->view->render($response,'newpost.html.twig',[
         'messages' => $messages,
     ]);
 })->setName('getnewpost');

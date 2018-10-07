@@ -53,7 +53,7 @@ class RibbonGenerator {
         
         
         file_put_contents(static::$container->settings['postDestinationDirectory'].'/index.html',
-                $view->fetch('index.html',['posts'=>$posts,'frontConfig' => static::$container->settings['front']]));
+                $view->fetch('index.html.twig',['posts'=>$posts,'frontConfig' => static::$container->settings['front']]));
 
     }
     

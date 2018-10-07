@@ -1,4 +1,9 @@
-{% extends "skeleton.html" %}
+{% extends "frontOffice.html.twig" %}
+
+{% block header %}
+    {% include 'headerFrontOffice.html.twig' %}
+{% endblock %}
+
 {% block body %}
     {%
         set monthNames = {

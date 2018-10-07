@@ -3,9 +3,7 @@
     <head>
         <meta charset="utf-8"/>
         <title>{{ frontConfig['site']['title'] }}</title>
-        <link rel="stylesheet" href="/res/style.css">
-        <script src="vendor/components/jquery/jquery.min.js" defer></script>
-        <script defer src="/res/script.js"></script>
+        {% block header %}{% endblock %}
     </head>
     <body>
 {% block body %}{% endblock %}
