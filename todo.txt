@@ -1,4 +1,4 @@
-(A) 2018-10-06 Align post title on the left
+(A) 2018-10-07 Fix error when loading JQuery from the back office
 (B) 2018-10-06 Avoid the use of frame (prefer iframe and css) for the framed shortcut
 (B) Add a search box
 (B) Add the ability to update a post in a new post
