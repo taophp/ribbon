@@ -1,0 +1,36 @@
+The first line is the title [here,goes,the,tags]
+## This is an <h2> tag (do not use <h1>, reserved for the title)
+###### This is an <h6> tag
+_This will be italic_
+**This text will be bold**
+
+* Unordered
+* list
+  * Unordered
+  * sublist
+
+1. Ordered
+2. list
+1. Item 3: number will be automatically set if the fist is 1
+   1. Ordered
+   1. sublist
+
+Image: ![Alt Text](url)
+Link: [Stéphane Mourey's Home Page](http://stephanemourey.fr)
+
+Blockquotes:
+
+> We're living the future so
+> the present is our past.
+
+Code
+Inline
+I think you should use an `<addr>` element here instead.
+
+Block
+```php (langage is optional)
+<?php
+echo 'Hello world!';
+```
+
+As Ribbon use a 'Github flavored' markdown, this documentation is largely inspired by https://guides.github.com/features/mastering-markdown/
