@@ -1,6 +1,5 @@
 (B) Add a search box
 (B) Add the ability to update a post in a new post
-(D) 2018-10-05 Add syntax coloration (and easy copy/paste?)
 Add RSS
 Add controls in front when logged in back
 Add picture upload
