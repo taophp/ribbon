@@ -1,5 +1,5 @@
 /* Front part */
-body {
+body.notframed {
     max-width: 35em;
     padding: 0;
     margin:0 auto;
@@ -65,6 +65,15 @@ img {
 }
 
 /* Admin part */
+body.framed {
+    overflow: hidden;
+    margin:0;
+    padding:0;
+}
+body.framed iframe {
+    width:100vw;
+    height:100vh;
+}
 .flashmsg {
     width: 100%;
     margin: .5em 0;
