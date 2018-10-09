@@ -1,5 +1,6 @@
 (B) Add a search box
 (B) Add the ability to update a post in a new post
+(B) Manage keywords as yaml data
 Add RSS
 Add controls in front when logged in back
 Add picture upload
@@ -8,4 +9,3 @@ Add support of canonical URL (for posts imported/exported from/to more official 
 Add the nice monospace font for code
 Add the nice serif font
 Add the support of a "--MORE--"  markdown tag
-Manage keywords as yaml data

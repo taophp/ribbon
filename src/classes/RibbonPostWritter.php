@@ -15,6 +15,7 @@ class RibbonPostWritter {
     
     protected $postsSourceDirectory;
     protected $title;
+    protected $tags;
     protected $content;
     protected $app;
     
@@ -63,7 +64,9 @@ class RibbonPostWritter {
                 ? Escaper::escapeWithSingleQuotes($this->title)
                 : (Escaper::requiresDoubleQuoting($this->title) ? Escaper::escapeWithDoubleQuotes($this->title) : $this->title);
         $this->yaml = 'title: '.$title. PHP_EOL
-                        . 'date: '.date(static::DATE_FORMAT_4_YAML,$this->timestamp);        
+                        . 'date: '.date(static::DATE_FORMAT_4_YAML,$this->timestamp).PHP_EOL
+                        . 'tags: '
+                ;        
     }
     
     public function save(string $content) : bool {
@@ -78,7 +81,9 @@ class RibbonPostWritter {
     
     protected function parseContentFromForm(string $content) : void {
         list ($title,$this->content) = explode(PHP_EOL,$content,2);
-        $this->title = trim($title);
+        $break = strrpos($title,'[');
+        $this->title = trim(substr($title,0,$break));
+        $this->tags = substr(str_replace(' ','',$title),$break);
     }
     
     public function html() {
