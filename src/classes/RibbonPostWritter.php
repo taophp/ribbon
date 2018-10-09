@@ -65,7 +65,7 @@ class RibbonPostWritter {
                 : (Escaper::requiresDoubleQuoting($this->title) ? Escaper::escapeWithDoubleQuotes($this->title) : $this->title);
         $this->yaml = 'title: '.$title. PHP_EOL
                         . 'date: '.date(static::DATE_FORMAT_4_YAML,$this->timestamp).PHP_EOL
-                        . 'tags: '
+                        . 'tags: '.$this->tags
                 ;        
     }
     
@@ -83,7 +83,7 @@ class RibbonPostWritter {
         list ($title,$this->content) = explode(PHP_EOL,$content,2);
         $break = strrpos($title,'[');
         $this->title = trim(substr($title,0,$break));
-        $this->tags = substr(str_replace(' ','',$title),$break);
+        $this->tags = substr($title,$break);
     }
     
     public function html() {
