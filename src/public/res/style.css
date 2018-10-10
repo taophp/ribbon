@@ -85,6 +85,12 @@ blockquote {
     font-size: 80%;
 }
 
+.searchbox {
+    float: right;
+    top: 0;
+    position: sticky;
+}
+
 .content {
     width: 100%;
 }
