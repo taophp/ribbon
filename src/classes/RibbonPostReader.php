@@ -37,6 +37,7 @@ class RibbonPostReader {
         $mdParser = new \cebe\markdown\GithubMarkdown();
         $this->title = str_replace(['<p>','</p>'],'',$mdParser->parse($this->yaml['title']));
         $this->date = $this->yaml['date']-$offset;
+        $this->tags = $this->yaml['tags'];
         $this->content = $mdParser->parse($markdown);
     }
 }

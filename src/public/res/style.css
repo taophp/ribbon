@@ -19,6 +19,10 @@ h1,h2,h3,h4,h5,h6 {
     font-family: sans-serif;
     text-align: left;
 }
+h2 {
+    margin-bottom: 0;
+    display:inline;
+}
 .time {
     color: gray;
     float: right;
@@ -68,6 +72,21 @@ blockquote {
     border-left: solid silver 0.8em;
     padding: .5em;
     background: rgba(0,0,0,0.05);
+}
+
+.tag {
+   float: right;
+    margin: .5em .25em 0;
+    border: solid 1px grey;
+    border-radius: 1em;
+    padding: 0.1em .5em;
+    color: grey;
+    font-style: italic;
+    font-size: 80%;
+}
+
+.content {
+    width: 100%;
 }
 
 /* Admin part */
