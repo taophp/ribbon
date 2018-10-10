@@ -20,9 +20,6 @@ $('#searchbox').keyup(function (e) {
         searchableString = $(this).attr('data-searchable');
         found = true;
         for (i=0;i<searchWords.length;i++) {
-            console.log(searchableString);
-            console.log(searchWords[i]);
-            console.log(searchableString.includes(searchWords[i]));
             if (!searchableString.includes(searchWords[i])) {
                 found = false;
                 break;
