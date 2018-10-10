@@ -11,12 +11,12 @@ $(function () {
 });
 
 $('#searchbox').keyup(function (e) {
-    if (e.which == 13) {
+    if (e.which === 13) {
         e.preventDefault();
         return;
     }
     searchWords = $('#searchbox').val().split(' ');
-    $("article").each(function(){
+    $('article').each(function(){
         searchableString = $(this).attr('data-searchable');
         found = true;
         for (i=0;i<searchWords.length;i++) {
@@ -28,6 +28,19 @@ $('#searchbox').keyup(function (e) {
         if (found===true){
             $(this).fadeIn('fast');
         }else{
+            $(this).fadeOut('fast');
+        }
+    });
+    $('yearcontainer').each(function(){
+        visible = false;
+        $(this).find('article').each(function(){
+            if ($(this).css('display')!=='none'){
+                visible = true;
+            }
+        });
+        if (visible === true){
+            $(this).fadeIn('fast');
+        } else {
             $(this).fadeOut('fast');
         }
     });

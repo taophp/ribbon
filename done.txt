@@ -3,3 +3,4 @@ x 2018-10-08 (A) 2018-10-07 Fix error when loading JQuery from the back office
 x 2018-10-08 (B) 2018-10-06 Avoid the use of frame (prefer iframe and css) for the framed shortcut
 x 2018-10-08 (D) 2018-10-05 Add syntax coloration (and easy copy/paste?)
 x 2018-10-10 (B) Manage keywords as yaml data
+x 2018-10-10 (B) Add a search box

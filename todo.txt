@@ -1,4 +1,4 @@
-(B) Add a search box
+(A) 2018-10-10 Hide empty year,s months, dates after search
 (B) Add the ability to update a post in a new post
 Add RSS
 Add controls in front when logged in back
