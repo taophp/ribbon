@@ -65,7 +65,7 @@ class RibbonPostWritter {
                 : (Escaper::requiresDoubleQuoting($this->title) ? Escaper::escapeWithDoubleQuotes($this->title) : $this->title);
         $this->yaml = 'title: '.$title. PHP_EOL
                         . 'date: '.date(static::DATE_FORMAT_4_YAML,$this->timestamp).PHP_EOL
-                        . 'tags: '.$this->tags
+                        . 'tags: '.str_replace(['(',')'],['[',']'],$this->tags)
                 ;        
     }
     
