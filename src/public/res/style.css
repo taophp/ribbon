@@ -75,7 +75,7 @@ blockquote {
 }
 
 .tag {
-   float: right;
+    float: right;
     margin: .5em .25em 0;
     border: solid 1px grey;
     border-radius: 1em;
@@ -83,6 +83,7 @@ blockquote {
     color: grey;
     font-style: italic;
     font-size: 80%;
+    cursor: pointer;
 }
 
 .searchbox {

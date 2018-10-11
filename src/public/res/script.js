@@ -8,6 +8,16 @@ $(function () {
         return false;
     });
     $('#searchbox').val('');
+    $('.tag').click(function() {
+        search = $('#searchbox').val();
+        tag = $(this).text();
+        if (search.includes(tag)) {
+            $('#searchbox').val(search.replace(tag,''));
+        }else{
+            $('#searchbox').val(search+' '+tag);
+        }
+        $('#searchbox').keyup();
+    });
 });
 
 $('#searchbox').keyup(function (e) {
