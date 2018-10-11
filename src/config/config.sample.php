@@ -31,8 +31,8 @@ $config = [
             'users' => [
                 'root' => 't00r',
             ],
-            'callback' => function($request, $response, $arguments){
-            },
+//            'callback' => function($request, $response, $arguments){
+//            },
         ]
     ),
     // TWIG
