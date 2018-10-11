@@ -1,5 +1,8 @@
 (A) 2018-10-10 Hide empty year,s months, dates after search
 (B) Add the ability to update a post in a new post
+2018-10-11 Add the support of all Prism supported language for syntax highlighting (there is an module for that)
+2018-10-11 Make tags clickable so they are added to search
+2018-10-11 Search must be case insentive
 Add RSS
 Add controls in front when logged in back
 Add picture upload

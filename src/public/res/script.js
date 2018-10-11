@@ -26,12 +26,12 @@ $('#searchbox').keyup(function (e) {
             }
         }
         if (found===true){
-            $(this).fadeIn('fast');
+            $(this).show();
         }else{
-            $(this).fadeOut('fast');
+            $(this).hide();
         }
     });
-    $('yearcontainer').each(function(){
+    $('.daycontainer').each(function(){
         visible = false;
         $(this).find('article').each(function(){
             if ($(this).css('display')!=='none'){
@@ -39,9 +39,35 @@ $('#searchbox').keyup(function (e) {
             }
         });
         if (visible === true){
-            $(this).fadeIn('fast');
+            $(this).show();
         } else {
-            $(this).fadeOut('fast');
+            $(this).hide();
+        }
+    });
+    $('.monthcontainer').each(function(){
+        visible = false;
+        $(this).find('.daycontainer').each(function(){
+            if ($(this).css('display')!=='none'){
+                visible = true;
+            }
+        });
+        if (visible === true){
+            $(this).show();
+        } else {
+            $(this).hide();
+        }
+    });
+    $('.yearcontainer').each(function(){
+        visible = false;
+        $(this).find('.monthcontainer').each(function(){
+            if ($(this).css('display')!=='none'){
+                visible = true;
+            }
+        });
+        if (visible === true){
+            $(this).show();
+        } else {
+            $(this).hide();
         }
     });
 });
