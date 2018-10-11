@@ -21,17 +21,18 @@ $config = [
     // Monolog settings
     'logger' => [
         'name' => 'slim-app',
-        'path' => isset($_ENV['docker']) ? 'php://stdout' : __DIR__ . '/../logs/app.log',
+        'path' => __DIR__ . '/../logs/app.log',
         'level' => \Monolog\Logger::DEBUG,
     ],
     // Auth settings
     'authHandler' => new \Tuupola\Middleware\HttpBasicAuthentication( /** @see https://appelsiini.net/projects/slim-basic-auth/ */
         [
-            'path' => '/',
             'secure' => false,
             'users' => [
                 'root' => 't00r',
             ],
+            'callback' => function($request, $response, $arguments){
+            },
         ]
     ),
     // TWIG

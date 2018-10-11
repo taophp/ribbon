@@ -14,8 +14,8 @@ $app = new \Slim\App(['settings' => $config]);
 $container = $app->getContainer();
 
 $container['logger'] = function($container) {
-    $logger = new \Monolog\Logger('my_logger');
-    $file_handler = new \Monolog\Handler\StreamHandler($container['settings']['logFile']);
+    $logger = new \Monolog\Logger($container['settings']['logger']['name']);
+    $file_handler = new \Monolog\Handler\StreamHandler($container['settings']['logger']['path']);
     $logger->pushHandler($file_handler);
     return $logger;
 };
@@ -44,6 +44,7 @@ $app->get('/w', function (Request $request, Response $response) {
 })->setName('getnewpost');
 
 $app->post('/w', function (Request $request, Response $response) {
+    $this->logger->addInfo(__FILE__.':'.__LINE__.PHP_EOL);
     $data = $request->getParsedBody();
     $post = new RibbonPostWritter($this);
     if ($post->save($data['content'])) {
