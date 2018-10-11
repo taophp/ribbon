@@ -81,7 +81,7 @@ class RibbonPostWritter {
     
     protected function parseContentFromForm(string $content) : void {
         list ($title,$this->content) = explode(PHP_EOL,$content,2);
-        $break = strrpos($title,'[');
+        $break = strrpos($title,'(');
         $this->title = trim(substr($title,0,$break));
         $this->tags = substr($title,$break);
     }
