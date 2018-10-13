@@ -4,3 +4,5 @@ x 2018-10-08 (B) 2018-10-06 Avoid the use of frame (prefer iframe and css) for t
 x 2018-10-08 (D) 2018-10-05 Add syntax coloration (and easy copy/paste?)
 x 2018-10-10 (B) Manage keywords as yaml data
 x 2018-10-10 (B) Add a search box
+x 2018-10-13 (A) 2018-10-10 Hide empty year,s months, dates after search
+x 2018-10-13 (A) 2018-10-11 Search must be case insentive

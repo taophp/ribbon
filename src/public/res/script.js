@@ -27,10 +27,10 @@ $('#searchbox').keyup(function (e) {
     }
     searchWords = $('#searchbox').val().split(' ');
     $('article').each(function(){
-        searchableString = $(this).attr('data-searchable');
+        searchableString = $(this).attr('data-searchable').toLowerCase();
         found = true;
         for (i=0;i<searchWords.length;i++) {
-            if (!searchableString.includes(searchWords[i])) {
+            if (!searchableString.includes(searchWords[i].toLowerCase())) {
                 found = false;
                 break;
             }
