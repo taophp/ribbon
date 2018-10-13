@@ -31,8 +31,9 @@ $config = [
             'users' => [
                 'root' => 't00r',
             ],
-//            'callback' => function($request, $response, $arguments){
-//            },
+            /*'callback' => function($request, $response, $arguments){
+                file_put_contents('/tmp/test.log',print_r($arguments,true));
+            },*/
         ]
     ),
     // TWIG
