@@ -1,4 +1,4 @@
-The first line is the title [here,goes,the,tags]
+The first line is the title (here,goes,the,tags)
 ## This is an <h2> tag (do not use <h1>, reserved for the title)
 ###### This is an <h6> tag
 _This will be italic_
