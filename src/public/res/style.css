@@ -146,6 +146,11 @@ textarea {
     flex-grow: 100;
 }
 
+input[type="submit"] {
+    height: 3em;
+    font-size: 200%;
+}
+
 /* PrismJS 1.15.0
 https://prismjs.com/download.html#themes=prism-twilight&languages=markup+css+clike+javascript+c+csharp+bash+batch+cpp+ruby+diff+docker+markup-templating+git+go+less+http+ini+java+json+latex+markdown+liquid+makefile+nginx+perl+php+php-extras+sql+powershell+prolog+scss+python+sass+smarty+yaml+twig+wasm&plugins=line-numbers+autolinker+keep-markup */
 /**
