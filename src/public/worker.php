@@ -1,26 +1,26 @@
 <?php
+error_reporting(E_ALL);
 session_start();
-
-use \Psr\Http\Message\ServerRequestInterface as Request;
-use \Psr\Http\Message\ResponseInterface as Response;
-require '../vendor/autoload.php';
-
 include_once('../config/config.sample.php');
 if (file_exists('../config/config.php')) {
     include_once('../config/config.php');
 }
 
+error_reporting($config['errorLevel']);
+
+$auth = $config['authentificator'];
+if ($auth() !== true) {
+    die('WTF ?!?');
+}
+
+use \Psr\Http\Message\ServerRequestInterface as Request;
+use \Psr\Http\Message\ResponseInterface as Response;
+require '../vendor/autoload.php';
+
+
 $app = new \Slim\App(['settings' => $config]);
 $container = $app->getContainer();
 
-$container['logger'] = function($container) {
-    $logger = new \Monolog\Logger($container['settings']['logger']['name']);
-    $file_handler = new \Monolog\Handler\StreamHandler($container['settings']['logger']['path']);
-    $logger->pushHandler($file_handler);
-    return $logger;
-};
-
-$app->add($config['authHandler']);
 
 $container['flash'] = function () {
     return new \Slim\Flash\Messages();

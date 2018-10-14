@@ -1,6 +1,7 @@
 <?php
 
 $config = [
+    'errorLevel' => E_ALL,
     'front' => [
         'site' => [
             'title' => 'Ribbon',
@@ -18,24 +19,17 @@ $config = [
     'renderer' => [
         'template_path' => __DIR__ . '/../templates/',
     ],
-    // Monolog settings
-    'logger' => [
-        'name' => 'slim-app',
-        'path' => __DIR__ . '/../logs/app.log',
-        'level' => \Monolog\Logger::DEBUG,
-    ],
     // Auth settings
-    'authHandler' => new \Tuupola\Middleware\HttpBasicAuthentication( /** @see https://appelsiini.net/projects/slim-basic-auth/ */
-        [
-            'secure' => false,
-            'users' => [
-                'root' => 't00r',
-            ],
-            /*'callback' => function($request, $response, $arguments){
-                file_put_contents('/tmp/test.log',print_r($arguments,true));
-            },*/
-        ]
-    ),
+    'authentificator' => function(){
+        if (array_key_exists('PHP_AUTH_USER',$_SERVER) !== true
+                || $_SERVER['PHP_AUTH_USER'] !== 'root'
+                || $_SERVER['PHP_AUTH_PW']!=='t00r') {
+            header('WWW-Authenticate: Basic realm="My Realm"');
+            header('HTTP/1.0 401 Unauthorized');
+            die('WTF ?!?');
+        }
+        return true;
+    },
     // TWIG
     'twig' => [
         'templatePath' => __DIR__.'/../templates',
