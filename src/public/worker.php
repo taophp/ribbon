@@ -47,6 +47,13 @@ $app->get('/w', function (Request $request, Response $response) {
     ]);
 })->setName('getnewpost');
 
+$app->get('/l',function($request, Response $response){
+    return $response->write('<script>'
+            . 'window.top.location.href="/";'
+            . '</script>'
+    );
+});
+
 $app->post('/w', function (Request $request, Response $response) {
     $data = $request->getParsedBody();
     $post = new RibbonPostWritter($this);

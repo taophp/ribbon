@@ -105,6 +105,9 @@ blockquote {
     border-left: solid 1px grey;
     border-bottom: solid 1px grey;
 }
+.tool {
+    display:none;
+}
 
 .tool a, .guestTool a {
     text-decoration: none;
