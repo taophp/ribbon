@@ -13,6 +13,10 @@ if ($auth() !== true) {
     die('WTF ?!?');
 }
 
+if (array_key_exists('logged', $_COOKIE) === false || $_COOKIE['logged'] !== true) {
+    setcookie('logged',true,0,'/');
+}
+
 use \Psr\Http\Message\ServerRequestInterface as Request;
 use \Psr\Http\Message\ResponseInterface as Response;
 require '../vendor/autoload.php';
@@ -44,7 +48,6 @@ $app->get('/w', function (Request $request, Response $response) {
 })->setName('getnewpost');
 
 $app->post('/w', function (Request $request, Response $response) {
-    $this->logger->addInfo(__FILE__.':'.__LINE__.PHP_EOL);
     $data = $request->getParsedBody();
     $post = new RibbonPostWritter($this);
     if ($post->save($data['content'])) {
