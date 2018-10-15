@@ -6,3 +6,6 @@ x 2018-10-10 (B) Manage keywords as yaml data
 x 2018-10-10 (B) Add a search box
 x 2018-10-13 (A) 2018-10-10 Hide empty year,s months, dates after search
 x 2018-10-13 (A) 2018-10-11 Search must be case insentive
+x 2018-10-15 (A) 2018-10-13 Add tools in front when logged in back
+x 2018-10-15 2018-10-11 Make tags clickable so they are added to search
+x 2018-10-15 Add controls in front when logged in back

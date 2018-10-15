@@ -1,9 +1,6 @@
-(A) 2018-10-13 Add tools in front when logged in back
 (B) Add the ability to update a post in a new post
 (C) 2018-10-11 Add the support of all Prism supported language for syntax highlighting (there is an module for that)
-2018-10-11 Make tags clickable so they are added to search
 Add RSS
-Add controls in front when logged in back
 Add picture upload
 Add sitemap
 Add support of canonical URL (for posts imported/exported from/to more official site)
