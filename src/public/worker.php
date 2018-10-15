@@ -68,4 +68,14 @@ $app->post('/w', function (Request $request, Response $response) {
     return $response;
 });
 
+$app->get('/u/{fileName}', function (Request $request, Response $response) {
+    $messages = $this->flash->getMessages();
+    $post = new RibbonPostReader($this, urldecode($fileName));
+    return $this->view->render($response,'newpost.html.twig',[
+        'messages' => $messages,
+        'post' => $post,
+    ]);
+})->setName('editpost');
+
+
 $app->run();

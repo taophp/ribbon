@@ -10,7 +10,7 @@
                 {% endfor %}
             {% endfor %}
             </div>
-                <textarea name="content" placeholder="{% include 'mdhelp.txt' %}" cols="60" rows="25"></textarea>
+                <textarea name="content" placeholder="{% include 'mdhelp.txt' %}" cols="60" rows="25">{% if post.content %}{{ post.content }}{% endif %}</textarea>
                 <br>
                 <input type="submit">
         </div>

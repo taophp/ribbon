@@ -14,11 +14,13 @@ class RibbonPostReader {
     public $title;
     public $content;
     public $yaml;
+    public $fileName;
 
     public function __construct(Slim\Container $container,string $fileName) {
         if (!is_file($fileName) || !is_readable($fileName)) {
             throw new Exception($fileName.' is not a file or is not readable');
         }
+        $this->fileName = basename($fileName);
         $this->parse(file_get_contents($fileName));
     }
 

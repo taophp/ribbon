@@ -98,6 +98,8 @@ blockquote {
     float: right;
     top: 0;
     position: sticky;
+    margin-left:.5em;
+    display:inline-block;
 }
 .tool, .guestTool {
     float:right;
