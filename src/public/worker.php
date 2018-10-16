@@ -68,9 +68,9 @@ $app->post('/w', function (Request $request, Response $response) {
     return $response;
 });
 
-$app->get('/u/{fileName}', function (Request $request, Response $response) {
+$app->get('/u/{fileName}', function (Request $request, Response $response,$args) {
     $messages = $this->flash->getMessages();
-    $post = new RibbonPostReader($this, urldecode($fileName));
+    $post = new RibbonPostReader($this, $this->get('settings')['postsSourceDirectory'].'/'.urldecode($args['fileName']));
     return $this->view->render($response,'newpost.html.twig',[
         'messages' => $messages,
         'post' => $post,

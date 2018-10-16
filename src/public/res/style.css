@@ -113,7 +113,6 @@ blockquote {
 
 .tool a, .guestTool a {
     text-decoration: none;
-    font-style: italic;
 }
 .content {
     width: 100%;
