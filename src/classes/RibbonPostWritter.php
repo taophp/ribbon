@@ -65,14 +65,17 @@ class RibbonPostWritter {
                 : (Escaper::requiresDoubleQuoting($this->title) ? Escaper::escapeWithDoubleQuotes($this->title) : $this->title);
         $this->yaml = 'title: '.$title. PHP_EOL
                         . 'date: '.date(static::DATE_FORMAT_4_YAML,$this->timestamp).PHP_EOL
-                        . 'tags: '.str_replace(['(',')'],['[',']'],$this->tags)
+                        . 'tags: '.str_replace(['(',')'],['[',']'],$this->tags).PHP_EOL
                 ;        
     }
     
-    public function save(string $content) : bool {
+    public function save(string $content,$updatedFrom = false) : bool {
         $this->parseContentFromForm($content);
         file_put_contents($this->postsSourceDirectory.'/'.$this->fileName,
-                          $this->yaml.static::YAML_SEPARATOR.$this->content
+                          $this->yaml
+                          . (($updatedFrom !== false) ? ('updatedFrom: '.$updatedFrom.PHP_EOL):'')
+                          . static::YAML_SEPARATOR
+                          . $this->content
         );
         RibbonGenerator::init($this->container);
         RibbonGenerator::generate();

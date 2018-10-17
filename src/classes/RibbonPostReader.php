@@ -15,6 +15,7 @@ class RibbonPostReader {
     public $content;
     public $yaml;
     public $fileName;
+    public $content4form;
 
     public function __construct(Slim\Container $container,string $fileName) {
         if (!is_file($fileName) || !is_readable($fileName)) {
@@ -40,6 +41,7 @@ class RibbonPostReader {
         $this->title = str_replace(['<p>','</p>'],'',$mdParser->parse($this->yaml['title']));
         $this->date = $this->yaml['date']-$offset;
         $this->tags = $this->yaml['tags'];
-        $this->content = $mdParser->parse($markdown);
+        $this->content = $mdParser->parse($markdown); 
+        $this->content4form = str_replace("\n",' ',$this->title) . '('.implode(',',$this->tags).')'.PHP_EOL.$markdown;
     }
 }

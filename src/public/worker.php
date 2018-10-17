@@ -70,12 +70,26 @@ $app->post('/w', function (Request $request, Response $response) {
 
 $app->get('/u/{fileName}', function (Request $request, Response $response,$args) {
     $messages = $this->flash->getMessages();
-    $post = new RibbonPostReader($this, $this->get('settings')['postsSourceDirectory'].'/'.urldecode($args['fileName']));
+    $post = new RibbonPostReader($this, $this->get('settings')['postsSourceDirectory'].'/'.urlencode($args['fileName']));
     return $this->view->render($response,'newpost.html.twig',[
         'messages' => $messages,
         'post' => $post,
     ]);
 })->setName('editpost');
+
+$app->post('/u/{fileName}', function (Request $request, Response $response) {
+    $data = $request->getParsedBody();
+    $post = new RibbonPostWritter($this);
+    if ($post->save($data['content'],urlencode($args['fileName']))) {
+        $this->flash->addMessage('Success', 'The post was successfully saved.');
+    }else{
+        $this->flash->addMessage('Error', 'Impossible to save the post !');
+    }
+
+    $response = $response->withRedirect($this->router->pathFor('getnewpost'),303);
+
+    return $response;
+});
 
 
 $app->run();
