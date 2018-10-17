@@ -25,7 +25,7 @@
     <div class="tools">
         <div class="searchbox"><input id="searchbox" placeholder="AAAA.mm.jj tags mots du titre"></div>
         <div class="guestTool"><a href="l" title="Log in">🗝️</a></div>
-        <div class="tool"><a href="w" title="New post">✒️</a></div>
+        <div class="tool"><a href="w" title="New post" target="_blank">✒️</a></div>
     </div>
     <div>{{ frontConfig['site']['motto'] }}</div>
     {% for year,months in posts %}
@@ -40,7 +40,7 @@
                             {% for time,seconds in times %}
                                 {% for second,post in seconds %}
                                     <article data-searchable="{{year}}.{{month}}.{{day}} {{ post.title|e }} {% for tag in post.tags %} {{ tag|e }} {% endfor %}">
-                                        <div class="tools"><div class="tool"><a href="worker.php/u/{{ post.fileName }}" title="Update post">✍️</a></div></div>
+                                        <div class="tools"><div class="tool"><a href="worker.php/u/{{ post.fileName }}" title="Update post" target="_blank">✍️</a></div></div>
                                         <div class="time">{{ time }}</div>
                                         <h2>{{ post.title | raw }}</h2>
                                             {% for tag in post.tags %}

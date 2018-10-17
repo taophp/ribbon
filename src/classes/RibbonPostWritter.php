@@ -73,10 +73,17 @@ class RibbonPostWritter {
         $this->parseContentFromForm($content);
         file_put_contents($this->postsSourceDirectory.'/'.$this->fileName,
                           $this->yaml
-                          . (($updatedFrom !== false) ? ('updatedFrom: '.$updatedFrom.PHP_EOL):'')
+                          . (($updatedFrom !== false) ? ('updatedFrom: '.$updatedFrom):'')
                           . static::YAML_SEPARATOR
                           . $this->content
         );
+        if ($updatedFrom !== false) {
+            $origin = new RibbonPostReader($this->container,$this->postsSourceDirectory.'/'.$updatedFrom);
+            $origin->yamlString = str_replace(static::YAML_SEPARATOR,PHP_EOL.'updatedBy: '.$this->fileName.static::YAML_SEPARATOR,$origin->yamlString);
+            $dest = new RibbonPostWritter($this->container);
+            $dest->fileName = $updatedFrom;
+            $dest->save($origin->yamlString.$origin->markdown);
+        }
         RibbonGenerator::init($this->container);
         RibbonGenerator::generate();
         return true;

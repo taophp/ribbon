@@ -14,8 +14,10 @@ class RibbonPostReader {
     public $title;
     public $content;
     public $yaml;
+    public $yamlString;
     public $fileName;
     public $content4form;
+    public $markdown;
 
     public function __construct(Slim\Container $container,string $fileName) {
         if (!is_file($fileName) || !is_readable($fileName)) {
@@ -35,8 +37,10 @@ class RibbonPostReader {
         $dateTime = new DateTime('now',$dateTimeZone);
         $offset = $dateTimeZone->getOffset($dateTime);
 
-        list ($yamlstring,$markdown) = explode(RibbonPostWritter::YAML_SEPARATOR,$fileContent,2);
-        $this->yaml = Yaml::parse($yamlstring);
+        list ($yamlString,$markdown) = explode(RibbonPostWritter::YAML_SEPARATOR,$fileContent,2);
+        $this->yamlString = $yamlString;
+        $this->markdown = $markdown;
+        $this->yaml = Yaml::parse($this->yamlString);
         $mdParser = new \cebe\markdown\GithubMarkdown();
         $this->title = str_replace(['<p>','</p>'],'',$mdParser->parse($this->yaml['title']));
         $this->date = $this->yaml['date']-$offset;

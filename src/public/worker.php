@@ -77,11 +77,11 @@ $app->get('/u/{fileName}', function (Request $request, Response $response,$args)
     ]);
 })->setName('editpost');
 
-$app->post('/u/{fileName}', function (Request $request, Response $response) {
+$app->post('/u/{fileName}', function (Request $request, Response $response,$args) {
     $data = $request->getParsedBody();
     $post = new RibbonPostWritter($this);
     if ($post->save($data['content'],urlencode($args['fileName']))) {
-        $this->flash->addMessage('Success', 'The post was successfully saved.');
+        $this->flash->addMessage('Success', 'The post was successfully saved.'.print_r($args,true));
     }else{
         $this->flash->addMessage('Error', 'Impossible to save the post !');
     }

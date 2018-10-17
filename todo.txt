@@ -1,5 +1,6 @@
 (B) Add the ability to update a post in a new post
 (C) 2018-10-11 Add the support of all Prism supported language for syntax highlighting (there is an module for that)
+2018-10-17 Add logout feature
 2018-10-17 Manadge exception when a file is malformed
 2018-10-17 delete all characters after the last closing parenthesis in the title
 Add RSS
