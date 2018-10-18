@@ -56,8 +56,8 @@ $app->get('/l',function($request, Response $response){
 
 $app->post('/w', function (Request $request, Response $response) {
     $data = $request->getParsedBody();
-    $post = new RibbonPostWritter($this);
-    if ($post->save($data['content'])) {
+    $post = new RibbonPost($this);
+    if ($post->createFromForm($data['content']) && $post->save()) {
         $this->flash->addMessage('Success', 'The post was successfully saved.');
     }else{
         $this->flash->addMessage('Error', 'Impossible to save the post !');
