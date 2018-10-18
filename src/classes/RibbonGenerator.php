@@ -29,7 +29,7 @@ class RibbonGenerator {
     }
 
 
-    public static function generate() {
+    public static function generate() : bool {
         if (!static::isIniated()) {
             throw new Exception('RibbonGenerator was not initiated!');
         }
@@ -38,12 +38,13 @@ class RibbonGenerator {
         
         $posts = [];
         foreach ($files as $file) {
-            $post = new RibbonPostReader(static::$container,$file);
-            $year = date('Y',$post->date);
-            $month = date('m',$post->date);
-            $day= date('j',$post->date);
-            $time= date('H:i',$post->date);
-            $seconds = date('s',$post->date);
+            $post = new RibbonPost(static::$container);
+            $post->createFromFile($file);
+            $year = date('Y',strtotime($post->yaml['date']));
+            $month = date('m',strtotime($post->yaml['date']));
+            $day= date('j',strtotime($post->yaml['date']));
+            $time= date('H:i',strtotime($post->yaml['date']));
+            $seconds = date('s',strtotime($post->yaml['date']));
             
             $posts[$year][$month][$day][$time][$seconds] = $post;
         }
@@ -52,7 +53,7 @@ class RibbonGenerator {
         $view->addExtension(new \Twig_Extension_Debug());
         
         
-        file_put_contents(static::$container->settings['postDestinationDirectory'].'/index.html',
+        return file_put_contents(static::$container->settings['postDestinationDirectory'].'/index.html',
                 $view->fetch('index.html.twig',['posts'=>$posts,'frontConfig' => static::$container->settings['front']]));
 
     }

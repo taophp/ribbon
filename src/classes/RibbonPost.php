@@ -15,8 +15,13 @@ class RibbonPost {
 
     protected $yamlString;
     protected $markdownString;
-    protected $yaml;
-    protected $filename;
+    /**
+     * @todo Twig seems to overprotect protected properties, so we cannot rely
+     * on the magic getter, and the shortest path to access the two next properties
+     * is to make them public : we will need a more secured way later. 
+     */
+    public $yaml;
+    public $filename;
     protected $container;
     protected $postsSourceDirectory;
     
@@ -51,23 +56,25 @@ class RibbonPost {
         list ($title,$this->markdownString) = explode(PHP_EOL,$content,2);
         $break = strrpos($title,'(');
         $this->yaml['title'] = trim(substr($title,0,$break));
-        $this->yaml['tags'] = substr(trim(substr($title,$break)),1,-1);
+        $this->yaml['tags'] = explode(',',substr(trim(substr($title,$break)),1,-1));
         $this->yaml['date'] = date(static::DATE_FORMAT_4_YAML);
         //$this->filename = rawurlencode($this->yaml['title']).'.md';
         
         if (is_array($additionalParams) && count($additionalParams)) {
-            $this->additionnalParsing($additionnalParams);
+            $this->additionalParsing($additionalParams);
         }
         return true;
     }
     
     public function createFromFile($filename,array $additionalParams = []) : bool {
-        $this->filename = $filename;
+        $this->filename = basename($filename);
+        list ($this->yamlString,$this->markdownString) = explode(static::YAML_SEPARATOR,file_get_contents($this->postsSourceDirectory.'/'.$this->filename));
+        $this->yaml = Yaml::parse($this->yamlString);
         return true;
     }
     
-    protected function additionnalParsing(array $additionalParams = []) : void {
-        foreach ($additionalParsing as $k => $v) {
+    protected function additionalParsing(array $additionalParams = []) : void {
+        foreach ($this->additionalParsing as $k => $v) {
             if (array_key_exists($k, $additionalParams)) {
                 $v($additionalParams[$k]);
             }
@@ -80,7 +87,18 @@ class RibbonPost {
         file_put_contents($this->postsSourceDirectory.'/'.$this->filename,
                 Yaml::dump($this->yaml).static::YAML_SEPARATOR.$this->markdownString);
         RibbonGenerator::init($this->container);
-        RibbonGenerator::generate();        
+        return RibbonGenerator::generate();        
+    }
+    
+    public function getHtmlContent() : string {
+        $mdParser = new \cebe\markdown\GithubMarkdown();
+        return $mdParser->parse($this->markdownString);
+    }
+    
+    public function getTextAreaContent() : string {
+        return $this->yaml['title']
+                .' ('.implode(',',$this->yaml['tags']).')'
+                . PHP_EOL . $this->markdownString;
     }
     
 }

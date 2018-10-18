@@ -68,20 +68,21 @@ $app->post('/w', function (Request $request, Response $response) {
     return $response;
 });
 
-$app->get('/u/{fileName}', function (Request $request, Response $response,$args) {
+$app->get('/u/{filename}', function (Request $request, Response $response,$args) {
     $messages = $this->flash->getMessages();
-    $post = new RibbonPostReader($this, $this->get('settings')['postsSourceDirectory'].'/'.urlencode($args['fileName']));
+    $post = new RibbonPost($this);
+    $post->createFromFile($args['filename']);
     return $this->view->render($response,'newpost.html.twig',[
         'messages' => $messages,
-        'post' => $post,
+        'textAreaContent' => $post->getTextAreaContent(),
     ]);
 })->setName('editpost');
 
-$app->post('/u/{fileName}', function (Request $request, Response $response,$args) {
+$app->post('/u/{filename}', function (Request $request, Response $response,$args) {
     $data = $request->getParsedBody();
-    $post = new RibbonPostWritter($this);
-    if ($post->save($data['content'],urlencode($args['fileName']))) {
-        $this->flash->addMessage('Success', 'The post was successfully saved.'.print_r($args,true));
+    $post = new RibbonPost($this);
+    if ($post->createFromForm($data['content'],['updateFrom' => $args['filename']]) && $post->save()) {
+        $this->flash->addMessage('Success', 'The post was successfully saved.');
     }else{
         $this->flash->addMessage('Error', 'Impossible to save the post !');
     }
