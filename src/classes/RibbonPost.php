@@ -62,6 +62,7 @@ class RibbonPost {
     }
     
     public function createFromFile($filename,array $additionalParams = []) : bool {
+        $this->filename = $filename;
         return true;
     }
     
