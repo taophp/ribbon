@@ -53,7 +53,7 @@ class RibbonPost {
         $this->yaml['title'] = trim(substr($title,0,$break));
         $this->yaml['tags'] = substr(trim(substr($title,$break)),1,-1);
         $this->yaml['date'] = date(static::DATE_FORMAT_4_YAML);
-        $this->filename = rawurlencode($this->yaml['title']).'.md';
+        //$this->filename = rawurlencode($this->yaml['title']).'.md';
         
         if (is_array($additionalParams) && count($additionalParams)) {
             $this->additionnalParsing($additionnalParams);
@@ -74,9 +74,12 @@ class RibbonPost {
     }
     
     public function save() {
+        $this->filename = date(static::DATE_FORMAT_4_FILE_NAME,time())
+                .rawurlencode(trim($this->yaml['title'])).'-'.time().'.md';
         file_put_contents($this->postsSourceDirectory.'/'.$this->filename,
                 Yaml::dump($this->yaml).static::YAML_SEPARATOR.$this->markdownString);
         RibbonGenerator::init($this->container);
         RibbonGenerator::generate();        
     }
+    
 }
