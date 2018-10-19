@@ -65,6 +65,9 @@ $app->post('/w', function (Request $request, Response $response) {
 
     $response = $response->withRedirect($this->router->pathFor('getnewpost'),303);
 
+    RibbonGenerator::init($this);
+    RibbonGenerator::generate();        
+
     return $response;
 });
 
@@ -81,13 +84,16 @@ $app->get('/u/{filename}', function (Request $request, Response $response,$args)
 $app->post('/u/{filename}', function (Request $request, Response $response,$args) {
     $data = $request->getParsedBody();
     $post = new RibbonPost($this);
-    if ($post->createFromForm($data['content'],['updateFrom' => $args['filename']]) && $post->save()) {
+    if ($post->createFromForm($data['content'],['updatedFrom' => $args['filename']]) && $post->save()) {
         $this->flash->addMessage('Success', 'The post was successfully saved.');
     }else{
         $this->flash->addMessage('Error', 'Impossible to save the post !');
     }
 
     $response = $response->withRedirect($this->router->pathFor('getnewpost'),303);
+    
+    RibbonGenerator::init($this);
+    RibbonGenerator::generate();        
 
     return $response;
 });

@@ -45,6 +45,9 @@ class RibbonPost {
         $this->additionalParsing = [
             'updatedFrom' => function($v){
                 $this->yaml['updatedFrom'] = $v;
+                $post = new RibbonPost($this->container);
+                $post->createFromFile($v,['updatedTo' => $this->filename]);
+                $post->save();
             },
             'updatedTo' => function($v){
                 $this->yaml['updatedTo'] = $v;
@@ -84,10 +87,8 @@ class RibbonPost {
     public function save() {
         $this->filename = date(static::DATE_FORMAT_4_FILE_NAME,time())
                 .rawurlencode(trim($this->yaml['title'])).'-'.time().'.md';
-        file_put_contents($this->postsSourceDirectory.'/'.$this->filename,
+        return file_put_contents($this->postsSourceDirectory.'/'.$this->filename,
                 Yaml::dump($this->yaml).static::YAML_SEPARATOR.$this->markdownString);
-        RibbonGenerator::init($this->container);
-        return RibbonGenerator::generate();        
     }
     
     public function getHtmlContent() : string {
