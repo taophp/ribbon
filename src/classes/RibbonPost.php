@@ -61,7 +61,8 @@ class RibbonPost {
         $this->yaml['title'] = trim(substr($title,0,$break));
         $this->yaml['tags'] = explode(',',substr(trim(substr($title,$break)),1,-1));
         $this->yaml['date'] = date(static::DATE_FORMAT_4_YAML);
-        //$this->filename = rawurlencode($this->yaml['title']).'.md';
+        $this->filename = date(static::DATE_FORMAT_4_FILE_NAME,time())
+                .rawurlencode(trim($this->yaml['title'])).'-'.time().'.md';
         
         if (is_array($additionalParams) && count($additionalParams)) {
             $this->additionalParsing($additionalParams);
@@ -73,6 +74,11 @@ class RibbonPost {
         $this->filename = basename($filename);
         list ($this->yamlString,$this->markdownString) = explode(static::YAML_SEPARATOR,file_get_contents($this->postsSourceDirectory.'/'.$this->filename));
         $this->yaml = Yaml::parse($this->yamlString);
+        foreach ($this->additionalParsing as $k => $v) {
+            if (array_key_exists($k, $additionalParams)) {
+                $v($additionalParams[$k]);
+            }
+        }
         return true;
     }
     
@@ -85,8 +91,6 @@ class RibbonPost {
     }
     
     public function save() {
-        $this->filename = date(static::DATE_FORMAT_4_FILE_NAME,time())
-                .rawurlencode(trim($this->yaml['title'])).'-'.time().'.md';
         return file_put_contents($this->postsSourceDirectory.'/'.$this->filename,
                 Yaml::dump($this->yaml).static::YAML_SEPARATOR.$this->markdownString);
     }

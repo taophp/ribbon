@@ -13,7 +13,7 @@
  */
 class RibbonGenerator {
     static protected $container;
-    static protected $postsSourceDirectory ;
+    static protected $postsSourceDirectory;
     
     public static function init(Slim\Container $container) {
         static::$container = $container;
@@ -40,13 +40,15 @@ class RibbonGenerator {
         foreach ($files as $file) {
             $post = new RibbonPost(static::$container);
             $post->createFromFile($file);
-            $year = date('Y',strtotime($post->yaml['date']));
-            $month = date('m',strtotime($post->yaml['date']));
-            $day= date('j',strtotime($post->yaml['date']));
-            $time= date('H:i',strtotime($post->yaml['date']));
-            $seconds = date('s',strtotime($post->yaml['date']));
-            
-            $posts[$year][$month][$day][$time][$seconds] = $post;
+            if (!array_key_exists('updatedTo',$post->yaml)) {
+                $year = date('Y',strtotime($post->yaml['date']));
+                $month = date('m',strtotime($post->yaml['date']));
+                $day= date('j',strtotime($post->yaml['date']));
+                $time= date('H:i',strtotime($post->yaml['date']));
+                $seconds = date('s',strtotime($post->yaml['date']));
+
+                $posts[$year][$month][$day][$time][$seconds] = $post;
+            }
         }
         krsortRecursive($posts);
         $view = new \Slim\Views\Twig(static::$container['settings']['twig']['templatePath'],static::$container['settings']['twig']['env']);
