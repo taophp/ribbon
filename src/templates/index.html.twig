@@ -24,7 +24,7 @@
     <h1>{{ frontConfig['site']['title'] }}</h1>
     <div class="tools">
         <div class="searchbox"><input id="searchbox" placeholder="AAAA.mm.jj tags mots du titre"></div>
-        <div class="guestTool"><a href="l" title="Log in">🗝️</a></div>
+        <div class="guestTool"><a href="worker.php/l" title="Log in">🗝️</a></div>
         <div class="tool"><a href="worker.php/w" title="New post" target="_blank">✒️</a></div>
     </div>
     <div>{{ frontConfig['site']['motto'] }}</div>
@@ -40,7 +40,7 @@
                             {% for time,seconds in times %}
                                 {% for second,post in seconds %}
                                     <article data-searchable="{{year}}.{{month}}.{{day}} {{ post.yaml.title|e }} {% for tag in post.yaml.tags %} {{ tag|e }} {% endfor %}">
-                                        <div class="tools"><div class="tool"><a href="worker.php/u/{{ post.filename| url_encode }}" title="Update post" target="_blank">✍️</a></div></div>
+                                        <div class="tools"><div class="tool"><a href="worker.php/u/{{ post.filename| url_encode }}" title="Update post" target="_blank">✍️</a></div><div class="tool"><a href="worker.php/n/{{ post.filename | url_encode }}" title="Create a new post as the next part" target="_blank">🗍</a></div></div>
                                         <div class="time">{{ time }}</div>
                                         <h2>{{ post.yaml.title | raw }}</h2>
                                             {% for tag in post.yaml.tags %}

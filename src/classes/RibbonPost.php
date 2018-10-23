@@ -52,6 +52,15 @@ class RibbonPost {
             'updatedTo' => function($v){
                 $this->yaml['updatedTo'] = $v;
             },
+            'previous' => function($v){
+                $this->yaml['previous'] = $v;
+                $post = new RibbonPost($this->container);
+                $post->createFromFile($v,['next' => $this->filename]);
+                $post->save();
+            },
+            'next' => function($v){
+                $this->yaml['next'] = $v;
+            },
         ];
     }
     

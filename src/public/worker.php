@@ -98,5 +98,29 @@ $app->post('/u/{filename}', function (Request $request, Response $response,$args
     return $response;
 });
 
+$app->get('/n/{filename}', function (Request $request, Response $response,$args){
+    $messages = $this->flash->getMessages();
+    $post = new RibbonPost($this);
+    return $this->view->render($response,'newpost.html.twig',[
+        'messages' => $messages,
+    ]);    
+})->setName('addpart');
+
+$app->post('/n/{filename}', function (Request $request, Response $response,$args){
+    $data = $request->getParsedBody();
+    $post = new RibbonPost($this);
+    if ($post->createFromForm($data['content'],['previous' => $args['filename']]) && $post->save()) {
+        $this->flash->addMessage('Success', 'The post was successfully saved.');
+    }else{
+        $this->flash->addMessage('Error', 'Impossible to save the post !');
+    }
+
+    $response = $response->withRedirect($this->router->pathFor('getnewpost'),303);
+    
+    RibbonGenerator::init($this);
+    RibbonGenerator::generate();        
+
+
+});
 
 $app->run();
