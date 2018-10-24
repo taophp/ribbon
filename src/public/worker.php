@@ -118,9 +118,15 @@ $app->post('/n/{filename}', function (Request $request, Response $response,$args
     $response = $response->withRedirect($this->router->pathFor('getnewpost'),303);
     
     RibbonGenerator::init($this);
+    RibbonGenerator::generate();
+    return $response;
+});
+
+$app->get('/g', function (Request $request, Response $response) {
+    RibbonGenerator::init($this);
     RibbonGenerator::generate();        
-
-
+    $response = $response->withRedirect('../..',303);
+    return $response;
 });
 
 $app->run();
