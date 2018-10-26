@@ -1,12 +1,10 @@
-(A) 2018-10-21 Add the ability to mark a post the next to another as in a serie of posts
-(A) 2018-10-21 Parse markdown in the title
 (B) Add the support of a "--MORE--"  markdown tag
 (C) 2018-10-11 Add the support of all Prism supported language for syntax highlighting (there is an module for that)
 2018-10-17 Add logout feature
-2018-10-17 Manadge exception when a file is malformed
+2018-10-17 Manage exception when a file is malformed
 2018-10-17 delete all characters after the last closing parenthesis in the title
 2018-10-25 Controls on post should not be sticky @bug
-2018-10-25 When a post is updated twice, there is two posts published @bug 
+2018-10-26 Add Leek Speak marker support (both inline and block) in markdown
 Add RSS
 Add picture upload
 Add sitemap

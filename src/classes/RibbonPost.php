@@ -109,6 +109,11 @@ class RibbonPost {
         return $mdParser->parse($this->markdownString);
     }
     
+    public function getHtmlTitle() : string {
+        $mdParser = new \cebe\markdown\GithubMarkdown();
+        return $mdParser->parse($this->yaml['title']);
+    }
+    
     public function getTextAreaContent() : string {
         return $this->yaml['title']
                 .' ('.implode(',',$this->yaml['tags']).')'
