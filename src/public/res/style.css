@@ -94,10 +94,12 @@ blockquote {
     cursor: pointer;
 }
 
+.toptools {
+    position: sticky;
+    top: 0;
+}
 .tools {
     float: right;
-    top: 0;
-    position: sticky;
     margin-left:.5em;
     display:inline-block;
 }

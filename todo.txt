@@ -3,7 +3,6 @@
 2018-10-17 Add logout feature
 2018-10-17 Manage exception when a file is malformed
 2018-10-17 delete all characters after the last closing parenthesis in the title
-2018-10-25 Controls on post should not be sticky @bug
 2018-10-26 Add Leek Speak marker support (both inline and block) in markdown
 Add RSS
 Add picture upload
