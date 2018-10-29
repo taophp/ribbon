@@ -12,6 +12,7 @@ class RibbonPost {
     const DATE_FORMAT_4_FILE_NAME = 'Y-m-d-';
     const DATE_FORMAT_4_YAML = 'Y-m-d H:i:s';
     const YAML_SEPARATOR = PHP_EOL.'---'.PHP_EOL;
+    const MORE_SEPARATOR = PHP_EOL.'--MORE--'.PHP_EOL;
 
     protected $yamlString;
     protected $markdownString;
@@ -106,13 +107,13 @@ class RibbonPost {
     
     public function getHtmlContent() : string {
         $mdParser = new \cebe\markdown\GithubMarkdown();
-        $content = explode(PHP_EOL."--MORE--".PHP_EOL,$this->markdownString,2)[0];
+        $content = explode(RibbonPost::MORE_SEPARATOR,$this->markdownString,2)[0];
         return $mdParser->parse($content);
     }
     
     public function getHtmlMoreContent() {
         $mdParser = new \cebe\markdown\GithubMarkdown();
-        $moreContent = explode(PHP_EOL.'--MORE--'.PHP_EOL,$this->markdownString,2)[1];
+                $moreContent = explode(RibbonPost::MORE_SEPARATOR,$this->markdownString,2)[1];
         return $mdParser->parse($moreContent);
         
     }
@@ -125,6 +126,10 @@ class RibbonPost {
         return $this->yaml['title']
                 .' ('.implode(',',$this->yaml['tags']).')'
                 . PHP_EOL . $this->markdownString;
+    }
+    
+    public function thereIsMore () : bool {
+        return strpos($this->markdownString,RibbonPost::MORE_SEPARATOR)!== false;
     }
     
 }
