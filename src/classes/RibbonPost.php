@@ -106,9 +106,16 @@ class RibbonPost {
     
     public function getHtmlContent() : string {
         $mdParser = new \cebe\markdown\GithubMarkdown();
-        return $mdParser->parse($this->markdownString);
+        $content = explode(PHP_EOL."--MORE--".PHP_EOL,$this->markdownString,2)[0];
+        return $mdParser->parse($content);
     }
     
+    public function getHtmlMoreContent() {
+        $mdParser = new \cebe\markdown\GithubMarkdown();
+        $moreContent = explode(PHP_EOL.'--MORE--'.PHP_EOL,$this->markdownString,2)[1];
+        return $mdParser->parse($moreContent);
+        
+    }
     public function getHtmlTitle() : string {
         $mdParser = new \cebe\markdown\GithubMarkdown();
         return $mdParser->parse($this->yaml['title']);
