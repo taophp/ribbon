@@ -1,4 +1,5 @@
 (A) 2018-10-30 @bug problem with filename with space
+(B) 2018-10-30 improve the .gitignore not to add the html generated files
 (C) 2018-10-11 Add the support of all Prism supported language for syntax highlighting (there is an module for that)
 2018-10-17 Add logout feature
 2018-10-17 Manage exception when a file is malformed
