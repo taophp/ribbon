@@ -1,9 +1,13 @@
-(B) Add the support of a "--MORE--"  markdown tag
+(A) 2018-10-30 @bug problem with filename with space
 (C) 2018-10-11 Add the support of all Prism supported language for syntax highlighting (there is an module for that)
 2018-10-17 Add logout feature
 2018-10-17 Manage exception when a file is malformed
 2018-10-17 delete all characters after the last closing parenthesis in the title
 2018-10-26 Add Leek Speak marker support (both inline and block) in markdown
+2018-10-30 Add individual post page
+2018-10-30 factorize months names
+2018-10-30 improve design on mobile
+2018-10-30 improve single page design
 Add RSS
 Add picture upload
 Add sitemap

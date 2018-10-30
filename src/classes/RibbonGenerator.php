@@ -34,6 +34,9 @@ class RibbonGenerator {
             throw new Exception('RibbonGenerator was not initiated!');
         }
         
+        $view = new \Slim\Views\Twig(static::$container['settings']['twig']['templatePath'],static::$container['settings']['twig']['env']);
+        $view->addExtension(new \Twig_Extension_Debug());
+
         $files = glob(static::$container->settings['postsSourceDirectory'].'/*md');
         
         $posts = [];
@@ -41,19 +44,18 @@ class RibbonGenerator {
             $post = new RibbonPost(static::$container);
             $post->createFromFile($file);
             if (!array_key_exists('updatedTo',$post->yaml)) {
-                $year = date('Y',strtotime($post->yaml['date']));
-                $month = date('m',strtotime($post->yaml['date']));
-                $day= date('j',strtotime($post->yaml['date']));
-                $time= date('H:i',strtotime($post->yaml['date']));
-                $seconds = date('s',strtotime($post->yaml['date']));
+                $post->year = $year = date('Y',strtotime($post->yaml['date']));
+                $post->month = $month = date('m',strtotime($post->yaml['date']));
+                $post->day = $day = date('j',strtotime($post->yaml['date']));
+                $post->time = $time = date('H:i',strtotime($post->yaml['date']));
+                $post->seconds = $seconds = date('s',strtotime($post->yaml['date']));
 
                 $posts[$year][$month][$day][$time][$seconds] = $post;
             }
+            file_put_contents(static::$container->settings['postDestinationDirectory'].'/'.$post->getHtmlFilename(),
+                $view->fetch('post.html.twig',['post'=>$post,'frontConfig' => static::$container->settings['front']]));
         }
         krsortRecursive($posts);
-        $view = new \Slim\Views\Twig(static::$container['settings']['twig']['templatePath'],static::$container['settings']['twig']['env']);
-        $view->addExtension(new \Twig_Extension_Debug());
-        
         
         return file_put_contents(static::$container->settings['postDestinationDirectory'].'/index.html',
                 $view->fetch('index.html.twig',['posts'=>$posts,'frontConfig' => static::$container->settings['front']]));

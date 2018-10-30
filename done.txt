@@ -14,3 +14,4 @@ x 2018-10-26 (A) 2018-10-21 Add the ability to mark a post the next to another a
 x 2018-10-26 2018-10-25 When a post is updated twice, there is two posts published @bug note:c I do not reproduice, maybe this bug affects old versions.
 x 2018-10-26 (A) 2018-10-21 Parse markdown in the title
 x 2018-10-29 2018-10-25 Controls on post should not be sticky @bug
+x 2018-10-30 (B) Add the support of a "--MORE--"  markdown tag

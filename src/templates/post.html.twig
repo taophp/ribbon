@@ -1,0 +1,32 @@
+{% extends "frontOffice.html.twig" %}
+
+{% block header %}
+    {% include 'headerFrontOffice.html.twig' %}
+{% endblock %}
+
+{% block body %}
+    {%
+        set monthNames = {
+            '01':'Janvier',
+            '02':'Février',
+            '03':'Mars',
+            '04':'Avril',
+            '05':'Mai',
+            '06':'Juin',
+            '07':'Juillet',
+            '08':'Août',
+            '09':'Septembre',
+            '10':'Octobre',
+            '11':'Novembre',
+            '12':'Décembre'
+        }
+    %}
+    <h1>{{ post.getHtmlTitle() | raw }}</h1>
+    <div class="year">{{ post.year }}</div>
+     <div class="monthcontainer">
+                <div class="month">{{ attribute(monthNames,post.month) }}</div>
+                <div class="daycontainer">
+                    <div class="day">{{ post.day }} {{ attribute(monthNames,post.month) }} {{ post.year }}</div></div>
+    <div class="firstLines">{{ post.getHtmlContent() | raw }}</div>
+    <div class="content">{{ post.getHtmlMoreContent() | raw }}</div>
+{% endblock %}

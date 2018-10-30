@@ -65,6 +65,10 @@ class RibbonPost {
         ];
     }
     
+    public function getHtmlFilename() {
+        return str_replace('.md','.html',$this->filename);
+    }
+    
     public function createFromForm(string $content,$additionalParams = []) : bool {
         list ($title,$this->markdownString) = explode(PHP_EOL,$content,2);
         $break = strrpos($title,'(');
@@ -113,7 +117,7 @@ class RibbonPost {
     
     public function getHtmlMoreContent() {
         $mdParser = new \cebe\markdown\GithubMarkdown();
-                $moreContent = explode(RibbonPost::MORE_SEPARATOR,$this->markdownString,2)[1];
+                $moreContent = @explode(RibbonPost::MORE_SEPARATOR,$this->markdownString,2)[1];
         return $mdParser->parse($moreContent);
         
     }
