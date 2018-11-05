@@ -7,6 +7,9 @@
 2018-10-30 factorize months names
 2018-10-30 improve design on mobile
 2018-10-30 improve single page design
+2018-11-05 Add link to next version of post
+2018-11-05 Add noindex and no follow properties on links to outdated posts
+2018-11-05 Handle posts without tags
 Add RSS
 Add picture upload
 Add sitemap

@@ -69,6 +69,10 @@ class RibbonPost {
         return str_replace('.md','.html',$this->filename);
     }
     
+    public function updatedFromHtmlFilename() : string {
+        return str_replace('.md','.html',$this->yaml['updatedFrom']);
+    }
+    
     public function createFromForm(string $content,$additionalParams = []) : bool {
         list ($title,$this->markdownString) = explode(PHP_EOL,$content,2);
         $break = strrpos($title,'(');

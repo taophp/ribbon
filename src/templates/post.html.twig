@@ -22,11 +22,17 @@
         }
     %}
     <h1>{{ post.getHtmlTitle() | raw }}</h1>
-    <div class="year">{{ post.year }}</div>
+    <!--div class="year">{{ post.year }}</div>
      <div class="monthcontainer">
-                <div class="month">{{ attribute(monthNames,post.month) }}</div>
-                <div class="daycontainer">
-                    <div class="day">{{ post.day }} {{ attribute(monthNames,post.month) }} {{ post.year }}</div></div>
+        <div class="month">{{ attribute(monthNames,post.month) }}</div>
+     </div-->
+    <div class="daycontainer">
+        <div class="day">{{ post.day }} {{ attribute(monthNames,post.month) }} {{ post.year }}</div>
+    </div>
+    {% if post.yaml.updatedFrom %}
+        <div class="updatedFrom"><a href="{{ post.updatedFromHtmlFilename() | url_encode }}">Previous version</a></div>
+    {% endif %}
+    <pre>{{ dump(post.yaml.updatedFrom) }}</pre>
     <div class="firstLines">{{ post.getHtmlContent() | raw }}</div>
     <div class="content">{{ post.getHtmlMoreContent() | raw }}</div>
 {% endblock %}
