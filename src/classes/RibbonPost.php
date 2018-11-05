@@ -65,7 +65,7 @@ class RibbonPost {
         ];
     }
     
-    public function getHtmlFilename() {
+    public function getHtmlFilename() : string {
         return str_replace('.md','.html',$this->filename);
     }
     
@@ -76,7 +76,7 @@ class RibbonPost {
         $this->yaml['tags'] = explode(',',substr(trim(substr($title,$break)),1,-1));
         $this->yaml['date'] = date(static::DATE_FORMAT_4_YAML);
         $this->filename = date(static::DATE_FORMAT_4_FILE_NAME,time())
-                .rawurlencode(trim($this->yaml['title'])).'-'.time().'.md';
+                .static::sanitizeString4filename(trim($this->yaml['title'])).'-'.time().'.md';
         
         if (is_array($additionalParams) && count($additionalParams)) {
             $this->additionalParsing($additionalParams);
@@ -117,7 +117,7 @@ class RibbonPost {
     
     public function getHtmlMoreContent() {
         $mdParser = new \cebe\markdown\GithubMarkdown();
-                $moreContent = @explode(RibbonPost::MORE_SEPARATOR,$this->markdownString,2)[1];
+        $moreContent = @explode(RibbonPost::MORE_SEPARATOR,$this->markdownString,2)[1];
         return $mdParser->parse($moreContent);
         
     }
@@ -134,6 +134,17 @@ class RibbonPost {
     
     public function thereIsMore () : bool {
         return strpos($this->markdownString,RibbonPost::MORE_SEPARATOR)!== false;
+    }
+    
+    /**
+     * Sanitize string to use as a filename
+     * @see https://stackoverflow.com/questions/2021624/string-sanitizer-for-filename#answer-2021729
+     * 
+     * @param string $dangerousFilename unsecured string
+     * @return string secured for filename string
+     */
+    public static function sanitizeString4filename(string $dangerousFilename) : string {
+        return mb_ereg_replace("([^\w\s\d\-_~,;\[\]\(\).])", '', $dangerousFilename);
     }
     
 }

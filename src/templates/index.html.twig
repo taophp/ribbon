@@ -43,7 +43,7 @@
                                     <article data-searchable="{{year}}.{{month}}.{{day}} {{ post.yaml.title|e }} {% for tag in post.yaml.tags %} {{ tag|e }} {% endfor %}">
                                         <div class="tools"><div class="tool"><a href="worker.php/u/{{ post.filename| url_encode }}" title="Update post" target="_blank">✍️</a></div><div class="tool"><a href="worker.php/n/{{ post.filename | url_encode }}" title="Create a new post as the next part" target="_blank">🗍</a></div></div>
                                         <div class="time">{{ time }}</div>
-                                        <h2><a href="{{ post.getHtmlFilename }}">{{ post.getHtmlTitle() | raw }}</a></h2>
+                                        <h2><a href="{{ post.getHtmlFilename | url_encode }}">{{ post.getHtmlTitle() | raw }}</a></h2>
                                             {% for tag in post.yaml.tags %}
                                                 <div class="tag">{{ tag }}</div>
                                             {% endfor %}
