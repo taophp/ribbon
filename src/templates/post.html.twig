@@ -35,6 +35,12 @@
     {% if post.yaml.updatedTo %}
         <div class="updatedTo"><a href="{{ post.updatedToHtmlFilename() | url_encode }}">Next version</a></div>
     {% endif %}
+    {% if post.yaml.previous %}
+        <div class="previous"><a href="{{ post.previousToHtmlFilename() | url_encode }}">Previous part</a></div>
+    {% endif %}
+    {% if post.yaml.next %}
+        <div class="next"><a href="{{ post.nextToHtmlFilename() | url_encode }}">Next part</a></div>
+    {% endif %}
     <div class="firstLines">{{ post.getHtmlContent() | raw }}</div>
     <div class="content">{{ post.getHtmlMoreContent() | raw }}</div>
 {% endblock %}

@@ -49,9 +49,25 @@ class RibbonPost {
                 $post = new RibbonPost($this->container);
                 $post->createFromFile($v,['updatedTo' => $this->filename]);
                 $post->save();
+                if ($post->yaml['previous']) {
+                    $this->yaml['previous'] = $post->yaml['previous'];
+                }
+                if ($post->yaml['next']) {
+                    $this->yaml['next'] = $post->yaml['next'];
+                }
             },
             'updatedTo' => function($v){
                 $this->yaml['updatedTo'] = $v;
+                if ($this->yaml['next']) {
+                    $post = new RibbonPost($this->container);
+                    $post->createFromFile($this->yaml['next'],['previous' => $v]);
+                    $post->save();
+                }
+                if ($this->yaml['previous']) {
+                    $post = new RibbonPost($this->container);
+                    $post->createFromFile($this->yaml['previous'],['next' => $v]);
+                    $post->save();
+                }
             },
             'previous' => function($v){
                 $this->yaml['previous'] = $v;
@@ -70,11 +86,23 @@ class RibbonPost {
     }
     
     public function updatedFromHtmlFilename() : string {
-        return str_replace('.md','.html',$this->yaml['updatedFrom']);
+        return $this->mdToHtmlFilename('updatedFrom');
     }
 
     public function updatedToHtmlFilename() : string {
-        return str_replace('.md','.html',$this->yaml['updatedTo']);
+        return $this->mdToHtmlFilename('updatedTo');
+    }
+    
+    public function nextToHtmlFilename() : string {
+        return $this->mdToHtmlFilename('next');
+    }
+    
+    public function previousToHtmlFilename() : string {
+        return $this->mdToHtmlFilename('previous');
+    }
+    
+    public function mdToHtmlFilename(string $md) : string {
+        return str_replace('.md','.html',$this->yaml[$md]);
     }
     
     public function createFromForm(string $content,$additionalParams = []) : bool {
