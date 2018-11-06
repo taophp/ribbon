@@ -2,3 +2,6 @@
 <script src="vendor/components/jquery/jquery.min.js" defer></script>
 <script defer src="res/script.js"></script>
 <script defer src="res/prism.js"></script>
+{% if post.yaml.updatedTo %}
+    <meta name="robots" content="noindex">
+{% endif %}

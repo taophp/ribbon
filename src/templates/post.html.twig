@@ -30,9 +30,11 @@
         <div class="day">{{ post.day }} {{ attribute(monthNames,post.month) }} {{ post.year }}</div>
     </div>
     {% if post.yaml.updatedFrom %}
-        <div class="updatedFrom"><a href="{{ post.updatedFromHtmlFilename() | url_encode }}">Previous version</a></div>
+        <div class="updatedFrom"><a rel="nofollow" href="{{ post.updatedFromHtmlFilename() | url_encode }}">Previous version</a></div>
     {% endif %}
-    <pre>{{ dump(post.yaml.updatedFrom) }}</pre>
+    {% if post.yaml.updatedTo %}
+        <div class="updatedTo"><a href="{{ post.updatedToHtmlFilename() | url_encode }}">Next version</a></div>
+    {% endif %}
     <div class="firstLines">{{ post.getHtmlContent() | raw }}</div>
     <div class="content">{{ post.getHtmlMoreContent() | raw }}</div>
 {% endblock %}
