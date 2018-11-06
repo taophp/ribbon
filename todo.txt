@@ -3,13 +3,12 @@
 2018-10-17 Manage exception when a file is malformed
 2018-10-17 delete all characters after the last closing parenthesis in the title
 2018-10-26 Add Leek Speak marker support (both inline and block) in markdown
-2018-10-30 Add individual post page
 2018-10-30 factorize months names
 2018-10-30 improve design on mobile
 2018-10-30 improve single page design
-2018-11-05 Add link to next version of post
-2018-11-05 Add noindex and no follow properties on links to outdated posts
 2018-11-05 Handle posts without tags
+2018-11-06 How to handle next part request when a next part already exists ?
+2018-11-06 Support I18N
 Add RSS
 Add picture upload
 Add sitemap
