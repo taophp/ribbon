@@ -125,7 +125,7 @@ $app->post('/n/{filename}', function (Request $request, Response $response,$args
 $app->get('/g', function (Request $request, Response $response) {
     RibbonGenerator::init($this);
     RibbonGenerator::generate();        
-    $response = $response->withRedirect('../..',303);
+    $response = $response->withRedirect($_SERVER['HTTP_REFERER'],303);
     return $response;
 });
 
