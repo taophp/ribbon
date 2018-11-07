@@ -12,7 +12,7 @@ class RibbonPost {
     const DATE_FORMAT_4_FILE_NAME = 'Y-m-d-';
     const DATE_FORMAT_4_YAML = 'Y-m-d H:i:s';
     const YAML_SEPARATOR = PHP_EOL.'---'.PHP_EOL;
-    const MORE_SEPARATOR = PHP_EOL.'--MORE--'.PHP_EOL;
+    const MORE_SEPARATOR = '--MORE--';
 
     protected $yamlString;
     protected $markdownString;

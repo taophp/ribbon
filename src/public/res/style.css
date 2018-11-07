@@ -1,3 +1,16 @@
+@import url(https://cdn.jsdelivr.net/gh/tonsky/FiraCode@1.206/distr/fira_code.css);
+/*@font-face {
+    font-family: 'fira_coderegular';
+    src: url('firacode-regular-webfont.woff2') format('woff2'),
+         url('firacode-regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}*/
+
+code {
+    font-family: 'Fira Code' !important;
+}
+
 body{
     background:rgb(252,252,240);
 }
@@ -8,6 +21,17 @@ body.notframed {
     margin:0 auto;
     font-family: serif;
     text-align: justify;
+}
+nav {
+    display:flex;
+    justify-content: space-between;
+    position:sticky;
+    top:92vh;
+    bottom:2vh;
+    background: rgba(252,252,240,.8);
+}
+nav a {
+    text-decoration:none;
 }
 @media screen and (max-width: 640px) {
     body {
@@ -22,7 +46,7 @@ h1 {
     text-align: center;
 }
 
-h1,h2,h3,h4,h5,h6 {
+h1,h2, h2 a,h3,h4,h5,h6 {
     color: #719e40;
     font-family: sans-serif;
     text-align: left;
@@ -30,6 +54,9 @@ h1,h2,h3,h4,h5,h6 {
 h2 {
     margin-bottom: 0;
     display:inline;
+}
+h2 a {
+    text-decoration:none;
 }
 .time {
     color: gray;
@@ -45,12 +72,14 @@ h2 {
     color: darkgrey;
     padding-left: .5em;
 }
-.month {
+.month,.firstLines {
     margin: 1em 0;
     font-size: 130%;
-    text-transform: uppercase;
     border-bottom: double;
     padding-left: 1em;
+}
+.month {
+    text-transform: uppercase;
 }
 .year {
     font-size: 190%;
@@ -118,6 +147,7 @@ blockquote {
 }
 .content {
     width: 100%;
+    padding-bottom: 3em;
 }
 
 /* Admin part */
