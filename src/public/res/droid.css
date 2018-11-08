@@ -1,0 +1,12 @@
+@font-face {
+  font-family: "DroidSerif";
+  src: url("DroidSerif-Regular.eot"); /* IE9 Compat Modes */
+  src: url("DroidSerif-Regular.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */
+    url("DroidSerif-Regular.otf") format("opentype"), /* Open Type Font */
+    url("DroidSerif-Regular.svg") format("svg"), /* Legacy iOS */
+    url("DroidSerif-Regular.woff2") format("woff2"); /* Modern Browsers */
+    font-weight: normal;
+    font-style: normal;
+}
+
+

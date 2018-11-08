@@ -47,7 +47,10 @@
                                             {% for tag in post.yaml.tags %}
                                                 <div class="tag">{{ tag }}</div>
                                             {% endfor %}
-                                        <div class="content">{{ post.getHtmlContent() | raw }}</div>
+                                        <div class="content">
+                                            {{ post.getHtmlContent() | raw }}
+                                            {% if post.getHtmlMoreContent() %}<div class="readmore"><a href="{{ post.getHtmlFilename | url_encode }}" title="Lire la suite...">📜</a> {% endif %}
+                                        </div>
                                     </article>
                                 {% endfor %}
                             {% endfor %}

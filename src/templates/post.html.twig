@@ -24,16 +24,19 @@
     <h1>{{ post.getHtmlTitle() | raw }}</h1>
      <nav>
     {% if post.yaml.previous %}
-        <div class="previous"><a href="{{ post.previousToHtmlFilename() | url_encode }}" title="Previous part">⏮️</a></div>
+        <div class="previous tool"><a href="{{ post.previousToHtmlFilename() | url_encode }}" title="Previous part">⏮️</a></div>
     {% endif %}
+        <div class="previousPost tool"><a href="#">⌛️</a></div>
     {% if post.yaml.updatedFrom %}
-        <div class="updatedFrom"><a rel="nofollow" href="{{ post.updatedFromHtmlFilename() | url_encode }}" title="Previous version">↩️</a></div>
+        <div class="updatedFrom tool"><a rel="nofollow" href="{{ post.updatedFromHtmlFilename() | url_encode }}" title="Previous version">↩️</a></div>
     {% endif %}
+    <div class="tool"><a href=".." title="Accueil">🏠</a></div>
     {% if post.yaml.updatedTo %}
-        <div class="updatedTo"><a href="{{ post.updatedToHtmlFilename() | url_encode }}" title="Next version">↪️</a></div>
+        <div class="updatedTo tool""><a href="{{ post.updatedToHtmlFilename() | url_encode }}" title="Next version">↪️</a></div>
     {% endif %}
+        <div class="nextPost tool"t><a href="#">⏳</a></div>
     {% if post.yaml.next %}
-        <div class="next"><a href="{{ post.nextToHtmlFilename() | url_encode }}" title="Next part">⏭️</a></div>
+        <div class="next tool"><a href="{{ post.nextToHtmlFilename() | url_encode }}" title="Next part">⏭️</a></div>
     {% endif %}
      </nav>
     <div class="tools toptools">
@@ -41,8 +44,8 @@
             <div class="guestTool"><a href="worker.php/l" title="Log in">🗝️</a></div>
             <div class="tool"><a href="worker.php/w" title="New post" target="_blank">✒️</a></div>
             <div class="tool"><a href="worker.php/g" title="Rebuild">🏗️</a></div>
-            {% if not post.yaml.updatedTo %}<div class="tool"><a href="worker.php/u/{{ post.filename| url_encode }}" title="Update post" target="_blank">✍️</a></div> {% endif %}
-            <div class="tool"><a href="worker.php/n/{{ post.filename | url_encode }}" title="Create a new post as the next part" target="_blank">🗍</a></div>
+            {% if not post.yaml.updatedTo %}<div class="tool"><a href="worker.php/u/{{ post.filename| url_encode }}" title="Update post" target="_blank">✍️</a></div>
+            <div class="tool"><a href="worker.php/n/{{ post.filename | url_encode }}" title="Create a new post as the next part" target="_blank">🗍</a></div>{% endif %}
         </div>
     </div>
 <div class="year">{{ post.day }} {{ attribute(monthNames,post.month) }} {{ post.year }}</div>
