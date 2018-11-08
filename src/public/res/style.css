@@ -1,3 +1,9 @@
+@font-face {
+    font-family: 'GNUTypewriterStandard';
+    src: url('gtw.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
 @font-face{
     font-family: 'Fira Code';
     src: url('FiraCode-Light.eot');
@@ -41,6 +47,13 @@
     font-weight: 700;
     font-style: normal;
 }
+
+blockquote {
+    font-family: 'GNUTypewriterStandard';
+    font-weight: normal;
+    font-style: normal; 
+}
+
 code {
     font-family: 'Fira Code' !important;
 }
