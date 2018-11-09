@@ -22,3 +22,6 @@ x 2018-11-06 2018-11-05 Add link to next version of post
 x 2018-11-06 2018-11-05 Add noindex and no follow properties on links to outdated posts
 x 2018-11-08 Add the nice monospace font for code
 x 2018-11-08 Add the nice serif font
+x 2018-11-09 2018-11-08 Add the support for all formats to all fonts
+x 2018-11-09 2018-11-08 Add link to home page on single page
+x 2018-11-09 2018-11-08 Add Sans Forgetica font for titles

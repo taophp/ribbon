@@ -9,9 +9,6 @@
 2018-11-05 Handle posts without tags
 2018-11-06 How to handle next part request when a next part already exists ?
 2018-11-06 Support I18N
-2018-11-08 Add Sans Forgetica font for titles
-2018-11-08 Add link to home page on single page
-2018-11-08 Add the support for all formats to all fonts
 2018-11-08 Bug: when updating a post, the previous version lost its date
 Add RSS
 Add picture upload
