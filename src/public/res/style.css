@@ -1,147 +1,130 @@
 @font-face {
+    font-family: 'droid_sansbold';
+    src: url('DroidSans-Bold-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'droid_sansregular';
+    src: url('DroidSans-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
     font-family: 'alegreyaitalic';
-    src: url('alegreya-italic-webfont.woff2') format('woff2'),
-         url('alegreya-italic-webfont.woff') format('woff');
+    src: url('alegreya-italic-webfont.woff2') format('woff2');
     font-weight: normal;
     font-style: normal;
 
 }
 @font-face {
     font-family: 'alegreyaregular';
-    src: url('alegreya-regular-webfont.woff2') format('woff2'),
-         url('alegreya-regular-webfont.woff') format('woff');
+    src: url('alegreya-regular-webfont.woff2') format('woff2');
     font-weight: normal;
     font-style: normal;
 
 }
 @font-face {
     font-family: 'alegreyabold';
-    src: url('alegreya-bold-webfont.woff2') format('woff2'),
-         url('alegreya-bold-webfont.woff') format('woff');
+    src: url('alegreya-bold-webfont.woff2') format('woff2');
     font-weight: normal;
     font-style: normal;
 
 }
 @font-face {
     font-family: 'alegreyabold_italic';
-    src: url('alegreya-bolditalic-webfont.woff2') format('woff2'),
-         url('alegreya-bolditalic-webfont.woff') format('woff');
+    src: url('alegreya-bolditalic-webfont.woff2') format('woff2');
     font-weight: normal;
     font-style: normal;
 
 }
 @font-face {
     font-family: 'alegreyablack';
-    src: url('alegreya-black-webfont.woff2') format('woff2'),
-         url('alegreya-black-webfont.woff') format('woff');
+    src: url('alegreya-black-webfont.woff2') format('woff2');
     font-weight: normal;
     font-style: normal;
 
 }
 @font-face {
     font-family: 'alegreyablack_italic';
-    src: url('alegreya-blackitalic-webfont.woff2') format('woff2'),
-         url('alegreya-blackitalic-webfont.woff') format('woff');
+    src: url('alegreya-blackitalic-webfont.woff2') format('woff2');
     font-weight: normal;
     font-style: normal;
 }
 @font-face {
     font-family: 'alegreya_scregular';
-    src: url('alegreyasc-regular-webfont.woff2') format('woff2'),
-         url('alegreyasc-regular-webfont.woff') format('woff');
+    src: url('alegreyasc-regular-webfont.woff2') format('woff2');
     font-weight: normal;
     font-style: normal;
 }
 @font-face {
     font-family: 'alegreya_scitalic';
-    src: url('alegreyasc-italic-webfont.woff2') format('woff2'),
-         url('alegreyasc-italic-webfont.woff') format('woff');
+    src: url('alegreyasc-italic-webfont.woff2') format('woff2');
     font-weight: normal;
     font-style: normal;
 }
 @font-face {
     font-family: 'alegreya_scbold_italic';
-    src: url('alegreyasc-bolditalic-webfont.woff2') format('woff2'),
-         url('alegreyasc-bolditalic-webfont.woff') format('woff');
+    src: url('alegreyasc-bolditalic-webfont.woff2') format('woff2');
     font-weight: normal;
     font-style: normal;
-
 }
 @font-face {
     font-family: 'alegreya_scbold';
-    src: url('alegreyasc-bold-webfont.woff2') format('woff2'),
-         url('alegreyasc-bold-webfont.woff') format('woff');
+    src: url('alegreyasc-bold-webfont.woff2') format('woff2');
     font-weight: normal;
     font-style: normal;
-
 }
 @font-face {
     font-family: 'alegreya_scblack';
-    src: url('alegreyasc-black-webfont.woff2') format('woff2'),
-         url('alegreyasc-black-webfont.woff') format('woff');
+    src: url('alegreyasc-black-webfont.woff2') format('woff2');
     font-weight: normal;
     font-style: normal;
 
 }
 @font-face {
     font-family: 'alegreya_scblack_italic';
-    src: url('alegreyasc-blackitalic-webfont.woff2') format('woff2'),
-         url('alegreyasc-blackitalic-webfont.woff') format('woff');
+    src: url('alegreyasc-blackitalic-webfont.woff2') format('woff2');
     font-weight: normal;
     font-style: normal;
 }
 @font-face {
     font-family: 'Sans Forgetica';
-    src: url('SansForgetica-Regular.otf') format('truetype');
+    src: url('sansforgetica-regular-webfont.woff2') format('woff2');
     font-weight: normal;
     font-style: normal;
 }
 @font-face {
     font-family: 'GNUTypewriterStandard';
-    src: url('gtw.ttf') format('truetype');
+    src: url('gtw-webfont.woff2') format('woff2');
     font-weight: normal;
     font-style: normal;
 }
+
 @font-face{
     font-family: 'Fira Code';
-    src: url('FiraCode-Light.eot');
-    src: url('FiraCode-Light.eot') format('embedded-opentype'),
-         url('FiraCode-Light.woff2') format('woff2'),
-         url('FiraCode-Light.woff') format('woff'),
-         url('FiraCode-Light.ttf') format('truetype');
+    src: url('FiraCode-Light.woff2') format('woff2');
     font-weight: 300;
     font-style: normal;
 }
 
 @font-face{
     font-family: 'Fira Code';
-    src: url('FiraCode-Regular.eot');
-    src: url('FiraCode-Regular.eot') format('embedded-opentype'),
-         url('FiraCode-Regular.woff2') format('woff2'),
-         url('FiraCode-Regular.woff') format('woff'),
-         url('FiraCode-Regular.ttf') format('truetype');
+    src: url('FiraCode-Regular.woff2') format('woff2');
     font-weight: 400;
     font-style: normal;
 }
 
 @font-face{
     font-family: 'Fira Code';
-    src: url('FiraCode-Medium.eot');
-    src: url('FiraCode-Medium.eot') format('embedded-opentype'),
-         url('FiraCode-Medium.woff2') format('woff2'),
-         url('FiraCode-Medium.woff') format('woff'),
-         url('FiraCode-Medium.ttf') format('truetype');
+    src: url('FiraCode-Medium.woff2') format('woff2');
     font-weight: 500;
     font-style: normal;
 }
 
 @font-face{
     font-family: 'Fira Code';
-    src: url('FiraCode-Bold.eot');
-    src: url('FiraCode-Bold.eot') format('embedded-opentype'),
-         url('FiraCode-Bold.woff2') format('woff2'),
-         url('FiraCode-Bold.woff') format('woff'),
-         url('FiraCode-Bold.ttf') format('truetype');
+    src: url('FiraCode-Bold.woff2') format('woff2');
     font-weight: 700;
     font-style: normal;
 }
@@ -183,18 +166,19 @@ nav a {
         font-size:6vw;
     }
 }
+
+h1,h2, h2 a,h3,h4,h5,h6 {
+    color: #719e40;
+    font-family: sans-serif;
+    text-align: left;
+    font-family: 'droid_sansregular';
+}
 h1 {
     letter-spacing: -3px;
     font-size: 100px;
     font-weight: 200;
     margin-bottom: 0;
     text-align: center;
-}
-
-h1,h2, h2 a,h3,h4,h5,h6 {
-    color: #719e40;
-    font-family: sans-serif;
-    text-align: left;
     font-family: 'Sans Forgetica';
 }
 h2 {
