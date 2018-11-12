@@ -76,6 +76,15 @@ class RibbonPost {
                 $post->save();
             },
             'next' => function($v){
+                error_log(print_r($v,true)."\n",3,'D:\log.txt');
+                if (is_array($this->yaml) && array_key_exists('next', $this->yaml)) {
+                    $post = new RibbonPost($this->container);
+                    $post->createFromFile($this->yaml['next'],['previous' => $this->filename]);
+                    $post->save();
+                    $post2 = new RibbonPost($this->container);
+                    $post2->createFromFile($v,['next' => $this->yaml['next']]);
+                    $post2->save();
+                }
                 $this->yaml['next'] = $v;
             },
         ];
