@@ -25,3 +25,4 @@ x 2018-11-08 Add the nice serif font
 x 2018-11-09 2018-11-08 Add the support for all formats to all fonts
 x 2018-11-09 2018-11-08 Add link to home page on single page
 x 2018-11-09 2018-11-08 Add Sans Forgetica font for titles
+x 2018-11-13 2018-11-06 How to handle next part request when a next part already exists ?
