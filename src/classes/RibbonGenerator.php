@@ -30,6 +30,9 @@ class RibbonGenerator {
 
 
     public static function generate() : bool {
+        $indexFile = static::$container->settings['postDestinationDirectory'].'/index.html';
+        $lastGeneration = filemtime($indexFile);
+        
         if (!static::isIniated()) {
             throw new Exception('RibbonGenerator was not initiated!');
         }
@@ -52,12 +55,14 @@ class RibbonGenerator {
 
                 $posts[$year][$month][$day][$time][$seconds] = $post;
             }
-            file_put_contents(static::$container->settings['postDestinationDirectory'].'/'.$post->getHtmlFilename(),
+            if (filemtime($file) > $lastGeneration) {
+                file_put_contents(static::$container->settings['postDestinationDirectory'].'/'.$post->getHtmlFilename(),
                 $view->fetch('post.html.twig',['post'=>$post,'frontConfig' => static::$container->settings['front']]));
+            }
         }
         krsortRecursive($posts);
         
-        return file_put_contents(static::$container->settings['postDestinationDirectory'].'/index.html',
+        return file_put_contents($indexFile,
                 $view->fetch('index.html.twig',['posts'=>$posts,'frontConfig' => static::$container->settings['front']]));
 
     }
