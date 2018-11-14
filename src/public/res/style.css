@@ -142,29 +142,23 @@ code {
 body{
     background:rgb(252,252,240);
     font-family: 'alegreyaregular';
-}
-/* Front part */
-body.notframed {
-    max-width: 35em;
+    width: 35em;;
+    max-width: 100%;
     padding: 0;
     margin:0 auto;
     text-align: justify;
+    font-size: 24px;
 }
 nav {
     display:flex;
     justify-content: space-between;
-    position:sticky;
-    top:92vh;
-    bottom:2vh;
+    position:fixed;
+    bottom:0;
     background: rgba(252,252,240,.8);
+    width:100%;
 }
 nav a {
     text-decoration:none;
-}
-@media screen and (max-width: 640px) {
-    body {
-        font-size:6vw;
-    }
 }
 
 h1,h2, h2 a,h3,h4,h5,h6 {
@@ -174,10 +168,11 @@ h1,h2, h2 a,h3,h4,h5,h6 {
     font-family: 'droid_sansregular';
 }
 h1 {
-    letter-spacing: -3px;
-    font-size: 100px;
+    letter-spacing: -.09em;
+    font-size: 4em;
     font-weight: 200;
     margin-bottom: 0;
+    margin-top:0;
     text-align: center;
     font-family: 'Sans Forgetica';
 }
@@ -193,9 +188,10 @@ h2 a {
     float: right;
     margin-left: 1em;
     font-style: italic;
+    font-size:.8em;
 }
 .day {
-    font-size: 120%;
+    font-size: 1.1em;
     border-bottom: solid 1px silver;
     font-style: italic;
     margin-top: 1em;
@@ -203,16 +199,17 @@ h2 a {
     padding-left: .5em;
 }
 .month,.firstLines {
-    margin: 1em 0;
-    font-size: 130%;
+    margin: .5em 0;
+    font-size: 1.2em;
     border-bottom: double;
     padding-left: 1em;
 }
 .month {
     text-transform: uppercase;
+    text-align: center;
 }
 .year {
-    font-size: 190%;
+    font-size: 1.3em;
     text-align: center;
     background: lightgreen;
     padding: .2em 0 0.05em;
@@ -323,11 +320,13 @@ body.framed iframe {
     flex-direction:column;
     height:100vh;
 }
+
 textarea {
-    width: 100%;
-    max-width: 35em;
-    font-size: 15.84px;
+    width: 35em;
+    max-width: 100%;
     font-family: serif;
+    box-sizing: border-box;
+    margin:0 auto;
 }
 #newPostFormContainer textarea {
     flex-grow: 100;
@@ -336,6 +335,7 @@ textarea {
 input[type="submit"] {
     height: 3em;
     font-size: 200%;
+    width: 100%;
 }
 
 .readmore a {

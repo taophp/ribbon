@@ -27,3 +27,5 @@ x 2018-11-09 2018-11-08 Add link to home page on single page
 x 2018-11-09 2018-11-08 Add Sans Forgetica font for titles
 x 2018-11-13 2018-11-06 How to handle next part request when a next part already exists ?
 x 2018-11-13 2018-11-13 Detail pages : only update recently modified pages when generating the ribbon
+x 2018-11-14 2018-10-30 improve design on mobile
+x 2018-11-14 2018-10-30 improve single page design
