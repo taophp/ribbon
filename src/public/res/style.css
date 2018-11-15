@@ -139,15 +139,17 @@ code {
     font-family: 'Fira Code' !important;
 }
 
+body,nav {
+    width: 35em;
+    max-width: 100%;
+}
+
 body{
     background:rgb(252,252,240);
-    font-family: 'alegreyaregular';
-    width: 35em;;
-    max-width: 100%;
     padding: 0;
     margin:0 auto;
     text-align: justify;
-    font-size: 24px;
+    font: 400 24px/150% 'alegreyaregular',Georgia,serif;
 }
 nav {
     display:flex;
@@ -155,7 +157,6 @@ nav {
     position:fixed;
     bottom:0;
     background: rgba(252,252,240,.8);
-    width:100%;
 }
 nav a {
     text-decoration:none;
@@ -281,15 +282,6 @@ blockquote {
 }
 
 /* Admin part */
-body.framed {
-    overflow: hidden;
-    margin:0;
-    padding:0;
-}
-body.framed iframe {
-    width:100vw;
-    height:100vh;
-}
 .flashmsg {
     width: 100%;
     margin: .5em 0;

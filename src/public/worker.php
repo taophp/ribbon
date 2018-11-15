@@ -49,7 +49,7 @@ $app->get('/w', function (Request $request, Response $response) {
 
 $app->get('/l',function($request, Response $response){
     return $response->write('<script>'
-            . 'window.top.location.href="/";'
+            . 'window.top.location.href="../..";'
             . '</script>'
     );
 });
@@ -129,4 +129,8 @@ $app->get('/g', function (Request $request, Response $response) {
     return $response;
 });
 
+
+$app->get('/o',function (Request $request, Response $resonse) {
+    
+});
 $app->run();
