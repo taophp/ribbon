@@ -144,8 +144,12 @@ body,nav {
     max-width: 100%;
 }
 
-body{
+body,textarea {
+    font: 400 24px/150% 'alegreyaregular',Georgia,serif;
     background:rgb(252,252,240);
+}
+
+body{
     padding: 0;
     margin:0 auto;
     text-align: justify;
@@ -176,6 +180,7 @@ h1 {
     margin-top:0;
     text-align: center;
     font-family: 'Sans Forgetica';
+    line-height: .8em;
 }
 h2 {
     margin-bottom: 0;
@@ -316,17 +321,17 @@ blockquote {
 textarea {
     width: 35em;
     max-width: 100%;
-    font-family: serif;
     box-sizing: border-box;
     margin:0 auto;
+    border:none;
 }
 #newPostFormContainer textarea {
     flex-grow: 100;
 }
 
 input[type="submit"] {
-    height: 3em;
-    font-size: 200%;
+    height: 2em;
+    font-size: 150%;
     width: 100%;
 }
 
