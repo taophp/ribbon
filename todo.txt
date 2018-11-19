@@ -12,3 +12,4 @@ Add RSS
 Add picture upload
 Add sitemap
 Add support of canonical URL (for posts imported/exported from/to more official site)
+Enable titles of lower level as titles of a part for multi-post texts
