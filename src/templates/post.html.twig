@@ -50,8 +50,12 @@
     </div>
 <div class="year">{{ post.day }} {{ attribute(monthNames,post.month) }} {{ post.year }}</div>
 <div class="monthcontainer">
-        <div class="firstlines">{{ post.getHtmlContent() | raw }}</div>
-     </div>
+    {% if post.yaml.titlel2 %}<h2>{{ post.yaml.titlel2 }}</h2>{% endif %}
+    {% if post.yaml.titlel3 %}<h3>{{ post.yaml.titlel3 }}</h3>{% endif %}
+    {% if post.yaml.titlel4 %}<h4>{{ post.yaml.titlel4 }}</h4>{% endif %}
+    {% if post.yaml.titlel5 %}<h5>{{ post.yaml.titlel5 }}</h5>{% endif %}
+    <div class="firstlines">{{ post.getHtmlContent() | raw }}</div>
+</div>
     <div class="daycontainer">
         <div class="day"></div>
     </div>

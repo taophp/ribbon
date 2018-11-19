@@ -7,9 +7,7 @@
 2018-11-05 Handle posts without tags
 2018-11-06 Support I18N
 2018-11-08 Bug: when updating a post, the previous version lost its date
-2018-11-16 @c10 @rh [C10 - C10 : 2976] Les blocs retractables n'ont plus de contenus lorsqu'ils sont rouverts après une réinitialisation de recherche
 Add RSS
 Add picture upload
 Add sitemap
 Add support of canonical URL (for posts imported/exported from/to more official site)
-Enable titles of lower level as titles of a part for multi-post texts

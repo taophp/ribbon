@@ -13,6 +13,7 @@ class RibbonPost {
     const DATE_FORMAT_4_YAML = 'Y-m-d H:i:s';
     const YAML_SEPARATOR = PHP_EOL.'---'.PHP_EOL;
     const MORE_SEPARATOR = '--MORE--';
+    const SUBTITLES_SEPARATOR = '#';
 
     protected $yamlString;
     protected $markdownString;
@@ -117,7 +118,20 @@ class RibbonPost {
     public function createFromForm(string $content,$additionalParams = []) : bool {
         list ($title,$this->markdownString) = explode(PHP_EOL,$content,2);
         $break = strrpos($title,'(');
-        $this->yaml['title'] = trim(substr($title,0,$break));
+        $tTitle = trim(substr($title,0,$break));
+        if (strpos($tTitle,static::SUBTITLES_SEPARATOR)) {
+            $titleParts = explode(static::SUBTITLES_SEPARATOR,$tTitle);
+            $titlePartsKeys = ['title','titlel2','titlel3','titlel4','titlel5'];
+            foreach ($titleParts as $k => $titlePart) {
+                if (array_key_exists($k,$titlePartsKeys)) {
+                    $this->yaml[$titlePartsKeys[$k]] = trim($titlePart);
+                }else{
+                    break;
+                }
+            }
+        }else{
+            $this->yaml['title'] = $tTitle;
+        }
         $this->yaml['tags'] = explode(',',substr(trim(substr($title,$break)),1,-1));
         $this->yaml['date'] = date(static::DATE_FORMAT_4_YAML);
         $this->filename = date(static::DATE_FORMAT_4_FILE_NAME,time())
@@ -173,6 +187,10 @@ class RibbonPost {
     
     public function getTextAreaContent() : string {
         return $this->yaml['title']
+                . ($this->yaml['titlel2'] ? ('#' . $this->yaml['titlel2']) : '')
+                . ($this->yaml['titlel3'] ? ('#' . $this->yaml['titlel3']) : '')
+                . ($this->yaml['titlel4'] ? ('#' . $this->yaml['titlel4']) : '')
+                . ($this->yaml['titlel5'] ? ('#' . $this->yaml['titlel5']) : '')
                 .' ('.implode(',',$this->yaml['tags']).')'
                 . PHP_EOL . $this->markdownString;
     }
