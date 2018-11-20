@@ -169,19 +169,19 @@ class RibbonPost {
     }
     
     public function getHtmlContent() : string {
-        $mdParser = new \cebe\markdown\GithubMarkdown();
+        $mdParser = new RibbonMarkdown();
         $content = explode(RibbonPost::MORE_SEPARATOR,$this->markdownString,2)[0];
         return $mdParser->parse($content);
     }
     
     public function getHtmlMoreContent() {
-        $mdParser = new \cebe\markdown\GithubMarkdown();
+        $mdParser = new RibbonMarkdown();
         $moreContent = @explode(RibbonPost::MORE_SEPARATOR,$this->markdownString,2)[1];
         return $mdParser->parse($moreContent);
         
     }
     public function getHtmlTitle() : string {
-        $mdParser = new \cebe\markdown\GithubMarkdown();
+        $mdParser = new RibbonMarkdown();
         return $mdParser->parse($this->yaml['title']);
     }
     

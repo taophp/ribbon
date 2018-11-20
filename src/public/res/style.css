@@ -135,7 +135,7 @@ blockquote {
     font-style: normal; 
 }
 
-code {
+code,p.leet {
     font-family: 'Fira Code' !important;
 }
 
@@ -144,7 +144,7 @@ body,nav {
     max-width: 100%;
 }
 
-body,textarea {
+body,textarea, input {
     font: 400 24px/150% 'alegreyaregular',Georgia,serif;
     background:rgb(252,252,240);
 }
@@ -286,6 +286,16 @@ blockquote {
     padding-bottom: 3em;
 }
 
+p.leet {
+    color:lightgreen;
+    background: hsl(0, 0%, 8%);
+    border-radius: .5em;
+    border: 3px solid lightgreen;
+    box-shadow: 1px 1px .5em black inset;
+    margin: .5em 0;
+    overflow: auto;
+    padding: 1em;
+}
 /* Admin part */
 .flashmsg {
     width: 100%;
@@ -327,12 +337,6 @@ textarea {
 }
 #newPostFormContainer textarea {
     flex-grow: 100;
-}
-
-input[type="submit"] {
-    height: 2em;
-    font-size: 150%;
-    width: 100%;
 }
 
 .readmore a {
