@@ -5,6 +5,7 @@
 {% endblock %}
 
 {% block body %}
+<body class="index">
     {%
         set monthNames = {
             '01':'Janvier',
@@ -22,22 +23,25 @@
         }
     %}
     <h1>{{ frontConfig['site']['title'] }}</h1>
-    <div class="tools toptools">
-        <div class="searchbox"><input id="searchbox" placeholder="AAAA.mm.jj tags mots du titre"></div>
-        <div class="guestTool"><a href="worker.php/l" title="Log in">🗝️</a></div>
-        <div class="tool"><a href="worker.php/w" title="New post" target="_blank">✒️</a></div>
-        <div class="tool"><a href="worker.php/g" title="Rebuild">🏗️</a></div>
+    <div class="toprow">
+        <div>{{ frontConfig['site']['motto'] }}</div>
+        <div class="tools toptools">
+            <div class="searchbox"><input id="searchbox" placeholder="AAAA.mm.jj tags mots du titre"></div>
+            <div class="guestTool"><a href="worker.php/l" title="Log in">🗝️</a></div>
+            <div class="tool"><a href="worker.php/w" title="New post" target="_blank">✒️</a></div>
+            <div class="tool"><a href="worker.php/g" title="Rebuild">🏗️</a></div>
+        </div>
     </div>
-    <div>{{ frontConfig['site']['motto'] }}</div>
+    <div class="articlesContainer">
     {% for year,months in posts %}
-        <div class="yearcontainer">
+        <!--div class="yearcontainer">
         <div class="year">{{ year }}</div>
             {% for month,days in months %}
                 <div class="monthcontainer">
                 <div class="month">{{ attribute(monthNames,month) }}</div>
                     {% for day,times in days %}
                         <div class="daycontainer">
-                            <div class="day">{{ day }} {{ attribute(monthNames,month) }} {{ year }}</div>
+                            <div class="day">{{ day }} {{ attribute(monthNames,month) }} {{ year }}</div-->
                             {% for time,seconds in times %}
                                 {% for second,post in seconds %}
                                     <article data-searchable="{{year}}.{{month}}.{{day}} {{ post.yaml.title|e }} {% for tag in post.yaml.tags %} {{ tag|e }} {% endfor %}">
@@ -55,13 +59,15 @@
                                             {{ post.getHtmlContent() | raw }}
                                             {% if post.getHtmlMoreContent() %}<div class="readmore"><a href="{{ post.getHtmlFilename | url_encode }}" title="Lire la suite...">📜</a> {% endif %}
                                         </div>
-                                    </article>
+                                    </article><!--
                                 {% endfor %}
                             {% endfor %}
                         </div>
                     {% endfor %}
                 </div>
             {% endfor %}
-        </div>
+        </div-->
     {% endfor %}
+    </div>
+</body>
 {% endblock %}

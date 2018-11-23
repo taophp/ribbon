@@ -6,8 +6,6 @@
         <title>{% if post.yaml.title %}{{ post.yaml.title }} - {% endif %}{{ frontConfig['site']['title'] }}</title>
         {% block header %}{% endblock %}
     </head>
-    <body>
 {% block body %}{% endblock %}
-    </body>
         {% block footer %}{% endblock %}
 </html>

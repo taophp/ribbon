@@ -143,6 +143,9 @@ body,nav {
     width: 35em;
     max-width: 100%;
 }
+body.index {
+    width: 100vw;
+}
 
 body,textarea, input {
     font: 400 24px/150% 'alegreyaregular',Georgia,serif;
@@ -226,6 +229,35 @@ h2 a {
     border-left: 0;
     border-right: 0;
 }
+
+div.articlesContainer {
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-justify-content: space-around;
+    -ms-flex-pack: distribute;
+    justify-content: space-around;
+    -webkit-align-content: stretch;
+    -ms-flex-line-pack: stretch;
+    align-content: stretch;
+    -webkit-align-items: flex-start;
+    -ms-flex-align: start;
+    align-items: flex-start;
+}
+
+article {
+    border:solid 1px silver;
+    border-radius: 1em;
+    max-height:100vh;
+    width:11em;
+}
+
 article * {
     overflow: hidden;
     text-overflow: ellipsis;
@@ -234,6 +266,14 @@ article pre {
     overflow: auto;
     text-overflow: initial;
 }
+
+div.articlesContainer article {
+    width: 11em;
+    max-height: 60vh;
+    overflow-y: auto;
+    margin:.2em;
+}
+
 img {
     max-width:100%
 }
@@ -256,21 +296,36 @@ blockquote {
     cursor: pointer;
 }
 
-.toptools {
+div.toprow {
     position: sticky;
     top: 0;
-}
-.tools {
-    float: right;
-    margin-left:.5em;
-    display:inline-block;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-justify-content: space-between;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -webkit-align-content: stretch;
+    -ms-flex-line-pack: stretch;
+    align-content: stretch;
+    -webkit-align-items: flex-start;
+    -ms-flex-align: start;
+    align-items: flex-start;
 }
 .tools .tool {
     border-left: solid 1px grey;
-    border-bottom: solid 1px grey;    
+    border-bottom: solid 1px grey;
+    float: right;
+    margin-bottom: .5em;
+    padding: .25em;    
 }
 .tool, .guestTool {
-    float:right;
     background: rgba(252,252,240,.8);
     font-size: 150%;
 }

@@ -5,6 +5,7 @@
 {% endblock %}
 
 {% block body %}
+<body class="post">
     {%
         set monthNames = {
             '01':'Janvier',
@@ -60,4 +61,5 @@
         <div class="day"></div>
     </div>
     <div class="content">{{ post.getHtmlMoreContent() | raw }}</div>
+</body>
 {% endblock %}
