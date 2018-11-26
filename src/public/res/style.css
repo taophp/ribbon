@@ -129,6 +129,7 @@
     font-style: normal;
 }
 
+
 blockquote {
     font-family: 'GNUTypewriterStandard';
     font-weight: normal;
@@ -230,32 +231,19 @@ h2 a {
     border-right: 0;
 }
 
-div.articlesContainer {
-    display: -ms-flexbox;
-    display: -webkit-flex;
-    display: flex;
-    -webkit-flex-direction: row;
-    -ms-flex-direction: row;
-    flex-direction: row;
-    -webkit-flex-wrap: wrap;
-    -ms-flex-wrap: wrap;
-    flex-wrap: wrap;
-    -webkit-justify-content: space-around;
-    -ms-flex-pack: distribute;
-    justify-content: space-around;
-    -webkit-align-content: stretch;
-    -ms-flex-line-pack: stretch;
-    align-content: stretch;
-    -webkit-align-items: flex-start;
-    -ms-flex-align: start;
-    align-items: flex-start;
-}
 
-article {
+
+body.index article {
     border:solid 1px silver;
     border-radius: 1em;
-    max-height:100vh;
+    max-height: 60vh;
     width:11em;
+    overflow: hidden;
+    margin:.2em;
+    padding-bottom: .5em;
+}
+body.index article p {
+    margin:0
 }
 
 article * {
@@ -265,13 +253,6 @@ article * {
 article pre {
     overflow: auto;
     text-overflow: initial;
-}
-
-div.articlesContainer article {
-    width: 11em;
-    max-height: 60vh;
-    overflow-y: auto;
-    margin:.2em;
 }
 
 img {
@@ -297,6 +278,7 @@ blockquote {
 }
 
 div.toprow {
+    background: inherit;
     position: sticky;
     top: 0;
     display: -ms-flexbox;
@@ -338,7 +320,6 @@ div.toprow {
 }
 .content {
     width: 100%;
-    padding-bottom: 3em;
 }
 
 p.leet {
