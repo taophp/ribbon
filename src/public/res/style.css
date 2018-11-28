@@ -146,6 +146,7 @@ body,nav {
 }
 body.index {
     width: 100vw;
+    background:#222;    
 }
 
 body,textarea, input {
@@ -172,9 +173,8 @@ nav a {
 
 h1,h2, h2 a,h3,h4,h5,h6 {
     color: #719e40;
-    font-family: sans-serif;
     text-align: left;
-    font-family: 'droid_sansregular';
+    font-family: 'droid_sansregular',sans-serif;
 }
 h1 {
     letter-spacing: -.09em;
@@ -186,8 +186,10 @@ h1 {
     font-family: 'Sans Forgetica';
     line-height: .8em;
     z-index: 20;
-    position: fixed;
     width: 100%;
+}
+body.index h1 {
+    position: fixed;
 }
 h2 {
     margin-top:.5em;
@@ -235,8 +237,9 @@ h2 a {
     border-right: 0;
 }
 
-
-
+div.articlesContainer {
+    margin: .6em auto;
+}
 body.index article {
     border:solid 1px silver;
     border-radius: 1em;
@@ -245,6 +248,7 @@ body.index article {
     overflow: hidden;
     margin:.2em;
     padding-bottom: .5em;
+    background:#fff;
 }
 body.index article p {
     margin:0
@@ -291,6 +295,11 @@ div.toprowshield {
     z-index:10;
     background: rgb(252,252,240);
 }
+
+body.index div.toprowshield {
+    background:#222;
+}
+
 div.toprow {
     position: sticky;
     top: 0;

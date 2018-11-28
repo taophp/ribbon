@@ -84,6 +84,7 @@ $('#searchbox').keyup(function (e) {
             $(this).hide();
         }
     });
+    $('.grid').masonry('layout');
 });
 
 function getCookie(cname) {
