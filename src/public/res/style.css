@@ -199,6 +199,9 @@ h2 {
 h2 a {
     text-decoration:none;
 }
+body.index h2 {
+    display: inline;
+}
 .time {
     color: gray;
     float: right;
@@ -273,8 +276,12 @@ blockquote {
     background: rgba(0,0,0,0.05);
 }
 
-.tag {
+div.tags {
     float: right;
+    clear: right;
+}
+    
+div.tags .tag {
     margin: .2em .1em 0;
     border: solid 1px green;
     border-radius: 1.75em;
@@ -284,7 +291,7 @@ blockquote {
     font-style: italic;
     font-size: 70%;
     cursor: pointer;
-    clear: right;
+    display: inline-block;
 }
 
 div.toprowshield {

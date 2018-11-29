@@ -42,10 +42,12 @@
                                 <article class="grid-item" data-searchable="{{year}}.{{month}}.{{day}} {{ post.yaml.title|e }} {% for tag in post.yaml.tags %} {{ tag|e }} {% endfor %}">
                                     <div class="tools"><div class="tool"><a href="worker.php/u/{{ post.filename| url_encode }}" title="Update post" target="_blank">✍️</a></div><div class="tool"><a href="worker.php/n/{{ post.filename | url_encode }}" title="Create a new post as the next part" target="_blank">🗍</a></div></div>
                                     <h2><a href="{{ post.getHtmlFilename | url_encode }}">{{ post.getHtmlTitle() | raw }}</a></h2>
-                                    <div class="time">{{year}}/{{month}}/{{day}} {{time}}</div>
-                                     {% for tag in post.yaml.tags %}
-                                        <div class="tag">{{ tag }}</div>
-                                    {% endfor %}
+                                    <!--div class="time">{{year}}/{{month}}/{{day}} {{time}}</div-->
+                                    <div class="tags">
+                                        {% for tag in post.yaml.tags %}
+                                           <div class="tag">{{ tag }}</div>
+                                        {% endfor %}
+                                    </div>
                                    {% if post.yaml.titlel2 %}<h3>{{ post.yaml.titlel2 }}</h3>{% endif %}
                                     {% if post.yaml.titlel3 %}<h4>{{ post.yaml.titlel3 }}</h4>{% endif %}
                                     {% if post.yaml.titlel4 %}<h5>{{ post.yaml.titlel4 }}</h5>{% endif %}
