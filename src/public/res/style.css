@@ -202,6 +202,9 @@ h2 a {
 body.index h2 {
     display: inline;
 }
+.motto {
+    color:silver;
+}
 .time {
     color: gray;
     float: right;
