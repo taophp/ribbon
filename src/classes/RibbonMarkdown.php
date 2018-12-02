@@ -29,7 +29,7 @@ class RibbonMarkdown extends \cebe\markdown\GithubMarkdown {
         'y' => ['y','y','Y','\'/','`/','V/','\\-/','j','¥','%'],
         'z' => ['z','2','2','z','~\\_','~/_'],
     ];
-    
+
 
     protected function identify1337($line, $lines, $current) {
         if (strncmp($line, '->1337', 6) === 0) {
@@ -47,18 +47,42 @@ class RibbonMarkdown extends \cebe\markdown\GithubMarkdown {
             $block['content'][]=$line;
             $current++;
             $line = $lines[$current];
-        } while ($line !=='<-1337' && $current < $max);
-        return [$block,$current];        
+        } while ($line !=='<-' && $current < $max);
+        return [$block,$current];
     }
-    
+
     protected function render1337($block) {
                 return '<p class="leet">' . htmlspecialchars(implode("\n", static::translate1337($block['content'])) . "\n", ENT_NOQUOTES, 'UTF-8') . '</p>';
     }
-    
+
     static protected function translate1337($lines) {
         foreach ($lines as $k => $line) {
-            $lines[$k] = strtr($line,static::$notLeetChars,static::$leetChars);
+           // $lines[$k] = strtr($line,static::$notLeetChars,static::$leetChars);
         }
         return $lines;
+    }
+
+    protected function identifyNotes($line, $lines, $current) {
+        if (strncmp($line, '->notes', 7) === 0) {
+            return true;
+        }
+        return false;
+    }
+
+    protected function consumeNotes($lines,$current) {
+        $block = ['notes','content'=>[]];
+        $current++;
+        $max = count($lines);
+        $line = $lines[$current];
+        do {
+            $block['content'][]=$line;
+            $current++;
+            $line = $lines[$current];
+        } while ($line !=='<-' && $current < $max);
+        return [$block,$current];
+    }
+
+    protected function renderNotes($block) {
+        return '<p class="notes">' . implode('',$block['content']) . '</p>';
     }
 }

@@ -133,7 +133,7 @@
 blockquote {
     font-family: 'GNUTypewriterStandard';
     font-weight: normal;
-    font-style: normal; 
+    font-style: normal;
 }
 
 code,p.leet {
@@ -146,7 +146,7 @@ body,nav {
 }
 body.index {
     width: 100vw;
-    background:#222;    
+    background:#222;
 }
 
 body,textarea, input {
@@ -283,7 +283,7 @@ div.tags {
     float: right;
     clear: right;
 }
-    
+
 div.tags .tag {
     margin: .2em .1em 0;
     border: solid 1px green;
@@ -424,6 +424,11 @@ textarea {
 
 article {
     border-top: silver solid 1px;
+}
+
+p.notes {
+    font-size:75%;
+    color:gray;
 }
 
 /* PrismJS 1.15.0
