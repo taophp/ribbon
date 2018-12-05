@@ -1,12 +1,12 @@
 @font-face {
     font-family: 'droid_sansbold';
-    src: url('DroidSans-Bold-webfont.woff') format('woff');
+    src: url('DroidSans-Bold-webfont.woff2') format('woff2');
     font-weight: normal;
     font-style: normal;
 }
 @font-face {
     font-family: 'droid_sansregular';
-    src: url('DroidSans-webfont.woff') format('woff');
+    src: url('DroidSerif-Regular.woff2') format('woff2');
     font-weight: normal;
     font-style: normal;
 }
@@ -255,11 +255,16 @@ body.index article {
     margin:.2em;
     padding-bottom: .5em;
     background:#fff;
+    font-size:80%;
+    font-family: 'droid_sansregular';
 }
 body.index article p {
     margin:0
 }
 
+body.index article h1,body.index article h2,body.index article h3,body.index article h1,p {
+    font-family: 'droid_sansregular';    
+}
 article * {
     overflow: hidden;
     text-overflow: ellipsis;
@@ -426,7 +431,7 @@ article {
     border-top: silver solid 1px;
 }
 
-p.notes {
+p.note {
     font-size:75%;
     color:gray;
 }

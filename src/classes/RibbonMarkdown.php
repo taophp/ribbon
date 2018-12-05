@@ -62,15 +62,15 @@ class RibbonMarkdown extends \cebe\markdown\GithubMarkdown {
         return $lines;
     }
 
-    protected function identifyNotes($line, $lines, $current) {
-        if (strncmp($line, '->notes', 7) === 0) {
+    protected function identifyNote($line, $lines, $current) {
+        if (strncmp($line, '->note', 7) === 0) {
             return true;
         }
         return false;
     }
 
-    protected function consumeNotes($lines,$current) {
-        $block = ['notes','content'=>[]];
+    protected function consumeNote($lines,$current) {
+        $block = ['note','content'=>[]];
         $current++;
         $max = count($lines);
         $line = $lines[$current];
@@ -83,6 +83,6 @@ class RibbonMarkdown extends \cebe\markdown\GithubMarkdown {
     }
 
     protected function renderNotes($block) {
-        return '<p class="notes">' . implode('',$block['content']) . '</p>';
+        return '<p class="note">' . implode('',$block['content']) . '</p>';
     }
 }
