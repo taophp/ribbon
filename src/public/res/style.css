@@ -1,14 +1,19 @@
+/* alegreya-sans-300 - latin */
 @font-face {
-    font-family: 'droid_sansbold';
-    src: url('DroidSans-Bold-webfont.woff2') format('woff2');
-    font-weight: normal;
-    font-style: normal;
+  font-family: 'Alegreya Sans';
+  font-style: normal;
+  font-weight: 300;
+  src: local('Alegreya Sans Light'), local('AlegreyaSans-Light'),
+       url('/res/alegreya-sans-v8-latin-300.woff2') format('woff2')
 }
+
+/* alegreya-sans-300italic - latin */
 @font-face {
-    font-family: 'droid_sansregular';
-    src: url('DroidSerif-Regular.woff2') format('woff2');
-    font-weight: normal;
-    font-style: normal;
+  font-family: 'Alegreya Sans';
+  font-style: italic;
+  font-weight: 300;
+  src: local('Alegreya Sans Light Italic'), local('AlegreyaSans-LightItalic'),
+       url('/res/alegreya-sans-v8-latin-300italic.woff2') format('woff2')
 }
 @font-face {
     font-family: 'alegreyaitalic';
@@ -147,6 +152,7 @@ body,nav {
 body.index {
     width: 100vw;
     background:#222;
+    font-family: 'Alegreya Sans'
 }
 
 body,textarea, input {
@@ -174,7 +180,7 @@ nav a {
 h1,h2, h2 a,h3,h4,h5,h6 {
     color: #719e40;
     text-align: left;
-    font-family: 'droid_sansregular',sans-serif;
+    font-family: 'Alegreya Sans',sans-serif;
 }
 h1 {
     letter-spacing: -.09em;
@@ -256,14 +262,14 @@ body.index article {
     padding-bottom: .5em;
     background:#fff;
     font-size:80%;
-    font-family: 'droid_sansregular';
+    font-family: 'Alegreya Sans';
 }
 body.index article p {
     margin:0
 }
 
-body.index article h1,body.index article h2,body.index article h3,body.index article h1,p {
-    font-family: 'droid_sansregular';    
+body.index article h1,body.index article h2,body.index article h3,body.index article h1,body.index p {
+    font-family: 'Alegreya Sans';    
 }
 article * {
     overflow: hidden;
