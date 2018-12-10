@@ -82,7 +82,7 @@ class RibbonMarkdown extends \cebe\markdown\GithubMarkdown {
         return [$block,$current];
     }
 
-    protected function renderNotes($block) {
+    protected function renderNote($block) {
         return '<p class="note">' . implode('',$block['content']) . '</p>';
     }
 }

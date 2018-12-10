@@ -11,7 +11,7 @@ use Symfony\Component\Yaml\Yaml;
 class RibbonPost {
     const DATE_FORMAT_4_FILE_NAME = 'Y-m-d-';
     const DATE_FORMAT_4_YAML = 'Y-m-d H:i:s';
-    const YAML_SEPARATOR = PHP_EOL.'---'.PHP_EOL;
+    const YAML_SEPARATOR = "---";
     const MORE_SEPARATOR = '--MORE--';
     const SUBTITLES_SEPARATOR = '#';
 
