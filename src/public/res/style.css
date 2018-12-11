@@ -263,9 +263,22 @@ body.index article {
     background:#fff;
     font-size:80%;
     font-family: 'Alegreya Sans';
+    line-height:1.2rem;
+    padding-top:.3em;
 }
 body.index article p {
     margin:0
+}
+body.index blockquote, body.index pre[class*="language-"] {
+    border-left:3px solid grey;
+    padding:0;
+    margin:0;
+}
+body.index pre[class*="language-"] {
+    padding:0;
+    margin:0;
+    line-height:12px;
+    font-size:8px;
 }
 
 body.index article h1,body.index article h2,body.index article h3,body.index article h1,body.index p {
