@@ -30,16 +30,19 @@ class RibbonMarkdown extends \cebe\markdown\GithubMarkdown {
         'z' => ['z','2','2','z','~\\_','~/_'],
     ];
 
-
-    protected function identify1337($line, $lines, $current) {
-        if (strncmp($line, '->1337', 6) === 0) {
+    protected function identifyArrow($line,$lines,$current) {
+        if (strncmp($line, '->', 2) === 0) {
             return true;
         }
         return false;
     }
-
-    protected function consume1337($lines,$current) {
-        $block = ['1337','content'=>[]];
+    protected function consumeArrow($lines,$current) {
+        $param = substr($lines[$current],2);
+        if (method_exists($this, 'render'.$param)) {
+            $block = [$param,'content'=>[]];
+        }else{        
+            $block = ['arrow','class'=>$param,'content'=>[]];
+        }
         $current++;
         $max = count($lines);
         $line = $lines[$current];
@@ -49,6 +52,14 @@ class RibbonMarkdown extends \cebe\markdown\GithubMarkdown {
             $line = $lines[$current];
         } while ($line !=='<-' && $current < $max);
         return [$block,$current];
+    }
+    
+    protected function renderArrow($block) {
+        return '<div'
+                .(isset($block['class']) ? (' class="'.$block['class'].'"') : '')
+                .'>'
+                . implode('',$block['content'])
+                . '</div>';
     }
 
     protected function render1337($block) {
@@ -60,29 +71,5 @@ class RibbonMarkdown extends \cebe\markdown\GithubMarkdown {
            // $lines[$k] = strtr($line,static::$notLeetChars,static::$leetChars);
         }
         return $lines;
-    }
-
-    protected function identifyNote($line, $lines, $current) {
-        if (strncmp($line, '->note', 7) === 0) {
-            return true;
-        }
-        return false;
-    }
-
-    protected function consumeNote($lines,$current) {
-        $block = ['note','content'=>[]];
-        $current++;
-        $max = count($lines);
-        $line = $lines[$current];
-        do {
-            $block['content'][]=$line;
-            $current++;
-            $line = $lines[$current];
-        } while ($line !=='<-' && $current < $max);
-        return [$block,$current];
-    }
-
-    protected function renderNote($block) {
-        return '<p class="note">' . implode('',$block['content']) . '</p>';
-    }
+    }    
 }

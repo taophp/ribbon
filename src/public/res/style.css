@@ -450,7 +450,7 @@ article {
     border-top: silver solid 1px;
 }
 
-p.note {
+div.note, p.note {
     font-size:75%;
     color:gray;
 }
