@@ -134,6 +134,9 @@
     font-style: normal;
 }
 
+.clear {
+    clear: both;
+}
 
 blockquote {
     font-family: 'GNUTypewriterStandard';
@@ -303,12 +306,8 @@ blockquote {
     background: rgba(0,0,0,0.05);
 }
 
-div.tags {
+ .tag {
     float: right;
-    clear: right;
-}
-
-div.tags .tag {
     margin: .2em .1em 0;
     border: solid 1px green;
     border-radius: 1.75em;
