@@ -391,6 +391,29 @@ p.leet {
     overflow: auto;
     padding: 1em;
 }
+
+.readmore {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    border: solid 1px silver;
+}
+
+.readmore a {
+    text-decoration: none;
+}
+
+article {
+    border-top: silver solid 1px;
+}
+
+div.note, p.note {
+    font-size:75%;
+    color:gray;
+}
+
+
+
 /* Admin part */
 .flashmsg {
     width: 100%;
@@ -434,24 +457,31 @@ textarea {
     flex-grow: 100;
 }
 
-.readmore {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    border: solid 1px silver;
+#newPostButtons {
+    display:flex;
 }
 
-.readmore a {
-    text-decoration: none;
+#newPostButtons input[type="submit"]{
+    flex-grow:100;
 }
 
-article {
-    border-top: silver solid 1px;
+#moreActions {
+    position:fixed;
+    width: 100vw;
+    height: 100vh;
+    top:0;
+    left: 0;
+    background: rgba(255,255,255,.7);
+    display:none;    
 }
 
-div.note, p.note {
-    font-size:75%;
-    color:gray;
+.close {
+    float: right;
+    color: red;
+    font-weight: bold;
+    font-family: 'Alegreya Sans';
+    cursor: pointer;
+    margin: 1em;
 }
 
 /* PrismJS 1.15.0

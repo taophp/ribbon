@@ -2,6 +2,7 @@
 
 {% block body %}
 <body class="newpost">
+    <div id="moreActions"><div class="close">X</div></div>
     <form method="post">
         <div id="newPostFormContainer">
             <div id="flashMsg">
@@ -12,8 +13,20 @@
             {% endfor %}
             </div>
             <textarea name="content" placeholder="{% include 'mdhelp.txt' %}">{% if textAreaContent %}{{ textAreaContent }}{% endif %}</textarea>
-            <input type="submit">
+            <div id="newPostButtons">
+                <input type="button" id="more" value="+"><input type="submit">
+            </div>
         </div>
     </form>
+    <script>
+        $(function(){
+           $('#more').click(function(){
+               $('#moreActions').fadeToggle();
+           });
+           $('.close').click(function(){
+               $('#moreActions').fadeToggle();
+           });
+        });
+    </script>
 </body>
 {% endblock %}
