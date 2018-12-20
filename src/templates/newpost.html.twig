@@ -2,7 +2,25 @@
 
 {% block body %}
 <body class="newpost">
-    <div id="moreActions"><div class="close">X</div></div>
+    <div id="moreActions">
+        <div class="close">X</div>
+        <div id="moreActionsTabs">
+            <div id="addPictureTab">
+                Add a picture
+            </div>
+            <div id="addFileTab">
+                Add a file
+            </div>
+        </div>
+        <div id="moreActionsMain">
+            <div id="addPictureMain">
+                <h1>Add a picture</h1>
+            </div>
+            <div id="addFileMain">
+                <h1>Add a file</h1>
+            </div>
+        </div>
+    </div>
     <form method="post">
         <div id="newPostFormContainer">
             <div id="flashMsg">
@@ -25,6 +43,12 @@
            });
            $('.close').click(function(){
                $('#moreActions').fadeToggle();
+           });
+           $('#moreActionsTabs > div').click(function() {
+               $('#moreActionsTabs > div').removeClass('activ');
+               $(this).addClass('activ');
+               $('#moreActionsMain > div').hide();
+               $('#'+$(this).attr('id').replace('Tab','Main')).fadeToggle();
            });
         });
     </script>

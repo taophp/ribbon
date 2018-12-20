@@ -481,7 +481,39 @@ textarea {
     font-weight: bold;
     font-family: 'Alegreya Sans';
     cursor: pointer;
-    margin: 1em;
+    margin: .25em .5em;
+}
+
+#moreActionsMain > div {
+    display:none;
+}
+
+
+#moreActionsTabs > div{
+    display: inline-block;
+    cursor: pointer;
+    border:solid 1px #000;
+    padding:.2em .5em;
+    margin:0;
+    float: left;
+    border-radius: 5px 20px 0 0;
+    border-bottom: 0;
+    top: 1px;
+}
+#moreActionsTabs > div.activ {
+    font-weight: bold;
+    border: solid 1px #000;
+    top: 2px;
+    position: relative;
+    background: #fff;
+    border-bottom: none;
+}
+#moreActionsMain {
+    background: #fff;
+    width:100%;
+    padding: 1em;
+    margin-top: 2em;
+    border-top:1px solid #000;
 }
 
 /* PrismJS 1.15.0
