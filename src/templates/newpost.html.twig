@@ -30,9 +30,9 @@
                 {% endfor %}
             {% endfor %}
             </div>
-            <textarea name="content" placeholder="{% include 'mdhelp.txt' %}">{% if textAreaContent %}{{ textAreaContent }}{% endif %}</textarea>
+            <textarea tabindex="1" id="content" name="content" placeholder="{% include 'mdhelp.txt' %}">{% if textAreaContent %}{{ textAreaContent }}{% endif %}</textarea>
             <div id="newPostButtons">
-                <input type="button" id="more" value="+"><input type="submit">
+                <input type="button" id="more" value="+" tabindex="3"><input tabindex="2" type="submit">
             </div>
         </div>
     </form>
@@ -50,6 +50,11 @@
                $('#moreActionsMain > div').hide();
                $('#'+$(this).attr('id').replace('Tab','Main')).fadeToggle();
            });
+           $('.flashmsg.Success').fadeOut(2000);
+           var content = $('#content').val();
+           $('#content').val('');
+           $('#content').focus();
+           $('#content').val(content);
         });
     </script>
 </body>

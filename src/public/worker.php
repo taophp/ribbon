@@ -36,7 +36,7 @@ $container['view'] = function($container) {
     $view = new \Slim\Views\Twig($container['settings']['twig']['templatePath'],$container['settings']['twig']['env']);
     $view->addExtension(new Slim\Views\TwigExtension($container->get('router'), rtrim($container->get('request')->getUri()->getBasePath())));
     $view->addExtension(new \Twig_Extension_Debug());
-    
+
     return $view;
 };
 
@@ -66,7 +66,7 @@ $app->post('/w', function (Request $request, Response $response) {
     $response = $response->withRedirect($this->router->pathFor('getnewpost'),303);
 
     RibbonGenerator::init($this);
-    RibbonGenerator::generate();        
+    RibbonGenerator::generate();
 
     return $response;
 });
@@ -90,10 +90,10 @@ $app->post('/u/{filename}', function (Request $request, Response $response,$args
         $this->flash->addMessage('Error', 'Impossible to save the post !');
     }
 
-    $response = $response->withRedirect($this->router->pathFor('getnewpost'),303);
-    
+    $response = $response->withRedirect($this->router->pathFor('editpost',['filename' => $post->filename]),303);
+
     RibbonGenerator::init($this);
-    RibbonGenerator::generate();        
+    RibbonGenerator::generate();
 
     return $response;
 });
@@ -103,7 +103,7 @@ $app->get('/n/{filename}', function (Request $request, Response $response,$args)
     $post = new RibbonPost($this);
     return $this->view->render($response,'newpost.html.twig',[
         'messages' => $messages,
-    ]);    
+    ]);
 })->setName('addpart');
 
 $app->post('/n/{filename}', function (Request $request, Response $response,$args){
@@ -116,7 +116,7 @@ $app->post('/n/{filename}', function (Request $request, Response $response,$args
     }
 
     $response = $response->withRedirect($this->router->pathFor('getnewpost'),303);
-    
+
     RibbonGenerator::init($this);
     RibbonGenerator::generate();
     return $response;
@@ -124,13 +124,13 @@ $app->post('/n/{filename}', function (Request $request, Response $response,$args
 
 $app->get('/g', function (Request $request, Response $response) {
     RibbonGenerator::init($this);
-    RibbonGenerator::generate();        
+    RibbonGenerator::generate();
     $response = $response->withRedirect($_SERVER['HTTP_REFERER'],303);
     return $response;
 });
 
 
 $app->get('/o',function (Request $request, Response $resonse) {
-    
+
 });
 $app->run();
