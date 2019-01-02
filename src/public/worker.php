@@ -78,6 +78,7 @@ $app->get('/u/{filename}', function (Request $request, Response $response,$args)
     return $this->view->render($response,'newpost.html.twig',[
         'messages' => $messages,
         'textAreaContent' => $post->getTextAreaContent(),
+        'currentView' => $post->getHtmlFilename(),
     ]);
 })->setName('editpost');
 

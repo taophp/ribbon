@@ -5,6 +5,11 @@
     <div id="moreActions">
         <div class="close">X</div>
         <div id="moreActionsTabs">
+            {% if currentView %}
+                <div id="currentViewTab">
+                    View current version
+                </div>
+            {% endif %}
             <div id="addPictureTab">
                 Add a picture
             </div>
@@ -18,6 +23,10 @@
             </div>
             <div id="addFileMain">
                 <h1>Add a file</h1>
+            </div>
+            <div id="currentViewMain">
+                <h1>Current version</h1>
+               <iframe src="../../{{ currentView }}" style="width:90vw;height:70vh"></iframe>
             </div>
         </div>
     </div>
