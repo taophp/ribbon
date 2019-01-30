@@ -160,7 +160,8 @@ body.index {
 
 body,textarea, input {
     font: 400 24px/150% 'alegreyaregular',Georgia,serif;
-    background:rgb(252,252,240);
+    background:#000;
+    color:silver;
 }
 
 body{
@@ -174,14 +175,19 @@ nav {
     justify-content: space-between;
     position:fixed;
     bottom:0;
-    background: rgba(252,252,240,.8);
+    background: rgba(0,0,0,.8);
 }
 nav a {
     text-decoration:none;
 }
 
+a {
+    color:silver;
+    text-decoration:underline;
+}
+
 h1,h2, h2 a,h3,h4,h5,h6 {
-    color: #719e40;
+    color: #eee;
     text-align: left;
     font-family: 'Alegreya Sans',sans-serif;
 }
@@ -262,7 +268,6 @@ body.index article {
     overflow: hidden;
     margin:.2em;
     padding-bottom: .5em;
-    background:#fff;
     font-size:80%;
     font-family: 'Alegreya Sans';
     line-height:1.2rem;
@@ -366,9 +371,6 @@ div.toprow {
     padding: .25em;
     z-index: 30;
 }
- div.tool, div.guestTool {
-    background: rgba(252,252,240,.8);
-}
 .tool {
     display:none;
 }
@@ -470,7 +472,7 @@ textarea {
     height: 100vh;
     top:0;
     left: 0;
-    background: rgba(255,255,255,.7);
+    background: rgba(0,0,0,.7);
     display:none;    
 }
 
@@ -491,28 +493,29 @@ textarea {
 #moreActionsTabs > div{
     display: inline-block;
     cursor: pointer;
-    border:solid 1px #000;
+    border:solid 1px silver;
     padding:.2em .5em;
     margin:0;
     float: left;
     border-radius: 5px 20px 0 0;
     border-bottom: 0;
     top: 1px;
+    background:#111;
 }
 #moreActionsTabs > div.activ {
     font-weight: bold;
-    border: solid 1px #000;
+    border: solid 1px silver;
     top: 2px;
     position: relative;
-    background: #fff;
+    background: #000;
     border-bottom: none;
 }
 #moreActionsMain {
-    background: #fff;
+    background: #000;
     width:100%;
     padding: 1em;
     margin-top: 2em;
-    border-top:1px solid #000;
+    border-top:1px solid silver;
 }
 
 /* PrismJS 1.15.0

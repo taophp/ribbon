@@ -22,6 +22,10 @@ $(function () {
         $('.tool').show();
         $('.guestTool').hide();
     }
+    $('.grid').masonry({
+      itemSelector: 'article',
+      columnWidth: 220
+    });
 });
 
 $('#searchbox').keyup(function (e) {
