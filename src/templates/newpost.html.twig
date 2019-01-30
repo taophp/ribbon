@@ -1,70 +1,84 @@
 {% extends "backOffice.html.twig" %}
 
 {% block body %}
-<body class="newpost">
-    <div id="moreActions">
-        <div class="close">X</div>
-        <div id="moreActionsTabs">
-            {% if currentView %}
-                <div id="currentViewTab">
-                    View current version
+    <body class="newpost">
+        <div id="moreActions">
+            <div class="close">X</div>
+            <div id="moreActionsTabs">
+                {% if currentView %}
+                    <div id="currentViewTab">
+                        View current version
+                    </div>
+                {% endif %}
+                <div id="addPictureTab">
+                    Add a picture
                 </div>
-            {% endif %}
-            <div id="addPictureTab">
-                Add a picture
+                <div id="addFileTab">
+                    Add a file
+                </div>
             </div>
-            <div id="addFileTab">
-                Add a file
-            </div>
-        </div>
-        <div id="moreActionsMain">
-            <div id="addPictureMain">
-                <h1>Add a picture</h1>
-            </div>
-            <div id="addFileMain">
-                <h1>Add a file</h1>
-            </div>
-            <div id="currentViewMain">
-                <h1>Current version</h1>
-               <iframe src="../../{{ currentView }}" style="width:90vw;height:70vh"></iframe>
+            <div id="moreActionsMain">
+                <div id="addPictureMain">
+                    <h1>Add a picture</h1>
+                </div>
+                <div id="addFileMain">
+                    <h1>Add a file</h1>
+                </div>
+                <div id="currentViewMain">
+                    <h1>Current version</h1>
+                    <iframe src="../../{{ currentView }}" style="width:90vw;height:70vh"></iframe>
+                </div>
             </div>
         </div>
-    </div>
-    <form method="post">
-        <div id="newPostFormContainer">
-            <div id="flashMsg">
-            {% for status,msgs in messages %}
-                {% for message in msgs %}
-                <div class="flashmsg {{ status }}">{{ message }}</div>
-                {% endfor %}
-            {% endfor %}
+        <form method="post">
+            <div id="newPostFormContainer">
+                <div id="flashMsg">
+                    {% for status,msgs in messages %}
+                        {% for message in msgs %}
+                            <div class="flashmsg {{ status }}">{{ message }}</div>
+                        {% endfor %}
+                    {% endfor %}
+                </div>
+                <textarea tabindex="1" id="content" name="content" placeholder="{% include 'mdhelp.txt' %}">{% if textAreaContent %}{{ textAreaContent }}{% endif %}</textarea>
+                <div id="newPostButtons">
+                    <input type="button" id="more" value="+" tabindex="3"><input tabindex="2" type="submit">
+                </div>
             </div>
-            <textarea tabindex="1" id="content" name="content" placeholder="{% include 'mdhelp.txt' %}">{% if textAreaContent %}{{ textAreaContent }}{% endif %}</textarea>
-            <div id="newPostButtons">
-                <input type="button" id="more" value="+" tabindex="3"><input tabindex="2" type="submit">
-            </div>
-        </div>
-    </form>
-    <script>
-        $(function(){
-           $('#more').click(function(){
-               $('#moreActions').fadeToggle();
-           });
-           $('.close').click(function(){
-               $('#moreActions').fadeToggle();
-           });
-           $('#moreActionsTabs > div').click(function() {
-               $('#moreActionsTabs > div').removeClass('activ');
-               $(this).addClass('activ');
-               $('#moreActionsMain > div').hide();
-               $('#'+$(this).attr('id').replace('Tab','Main')).fadeToggle();
-           });
-           $('.flashmsg.Success').fadeOut(2000);
-           var content = $('#content').val();
-           $('#content').val('');
-           $('#content').focus();
-           $('#content').val(content);
-        });
-    </script>
-</body>
+        </form>
+        <script>
+            /** @see https://stackoverflow.com/questions/2830542/prevent-double-submission-of-forms-in-jquery */
+            jQuery.fn.preventDoubleSubmission = function () {
+                $(this).on('submit', function (e) {
+                    var $form = $(this);
+
+                    if ($form.data('submitted') === true) {
+                        e.preventDefault();
+                    } else {
+                        $form.data('submitted', true);
+                    }
+                });
+                return this;
+            };
+            $(function () {
+                $('form').preventDoubleSubmission();
+                $('#more').click(function () {
+                    $('#moreActions').fadeToggle();
+                });
+                $('.close').click(function () {
+                    $('#moreActions').fadeToggle();
+                });
+                $('#moreActionsTabs > div').click(function () {
+                    $('#moreActionsTabs > div').removeClass('activ');
+                    $(this).addClass('activ');
+                    $('#moreActionsMain > div').hide();
+                    $('#' + $(this).attr('id').replace('Tab', 'Main')).fadeToggle();
+                });
+                $('.flashmsg.Success').fadeOut(2000);
+                var content = $('#content').val();
+                $('#content').val('');
+                $('#content').focus();
+                $('#content').val(content);
+            });
+        </script>
+    </body>
 {% endblock %}
