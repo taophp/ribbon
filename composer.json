@@ -1,0 +1,5 @@
+{
+    "require": {
+        "moxiecode/plupload": "^3.1"
+    }
+}

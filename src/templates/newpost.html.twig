@@ -23,6 +23,11 @@
                 </div>
                 <div id="addFileMain">
                     <h1>Add a file</h1>
+                    <ul id="fileList">
+                        {% for file in files %}
+                            <li>{{ file }}</li>
+                        {% endfor %}
+                    </ul>
                 </div>
                 <div id="currentViewMain">
                     <h1>Current version</h1>
@@ -78,6 +83,10 @@
                 $('#content').val('');
                 $('#content').focus();
                 $('#content').val(content);
+                $('#fileList li').click(function() {
+                    $('#content').val('[]('+$('#content').val()+$(this).text()+')');
+                    $('#moreActions').hide();
+                });
             });
         </script>
     </body>
