@@ -43,9 +43,11 @@ $container['view'] = function($container) {
 $app->get('/w', function (Request $request, Response $response) {
     $messages = $this->flash->getMessages();
     $files = glob('upload/*');
+    $imgs = glob('img/*{png,jpg,gif,jpeg,JPEG,JPG}',GLOB_BRACE);
     return $this->view->render($response,'newpost.html.twig',[
         'messages' => $messages,
         'files' => $files,
+        'imgs' => $imgs,
     ]);
 })->setName('getnewpost');
 
@@ -78,9 +80,11 @@ $app->get('/u/{filename}', function (Request $request, Response $response,$args)
     $post = new RibbonPost($this);
     $post->createFromFile($args['filename']);
     $files = glob('upload/*');
+    $imgs = glob('img/*{png,jpg,gif,jpeg,JPEG,JPG}',GLOB_BRACE);
     return $this->view->render($response,'newpost.html.twig',[
         'messages' => $messages,
         'files' => $files,
+        'imgs' => $imgs,
         'textAreaContent' => $post->getTextAreaContent(),
         'currentView' => $post->getHtmlFilename(),
     ]);

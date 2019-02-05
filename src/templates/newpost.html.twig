@@ -19,6 +19,11 @@
             </div>
             <div id="moreActionsMain">
                 <div id="addPictureMain">
+                    <ul id="imgList">
+                        {% for img in imgs %}
+                            <li>{{ img }}</li>
+                        {% endfor %}
+                    </ul>
                     <h1>Add a picture</h1>
                 </div>
                 <div id="addFileMain">
@@ -84,7 +89,13 @@
                 $('#content').focus();
                 $('#content').val(content);
                 $('#fileList li').click(function() {
-                    $('#content').val('[]('+$('#content').val()+$(this).text()+')');
+                    let txt = prompt('Text to linked to the file:');
+                    $('#content').val($('#content').val()+'['+txt+']('+$(this).text()+')');
+                    $('#moreActions').hide();
+                });
+                $('#imgList li').click(function() {
+                    let txt = prompt('Text replacement for the image:');
+                    $('#content').val($('#content').val()+'!['+txt+']('+$(this).text()+')');
                     $('#moreActions').hide();
                 });
             });

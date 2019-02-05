@@ -10,3 +10,6 @@
 /src/templates_c/*
 !/src/template_c/README.md
 /.myworkingsession/*
+/src/public/upload/*
+/src/public/img/*
+
