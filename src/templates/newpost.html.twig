@@ -19,10 +19,17 @@
             </div>
             <div id="moreActionsMain">
                 <div id="addPictureMain">
+                    <div id="container">
+                        <span>[Select files]</span> 
+                        <span>[Upload files]</span>
+                    </div>
+                    <br />
+                    <pre id="console"></pre>
+                    <hr>
                     <ul id="imgList">
                         {% for img in imgs %}
                             <li>{{ img }}</li>
-                        {% endfor %}
+                            {% endfor %}
                     </ul>
                     <h1>Add a picture</h1>
                 </div>
@@ -31,7 +38,7 @@
                     <ul id="fileList">
                         {% for file in files %}
                             <li>{{ file }}</li>
-                        {% endfor %}
+                            {% endfor %}
                     </ul>
                 </div>
                 <div id="currentViewMain">
@@ -88,14 +95,14 @@
                 $('#content').val('');
                 $('#content').focus();
                 $('#content').val(content);
-                $('#fileList li').click(function() {
+                $('#fileList li').click(function () {
                     let txt = prompt('Text to linked to the file:');
-                    $('#content').val($('#content').val()+'['+txt+']('+$(this).text()+')');
+                    $('#content').val($('#content').val() + '[' + txt + '](' + $(this).text() + ')');
                     $('#moreActions').hide();
                 });
-                $('#imgList li').click(function() {
+                $('#imgList li').click(function () {
                     let txt = prompt('Text replacement for the image:');
-                    $('#content').val($('#content').val()+'!['+txt+']('+$(this).text()+')');
+                    $('#content').val($('#content').val() + '![' + txt + '](' + $(this).text() + ')');
                     $('#moreActions').hide();
                 });
             });

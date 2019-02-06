@@ -1,5 +1,6 @@
 {
     "require": {
-        "components/jquery": "^3.3"
+        "components/jquery": "^3.3",
+        "moxiecode/plupload": "^3.1"
     }
 }
