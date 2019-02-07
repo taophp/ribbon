@@ -19,10 +19,11 @@
             </div>
             <div id="moreActionsMain">
                 <div id="addPictureMain">
-                    <div id="container">
-                        <span>[Select files]</span> 
-                        <span>[Upload files]</span>
+                    <div id="uplcontainer">
+                        <span id="pickfiles">[Select files]</span> 
+                        <span id="uploadfiles">[Upload files]</span>
                     </div>
+                    <div id="filelist">Your browser doesn't have Flash, Silverlight or HTML5 support.</div>
                     <br />
                     <pre id="console"></pre>
                     <hr>
@@ -62,50 +63,5 @@
                 </div>
             </div>
         </form>
-        <script>
-            /** @see https://stackoverflow.com/questions/2830542/prevent-double-submission-of-forms-in-jquery */
-            jQuery.fn.preventDoubleSubmission = function () {
-                $(this).on('submit', function (e) {
-                    var $form = $(this);
-
-                    if ($form.data('submitted') === true) {
-                        e.preventDefault();
-                    } else {
-                        $form.data('submitted', true);
-                    }
-                });
-                return this;
-            };
-            $(function () {
-                $('form').preventDoubleSubmission();
-                $('#more').click(function () {
-                    $('#moreActions').fadeToggle();
-                });
-                $('.close').click(function () {
-                    $('#moreActions').fadeToggle();
-                });
-                $('#moreActionsTabs > div').click(function () {
-                    $('#moreActionsTabs > div').removeClass('activ');
-                    $(this).addClass('activ');
-                    $('#moreActionsMain > div').hide();
-                    $('#' + $(this).attr('id').replace('Tab', 'Main')).fadeToggle();
-                });
-                $('.flashmsg.Success').fadeOut(2000);
-                var content = $('#content').val();
-                $('#content').val('');
-                $('#content').focus();
-                $('#content').val(content);
-                $('#fileList li').click(function () {
-                    let txt = prompt('Text to linked to the file:');
-                    $('#content').val($('#content').val() + '[' + txt + '](' + $(this).text() + ')');
-                    $('#moreActions').hide();
-                });
-                $('#imgList li').click(function () {
-                    let txt = prompt('Text replacement for the image:');
-                    $('#content').val($('#content').val() + '![' + txt + '](' + $(this).text() + ')');
-                    $('#moreActions').hide();
-                });
-            });
-        </script>
     </body>
 {% endblock %}

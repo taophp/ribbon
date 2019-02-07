@@ -139,9 +139,9 @@ $app->get('/g', function (Request $request, Response $response) {
 });
 
 
-$app->get('/f',function (Request $request, Response $response) {
+$app->post('/f',function (Request $request, Response $response) {
     $ph = new PluploadHandler(array(
-            'target_dir' => 'uploads/',
+            'target_dir' => 'upload/',
             'allow_extensions' => 'jpg,jpeg,png'
     ));
 
