@@ -19,23 +19,31 @@
             </div>
             <div id="moreActionsMain">
                 <div id="addPictureMain">
-                    <div id="uplcontainer">
-                        <span id="pickfiles">[Select files]</span> 
-                        <span id="uploadfiles">[Upload files]</span>
+                    <h1>Add a picture</h1>
+                    <div id="uplimgcontainer">
+                        <span id="pickimgs">[Select images]</span> 
+                        <span id="uploadimgs">[Upload images]</span>
                     </div>
-                    <div id="filelist">Your browser doesn't have Flash, Silverlight or HTML5 support.</div>
+                    <div id="uplimglist">Your browser doesn't have Flash, Silverlight or HTML5 support.</div>
                     <br />
-                    <pre id="console"></pre>
+                    <pre id="imgconsole"></pre>
                     <hr>
                     <ul id="imgList">
                         {% for img in imgs %}
                             <li>{{ img }}</li>
                             {% endfor %}
                     </ul>
-                    <h1>Add a picture</h1>
                 </div>
                 <div id="addFileMain">
                     <h1>Add a file</h1>
+                    <div id="uplfilecontainer">
+                        <span id="pickfiles">[Select files]</span> 
+                        <span id="uploadfiles">[Upload files]</span>
+                    </div>
+                    <div id="uplfilelist">Your browser doesn't have Flash, Silverlight or HTML5 support.</div>
+                    <br />
+                    <pre id="fileconsole"></pre>
+                    <hr>
                     <ul id="fileList">
                         {% for file in files %}
                             <li>{{ file }}</li>
