@@ -66,6 +66,7 @@
                     {% endfor %}
                 </div>
                 <textarea tabindex="1" id="content" name="content" placeholder="{% include 'mdhelp.txt' %}">{% if textAreaContent %}{{ textAreaContent }}{% endif %}</textarea>
+                <div id="contentPlus" contenteditable></div>
                 <div id="newPostButtons">
                     <input type="button" id="more" value="+" tabindex="3"><input tabindex="2" type="submit">
                 </div>

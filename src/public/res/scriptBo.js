@@ -1,5 +1,23 @@
 /* global plupload */
 
+/** @see https://stackoverflow.com/questions/7467840/nl2br-equivalent-in-javascript */
+function nl2br (str, is_xhtml) {
+    if (typeof str === 'undefined' || str === null) {
+        return '';
+    }
+    var breakTag = (is_xhtml || typeof is_xhtml === 'undefined') ? '<br />' : '<br>';
+    return (str + '').replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, '$1' + breakTag + '$2');
+}
+
+/** @see https://stackoverflow.com/questions/8062399/how-replace-html-br-with-newline-character-n */
+function br2nl(str) {
+    return str.replace(/<\s*\/?br>/ig, "");
+}
+
+function removeDiv(str) {
+    return str.replace(/<\s*\/?div>/ig, "");
+}
+
 /** @see https://stackoverflow.com/questions/2830542/prevent-double-submission-of-forms-in-jquery */
 jQuery.fn.preventDoubleSubmission = function () {
     $(this).on('submit', function (e) {
@@ -140,4 +158,32 @@ $(function () {
         $('#content').val($('#content').val() + '![' + txt + '](' + $(this).text() + ')');
         $('#moreActions').hide();
     });
+    
+    $('#contentPlus').height($('#content').height());
+    $('#contentPlus').width($('#content').width());
+    $('#content').hide();
+    $('#contentPlus').focus();
+    $('#contentPlus').html(nl2br($('#content').val()));
+    $('#contentPlus').keypress(function (event) {
+        if (event.keyCode === 10 || event.keyCode === 13) {
+            event.preventDefault();
+            var sel, range, html;
+            if (window.getSelection) {
+                sel = window.getSelection();
+                if (sel.getRangeAt && sel.rangeCount) {
+                    range = sel.getRangeAt(0);
+                    range.deleteContents();
+                    range.insertNode( document.createElement('br') );
+                }
+            } else if (document.selection && document.selection.createRange) {
+                document.selection.createRange().text = text;
+            }
+        }
+    });
+    $('#contentPlus').on('focusout',function(){
+        $('#content').val(removeDiv(br2nl($('#contentPlus').html())));
+    });
+    $('#contentPlus').pastableContenteditable();
+
+    
 });
