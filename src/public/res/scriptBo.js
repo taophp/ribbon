@@ -50,6 +50,16 @@ $(function () {
 
             Error: function (up, err) {
                 document.getElementById('imgconsole').appendChild(document.createTextNode("\nError #" + err.code + ": " + err.message));
+            },
+            FileUploaded: function (up,file,result) {
+                response = JSON.parse(result.response)
+                if (response.OK === 1) {
+                    $('#'+file.id).click(function(){
+                        let txt = prompt('Text to linked to the image:');
+                        $('#content').val($('#content').val() + '![' + txt + '](' + 'upload/' + file.name + ')');
+                        $('#moreActions').hide();
+                    });
+                }
             }
         }
     });
@@ -86,6 +96,16 @@ $(function () {
 
             Error: function (up, err) {
                 document.getElementById('fileconsole').appendChild(document.createTextNode("\nError #" + err.code + ": " + err.message));
+            },
+            FileUploaded: function (up,file,result) {
+                response = JSON.parse(result.response)
+                if (response.OK === 1) {
+                    $('#'+file.id).click(function(){
+                        let txt = prompt('Text to linked to the file:');
+                        $('#content').val($('#content').val() + '[' + txt + '](' + 'upload/' + file.name + ')');
+                        $('#moreActions').hide();
+                    });
+                }
             }
         }
     });
