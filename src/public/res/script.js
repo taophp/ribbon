@@ -25,7 +25,7 @@ $(function () {
     if (jQuery.isFunction($().masonry)) {
         $('.grid').masonry({
             itemSelector: 'article',
-            columnWidth: 220
+            columnWidth: 360
         });
     }
 });
