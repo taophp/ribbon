@@ -132,9 +132,15 @@ $app->post('/n/{filename}', function (Request $request, Response $response,$args
 });
 
 $app->get('/g', function (Request $request, Response $response) {
+    $params = $request->getQueryParams();
+    $force = false;
+    if (array_key_exists('f', $params) &&  $params['f'] === '1') {
+        $force = true;
+    }
     RibbonGenerator::init($this);
-    RibbonGenerator::generate();
-    $response = $response->withRedirect($_SERVER['HTTP_REFERER'],303);
+    RibbonGenerator::generate($force);
+    
+    //$response = $response->withRedirect($_SERVER['HTTP_REFERER'],303);
     return $response;
 });
 

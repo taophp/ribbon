@@ -29,7 +29,7 @@ class RibbonGenerator {
     }
 
 
-    public static function generate() : bool {
+    public static function generate(bool $force = false) : bool {
         $indexFile = static::$container->settings['postDestinationDirectory'].'/index.html';
         $lastGeneration = filemtime($indexFile);
         
@@ -55,7 +55,7 @@ class RibbonGenerator {
 
                 $posts[$year][$month][$day][$time][$seconds] = $post;
             }
-            if (filemtime($file) > $lastGeneration) {
+            if ($force === true || filemtime($file) > $lastGeneration) {
                 file_put_contents(static::$container->settings['postDestinationDirectory'].'/'.$post->getHtmlFilename(),
                 $view->fetch('post.html.twig',['post'=>$post,'frontConfig' => static::$container->settings['front']]));
             }
