@@ -31,6 +31,63 @@ jQuery.fn.preventDoubleSubmission = function () {
     });
     return this;
 };
+
+/** @see https://davidwalsh.name/convert-image-data-uri-javascript */
+function getDataUri(url, callback) {
+    var image = new Image();
+
+    image.onload = function () {
+        var canvas = document.createElement('canvas');
+        canvas.width = this.naturalWidth; // or 'width' if you want a special/scaled size
+        canvas.height = this.naturalHeight; // or 'height' if you want a special/scaled size
+
+        canvas.getContext('2d').drawImage(this, 0, 0);
+
+        // Get raw image data
+        callback(canvas.toDataURL('image/png').replace(/^data:image\/(png|jpg);base64,/, ''));
+
+        // ... or get as Data URI
+        callback(canvas.toDataURL('image/png'));
+    };
+
+    image.src = url;
+}
+
+/** @see https://jsfiddle.net/Xeoncross/4tUDk/ */
+function pasteHtmlAtCaret(html) {
+    var sel, range;
+    if (window.getSelection) {
+        // IE9 and non-IE
+        sel = window.getSelection();
+        if (sel.getRangeAt && sel.rangeCount) {
+            range = sel.getRangeAt(0);
+            range.deleteContents();
+
+            // Range.createContextualFragment() would be useful here but is
+            // non-standard and not supported in all browsers (IE9, for one)
+            var el = document.createElement("div");
+            el.innerHTML = html;
+            var frag = document.createDocumentFragment(), node, lastNode;
+            while ( (node = el.firstChild) ) {
+                lastNode = frag.appendChild(node);
+            }
+            range.insertNode(frag);
+            
+            // Preserve the selection
+            if (lastNode) {
+                range = range.cloneRange();
+                range.setStartAfter(lastNode);
+                range.collapse(true);
+                sel.removeAllRanges();
+                sel.addRange(range);
+            }
+        }
+    } else if (document.selection && document.selection.type != "Control") {
+        // IE < 9
+        document.selection.createRange().pasteHTML(html);
+    }
+}
+
 $(function () {
     var imguploader = new plupload.Uploader({
         runtimes: 'html5,flash,silverlight,html4',
@@ -185,5 +242,16 @@ $(function () {
     });
     $('#contentPlus').pastableContenteditable();
 
-    
+   $('#contentPlus').on('pasteImage', function(ev, data){
+        var blobUrl = URL.createObjectURL(data.blob);
+        getDataUri(blobUrl,function(dataUri) {
+            $('#contentPlus').focus();
+            pasteHtmlAtCaret('<img src="' + data.dataURL +'" >');
+        });
+      }).on('pasteImageError', function(ev, data){
+        console.log('Oops: ' + data.message);
+        if(data.url){
+          console.log('But we got its url anyway:' + data.url)
+        }
+      }); 
 });
