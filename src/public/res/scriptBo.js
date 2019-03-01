@@ -201,18 +201,16 @@ $(function () {
         $('#' + $(this).attr('id').replace('Tab', 'Main')).fadeToggle();
     });
     $('.flashmsg.Success').fadeOut(2000);
-    var content = $('#content').val();
-    $('#content').val('');
-    $('#content').focus();
-    $('#content').val(content);
     $('#fileList li').click(function () {
         let txt = prompt('Text to linked to the file:');
-        $('#content').val($('#content').val() + '[' + txt + '](' + $(this).text() + ')');
+        $('#contentPlus').focus();
+        pasteHtmlAtCaret('[' + txt + '](' + $(this).text() + ')');
         $('#moreActions').hide();
     });
     $('#imgList li').click(function () {
         let txt = prompt('Text replacement for the image:');
-        $('#content').val($('#content').val() + '![' + txt + '](' + $(this).text() + ')');
+        $('#contentPlus').focus();
+        pasteHtmlAtCaret('![' + txt + '](' + $(this).text() + ')');
         $('#moreActions').hide();
     });
     
