@@ -19,6 +19,16 @@ function removeDiv(str) {
     return str.replace(/<\s*\/?div>/ig, "");
 }
 
+function fixChevron(str) {
+    str = str.split('&gt;').join('>');
+    str = str.split('&lt;').join('<');
+    return str;
+}
+
+function fixContent4textarea(str){
+    return fixChevron(removeDiv(br2nl(str)));
+}
+
 /** @see https://stackoverflow.com/questions/2830542/prevent-double-submission-of-forms-in-jquery */
 jQuery.fn.preventDoubleSubmission = function () {
     $(this).on('submit', function (e) {
@@ -229,7 +239,7 @@ $(function () {
         }
     });
     $('#contentPlus').on('focusout',function(){
-        $('#content').val(removeDiv(br2nl($('#contentPlus').html())));
+        $('#content').val(fixContent4textarea($('#contentPlus').html()));
     });
     $('#contentPlus').pastableContenteditable();
 
@@ -237,7 +247,7 @@ $(function () {
         var blobUrl = URL.createObjectURL(data.blob);
         getDataUri(blobUrl,function(dataUri) {
             $('#contentPlus').focus();
-            pasteHtmlAtCaret('->brut<br><img src="' + data.dataURL +'" ><br><-<br>');
+            pasteHtmlAtCaret('<img src="' + data.dataURL +'" >');
             event.stopPropagation();
         });
       }).on('pasteImageError', function(ev, data){
