@@ -240,6 +240,7 @@ $(function () {
     });
     $('#contentPlus').on('focusout',function(){
         $('#content').val(fixContent4textarea($('#contentPlus').html()));
+        $('#submit').focus();
     });
     $('#contentPlus').pastableContenteditable();
 
@@ -255,5 +256,6 @@ $(function () {
         if(data.url){
           console.log('But we got its url anyway:' + data.url)
         }
-      }); 
+      });
+      $('#contentPlus').focus();
 });
