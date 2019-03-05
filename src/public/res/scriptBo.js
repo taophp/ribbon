@@ -6,12 +6,13 @@ function nl2br (str, is_xhtml) {
         return '';
     }
     var breakTag = (is_xhtml || typeof is_xhtml === 'undefined') ? '<br />' : '<br>';
-    return (str + '').replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, '$1' + breakTag + '$2');
+    //return (str + '').replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, '$1' + breakTag + '$2');
+    return (str + '').replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, '$1' + breakTag);
 }
 
 /** @see https://stackoverflow.com/questions/8062399/how-replace-html-br-with-newline-character-n */
 function br2nl(str) {
-    return str.replace(/<\s*\/?br>/ig, "");
+    return str.replace(/<\s*\/?br>/ig, "\n");
 }
 
 function removeDiv(str) {
@@ -201,16 +202,18 @@ $(function () {
         $('#' + $(this).attr('id').replace('Tab', 'Main')).fadeToggle();
     });
     $('.flashmsg.Success').fadeOut(2000);
+    var content = $('#content').val();
+    $('#content').val('');
+    $('#content').focus();
+    $('#content').val(content);
     $('#fileList li').click(function () {
         let txt = prompt('Text to linked to the file:');
-        $('#contentPlus').focus();
-        pasteHtmlAtCaret('[' + txt + '](' + $(this).text() + ')');
+        $('#content').val($('#content').val() + '[' + txt + '](' + $(this).text() + ')');
         $('#moreActions').hide();
     });
     $('#imgList li').click(function () {
         let txt = prompt('Text replacement for the image:');
-        $('#contentPlus').focus();
-        pasteHtmlAtCaret('![' + txt + '](' + $(this).text() + ')');
+        $('#content').val($('#content').val() + '![' + txt + '](' + $(this).text() + ')');
         $('#moreActions').hide();
     });
     
@@ -222,17 +225,7 @@ $(function () {
     $('#contentPlus').keypress(function (event) {
         if (event.keyCode === 10 || event.keyCode === 13) {
             event.preventDefault();
-            var sel, range, html;
-            if (window.getSelection) {
-                sel = window.getSelection();
-                if (sel.getRangeAt && sel.rangeCount) {
-                    range = sel.getRangeAt(0);
-                    range.deleteContents();
-                    range.insertNode( document.createElement('br') );
-                }
-            } else if (document.selection && document.selection.createRange) {
-                document.selection.createRange().text = text;
-            }
+            pasteHtmlAtCaret('<br>');
         }
     });
     $('#contentPlus').on('focusout',function(){
@@ -244,7 +237,8 @@ $(function () {
         var blobUrl = URL.createObjectURL(data.blob);
         getDataUri(blobUrl,function(dataUri) {
             $('#contentPlus').focus();
-            pasteHtmlAtCaret('<img src="' + data.dataURL +'" >');
+            pasteHtmlAtCaret('->brut<br><img src="' + data.dataURL +'" ><br><-<br>');
+            event.stopPropagation();
         });
       }).on('pasteImageError', function(ev, data){
         console.log('Oops: ' + data.message);
