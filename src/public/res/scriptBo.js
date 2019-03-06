@@ -25,6 +25,11 @@ function fixChevron(str) {
     return str;
 }
 
+function fixSpaces(str) {
+    str = str.split(' ').join('%20');
+    return str;    
+}
+
 function fixContent4textarea(str){
     return fixChevron(removeDiv(br2nl(str)));
 }
@@ -142,7 +147,8 @@ $(function () {
                 if (response.OK === 1) {
                     $('#'+file.id).click(function(){
                         let txt = prompt('Text to linked to the image:');
-                        $('#content').val($('#content').val() + '![' + txt + '](' + 'upload/' + file.name + ')');
+                        $('#contentPlus').focus();
+                        pasteHtmlAtCaret('![' + txt + '](' + 'upload/' + fixSpaces(file.name) + ')');
                         $('#moreActions').hide();
                     });
                 }
@@ -188,7 +194,8 @@ $(function () {
                 if (response.OK === 1) {
                     $('#'+file.id).click(function(){
                         let txt = prompt('Text to linked to the file:');
-                        $('#content').val($('#content').val() + '[' + txt + '](' + 'upload/' + file.name + ')');
+                        $('#contentPlus').focus();
+                        pasteHtmlAtCaret('[' + txt + '](' + 'upload/' + fixSpaces(file.name) + ')');
                         $('#moreActions').hide();
                     });
                 }
@@ -213,21 +220,22 @@ $(function () {
     });
     $('.flashmsg.Success').fadeOut(2000);
     var content = $('#content').val();
-    $('#content').val('');
-    $('#content').focus();
-    $('#content').val(content);
+    //$('#content').val('');
+    //$('#content').focus();
+    //$('#content').val(content);
     $('#fileList li').click(function () {
         let txt = prompt('Text to linked to the file:');
-        $('#content').val($('#content').val() + '[' + txt + '](' + $(this).text() + ')');
+        $('#contentPlus').focus();
+        pasteHtmlAtCaret('[' + txt + '](' + 'upload/' + fixSpaces($(this).text()) + ')');
         $('#moreActions').hide();
     });
     $('#imgList li').click(function () {
         let txt = prompt('Text replacement for the image:');
-        $('#content').val($('#content').val() + '![' + txt + '](' + $(this).text() + ')');
+        $('#contentPlus').focus();
+        pasteHtmlAtCaret('![' + txt + '](' + 'upload/' + fixSpaces($(this).text()) + ')');
         $('#moreActions').hide();
     });
     
-    //$('#contentPlus').height($('#content').height());
     $('#content').hide();
     $('#contentPlus').focus();
     $('#contentPlus').html(nl2br($('#content').val()));
@@ -250,11 +258,6 @@ $(function () {
             pasteHtmlAtCaret('<img src="' + data.dataURL +'" >');
             event.stopPropagation();
         });
-      }).on('pasteImageError', function(ev, data){
-        console.log('Oops: ' + data.message);
-        if(data.url){
-          console.log('But we got its url anyway:' + data.url)
-        }
       });
       $('#contentPlus').focus();
 });
