@@ -448,23 +448,26 @@ div.note, p.note {
     height:100vh;
 }
 
-textarea {
+textarea, #contentPlus {
     width: 35em;
     max-width: 100%;
     box-sizing: border-box;
     margin:0 auto;
     border:none;
+    overflow: auto;
 }
-#newPostFormContainer textarea {
-    flex-grow: 100;
+#newPostFormContainer textarea, #contentPlus  {
+    flex-grow: 1;
 }
+
 
 #newPostButtons {
     display:flex;
+    flex-shrink: 1;
 }
 
 #newPostButtons input[type="submit"]{
-    flex-grow:100;
+    flex-grow:1;
 }
 
 #moreActions {

@@ -227,8 +227,7 @@ $(function () {
         $('#moreActions').hide();
     });
     
-    $('#contentPlus').height($('#content').height());
-    $('#contentPlus').width($('#content').width());
+    //$('#contentPlus').height($('#content').height());
     $('#content').hide();
     $('#contentPlus').focus();
     $('#contentPlus').html(nl2br($('#content').val()));
