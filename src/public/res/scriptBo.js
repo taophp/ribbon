@@ -104,6 +104,44 @@ function pasteHtmlAtCaret(html) {
     }
 }
 
+
+/** @see https://stackoverflow.com/questions/1181700/set-cursor-position-on-contenteditable-div/3323835#answer-3323835 */
+var savedRange,isInFocus;
+function saveSelection()
+{
+    if(window.getSelection)//non IE Browsers
+    {
+        savedRange = window.getSelection().getRangeAt(0);
+    }
+    else if(document.selection)//IE
+    { 
+        savedRange = document.selection.createRange();  
+    } 
+}
+
+function restoreSelection()
+{
+    isInFocus = true;
+    document.getElementById('contentPlus').focus();
+    if (savedRange != null) {
+        if (window.getSelection)//non IE and there is already a selection
+        {
+            var s = window.getSelection();
+            if (s.rangeCount > 0) 
+                s.removeAllRanges();
+            s.addRange(savedRange);
+        }
+        else if (document.createRange)//non IE and no selection
+        {
+            window.getSelection().addRange(savedRange);
+        }
+        else if (document.selection)//IE
+        {
+            savedRange.select();
+        }
+    }
+}
+
 $(function () {
     var imguploader = new plupload.Uploader({
         runtimes: 'html5,flash,silverlight,html4',
@@ -147,7 +185,7 @@ $(function () {
                 if (response.OK === 1) {
                     $('#'+file.id).click(function(){
                         let txt = prompt('Text to linked to the image:');
-                        $('#contentPlus').focus();
+                        restoreSelection();
                         pasteHtmlAtCaret('![' + txt + '](' + 'upload/' + fixSpaces(file.name) + ')');
                         $('#moreActions').hide();
                     });
@@ -194,7 +232,7 @@ $(function () {
                 if (response.OK === 1) {
                     $('#'+file.id).click(function(){
                         let txt = prompt('Text to linked to the file:');
-                        $('#contentPlus').focus();
+                        restoreSelection();
                         pasteHtmlAtCaret('[' + txt + '](' + 'upload/' + fixSpaces(file.name) + ')');
                         $('#moreActions').hide();
                     });
@@ -225,13 +263,13 @@ $(function () {
     //$('#content').val(content);
     $('#fileList li').click(function () {
         let txt = prompt('Text to linked to the file:');
-        $('#contentPlus').focus();
+        restoreSelection();
         pasteHtmlAtCaret('[' + txt + '](' + 'upload/' + fixSpaces($(this).text()) + ')');
         $('#moreActions').hide();
     });
     $('#imgList li').click(function () {
         let txt = prompt('Text replacement for the image:');
-        $('#contentPlus').focus();
+        restoreSelection();
         pasteHtmlAtCaret('![' + txt + '](' + 'upload/' + fixSpaces($(this).text()) + ')');
         $('#moreActions').hide();
     });
@@ -246,6 +284,7 @@ $(function () {
         }
     });
     $('#contentPlus').on('focusout',function(){
+        saveSelection();
         $('#content').val(fixContent4textarea($('#contentPlus').html()));
         $('#submit').focus();
     });
