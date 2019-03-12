@@ -140,7 +140,9 @@ $app->get('/g', function (Request $request, Response $response) {
     RibbonGenerator::init($this);
     RibbonGenerator::generate($force);
     
-    $response = $response->withRedirect($_SERVER['HTTP_REFERER'],303);
+    if (!empty($_SERVER['HTTP_REFERER'])) {
+        $response = $response->withRedirect($_SERVER['HTTP_REFERER'],303);
+    }
     return $response;
 });
 
