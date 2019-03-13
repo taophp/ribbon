@@ -36,7 +36,7 @@ function fixNbsp(str) {
 }
 
 function fixContent4textarea(str){
-    return fixChevron(removeDiv(br2nl(str)));
+    return fixNbsp(fixChevron(removeDiv(br2nl(str))));
 }
 
 /** @see https://stackoverflow.com/questions/2830542/prevent-double-submission-of-forms-in-jquery */
