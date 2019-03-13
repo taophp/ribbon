@@ -30,6 +30,11 @@ function fixSpaces(str) {
     return str;    
 }
 
+function fixNbsp(str) {
+    str = str.split('&nbsp;').join(' ');
+    return str;
+}
+
 function fixContent4textarea(str){
     return fixChevron(removeDiv(br2nl(str)));
 }
@@ -258,9 +263,6 @@ $(function () {
     });
     $('.flashmsg.Success').fadeOut(2000);
     var content = $('#content').val();
-    //$('#content').val('');
-    //$('#content').focus();
-    //$('#content').val(content);
     $('#fileList li').click(function () {
         let txt = prompt('Text to linked to the file:');
         restoreSelection();
